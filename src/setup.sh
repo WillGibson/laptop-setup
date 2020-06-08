@@ -1,6 +1,6 @@
 #!/bin/bash
 
-basePath=${BASH_SOURCE%/*}
+basePath="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 # shellcheck disable=SC1090
 source "${basePath}/components/install_commands.sh"

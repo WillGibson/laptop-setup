@@ -82,7 +82,7 @@ ensure_git_name_and_email_are_set() {
         fancy_echo "Please export GIT_USER_EMAIL=\"<your email address>\""
         exit 1
     else
-        git config --global user.email "$GIT_USER_NAME"
+        git config --global user.email "$GIT_USER_EMAIL"
     fi
 }
 
