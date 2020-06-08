@@ -65,7 +65,8 @@ ensure_laptop_setup_is_up_to_date() {
     if [ ! -f "${basePath}/../.git" ]; then
         currentDirectory=$(pwd)
         cd "${basePath}/../" || exit
-        git pull
+        git config pull.ff only
+        git pull origin "$(git rev-parse --abbrev-ref HEAD)"
         cd "${currentDirectory}" || exit
     fi
 }
@@ -75,7 +76,6 @@ ensure_git_name_and_email_are_set() {
         fancy_echo "Please export GIT_USER_NAME=\"<your name>\""
         exit 1
     else
-        fancy_echo "git config --global user.name \"$GIT_USER_NAME\""
         git config --global user.name "$GIT_USER_NAME"
     fi
     if [ -z "$GIT_USER_EMAIL" ]; then
