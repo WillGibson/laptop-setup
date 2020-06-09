@@ -21,6 +21,8 @@ brew reinstall nvm
 
 brew reinstall git
 
+brew reinstall awscli
+
 ensure_php_is_installed
 
 # append_to_zshrc 'source $ZSH/oh-my-zsh.sh'
