@@ -1,0 +1,30 @@
+#!/bin/bash
+
+echo "Executing Docker Brutal Cleanup"
+
+echo "Delete all containers"
+containers=$(docker ps -a -q)
+if [ "$containers" != '' ]; then
+    docker rm -f $containers
+else
+    echo 'No containers to remove'
+fi
+
+echo "Delete all volumes"
+volumes=$(docker volume ls -q)
+if [ "$volumes" != '' ]; then
+    docker volume rm -f $volumes
+else
+    echo 'No volumes to remove'
+fi
+
+echo "Delete all dangling (unused) images"
+danglingImages=$(docker images -q -f dangling=true)
+if [ "$danglingImages" != '' ]; then
+    docker rmi $danglingImages
+else
+    echo 'No dangling images to remove'
+fi
+
+echo "Prune network"
+docker network prune -f
