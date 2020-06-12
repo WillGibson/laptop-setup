@@ -79,7 +79,7 @@ ensure_git_name_and_email_are_set() {
         git config --global user.name "$GIT_USER_NAME"
     fi
     if [ -z "$GIT_USER_EMAIL" ]; then
-        fancy_echo "Please export GIT_USER_EMAIL=\"<your email address>\"" 1
+        fancy_echo "Please export GIT_USER_EMAIL=\"<your email address>\""
         exit 1
     else
         git config --global user.email "$GIT_USER_EMAIL"
@@ -93,8 +93,8 @@ ensure_zsh_and_zsh_completions_are_installed() {
         chsh -s /bin/zsh
     fi
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-    append_to_zshrc "export GIT_USER_NAME=\"$GIT_USER_NAME\"" 1
-    append_to_zshrc "export GIT_USER_EMAIL=\"$GIT_USER_EMAIL\""
+    append_to_zshrc "export GIT_USER_NAME=\"$GIT_USER_NAME\""
+    append_to_zshrc "export GIT_USER_EMAIL=\"$GIT_USER_EMAIL\"" 1
 }
 
 ensure_php_is_installed() {
@@ -109,14 +109,11 @@ ensure_correct_ohmyzsh_theme_is_used() {
     local themeName="$2"
     local zshrc="$HOME/.zshrc"
     local defaultOhMyZSHThemeString='ZSH_THEME="robbyrussell"'
-    local commentedOutDefaultOhMyZSHThemeString="# ${defaultOhMyZSHThemeString}"
     local desiredOhMyZSHThemeString="ZSH_THEME=\"${themeName}\""
 
     ensure_symlink_exists "${themeFilePath}" "${HOME}/.oh-my-zsh/custom/themes/${themeName}.zsh-theme"
 
-    update_file_line_in_situ ${zshrc} "${defaultOhMyZSHThemeString}" "${commentedOutDefaultOhMyZSHThemeString}"
-
-    append_to_zshrc "${desiredOhMyZSHThemeString}"
+    update_file_line_in_situ ${zshrc} "${defaultOhMyZSHThemeString}" "${desiredOhMyZSHThemeString}"
 }
 
 update_file_line_in_situ() {
