@@ -125,7 +125,6 @@ update_file_line_in_situ() {
     desiredLine="$3"
 
     if grep -Fqsx "${defaultLine}" "${filePath}" && ! grep -Fqsx "${desiredLine}" "${filePath}"; then
-        echo "sed -i '' -e \"s/${defaultLine}/${desiredLine}/g\" {} \;"
         find "${filePath}" -type f -exec \
             sed -i '' -e "s/${defaultLine}/${desiredLine}/g" {} \;
     fi

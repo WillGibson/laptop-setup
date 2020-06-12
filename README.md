@@ -19,8 +19,13 @@ Then you can run the script, but be aware that you may be prompted for your pass
 
     ./src/setup.sh
 
-## What it won't do for you
+## What it won't do for you yet
 
 You will need to do the following manually...
 
 * Create your SSH key pair or copy it from elsewhere
+* Install Spotify
+* Install DisplayLink drivers
+* Install Docker
+* Install Intellij Idea
+* Install Postman
