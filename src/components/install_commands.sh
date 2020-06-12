@@ -93,8 +93,8 @@ ensure_zsh_and_zsh_completions_are_installed() {
         chsh -s /bin/zsh
     fi
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-    append_to_zshrc "export GIT_USER_NAME=\"$GIT_USER_NAME\"" 1
-    append_to_zshrc "export GIT_USER_EMAIL=\"$GIT_USER_EMAIL\""
+    append_to_zshrc "export GIT_USER_NAME=\"$GIT_USER_NAME\""
+    append_to_zshrc "export GIT_USER_EMAIL=\"$GIT_USER_EMAIL\"" 1
 }
 
 ensure_php_is_installed() {
@@ -102,4 +102,48 @@ ensure_php_is_installed() {
     brew link --force --overwrite php@7.4
     brew services restart php
     brew unlink php && brew link php
+}
+
+ensure_correct_ohmyzsh_theme_is_used() {
+    local themeFilePath="$1"
+    local themeName="$2"
+    local zshrc="$HOME/.zshrc"
+    local defaultOhMyZSHThemeString='ZSH_THEME="robbyrussell"'
+    local desiredOhMyZSHThemeString="ZSH_THEME=\"${themeName}\""
+
+    ensure_symlink_exists "${themeFilePath}" "${HOME}/.oh-my-zsh/custom/themes/${themeName}.zsh-theme"
+
+    update_file_line_in_situ ${zshrc} "${defaultOhMyZSHThemeString}" "${desiredOhMyZSHThemeString}"
+}
+
+update_file_line_in_situ() {
+    filePath="$1"
+    defaultLine="$2"
+    desiredLine="$3"
+
+    if grep -Fqsx "${defaultLine}" "${filePath}" && ! grep -Fqsx "${desiredLine}" "${filePath}"; then
+        find "${filePath}" -type f -exec \
+            sed -i '' -e "s/${defaultLine}/${desiredLine}/g" {} \;
+    fi
+}
+
+ensure_zshrc_correction_is_used() {
+    local zshrc="$HOME/.zshrc"
+    update_file_line_in_situ ${zshrc} '# ENABLE_CORRECTION="true"' 'ENABLE_CORRECTION="true"'
+}
+
+ensure_zshrc_completion_waiting_dots_are_used() {
+    local zshrc="$HOME/.zshrc"
+    update_file_line_in_situ ${zshrc} '# COMPLETION_WAITING_DOTS="true"' 'COMPLETION_WAITING_DOTS="true"'
+}
+
+ensure_symlink_exists() {
+
+    realPath="$1"
+    linkPath="$2"
+
+    rm -f "${linkPath}"
+    ln -s ${realPath} ${linkPath}
+
+    echo "Created symlink $realPath -> $linkPath"
 }
