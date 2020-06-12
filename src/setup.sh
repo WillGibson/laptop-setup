@@ -21,12 +21,25 @@ brew cask reinstall iterm2
 ensure_zsh_and_zsh_completions_are_installed
 
 brew reinstall nvm
+mkdir ~/.nvm
+append_to_zshrc "source ${basePath}/components/zshrc/nvm_switcher.sh"
 
 brew reinstall git
 
 brew reinstall awscli
 
 ensure_php_is_installed
+
+brew cask reinstall docker
+brew reinstall kubectl
+brew reinstall minikube
+
+rm -rf /Applications/IntelliJ\ IDEA.app
+brew cask reinstall intellij-idea
+
+brew cask reinstall postman
+
+brew cask reinstall spotify
 
 append_to_zshrc "source ${basePath}/components/zshrc/aliases/miscellaneous.sh"
 append_to_zshrc "source ${basePath}/components/zshrc/aliases/git.sh" 1
@@ -41,15 +54,5 @@ ensure_zshrc_correction_is_used
 ensure_zshrc_completion_waiting_dots_are_used
 
 ensure_correct_ohmyzsh_theme_is_used "${basePath}/components/ohmyzsh/willgibson.zsh-theme" "willgibson"
-
-# Todo: Install Spotify??
-
-# Todo: DisplayLink??
-
-# Todo: Docker
-
-# Todo: Intellij
-
-# Todo: Postman
 
 fancy_echo "To reload profile now please run...\n\nsource ~/.zshrc\n"

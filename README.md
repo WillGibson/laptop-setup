@@ -26,8 +26,4 @@ Then you can run the script, but be aware that you may be prompted for your pass
 You will need to do the following manually...
 
 * Create your SSH key pair or copy it from elsewhere
-* Install Docker
-* Install Intellij Idea
-* Install Postman
-* Install Spotify
 * Install DisplayLink drivers
