@@ -1,6 +1,9 @@
 #!/bin/bash
 
+# shellcheck disable=SC2164
 basePath="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+
+cp ~/.zshrc "${HOME}/.zshrc.backup.$(date)"
 
 # shellcheck disable=SC1090
 source "${basePath}/components/install_commands.sh"
@@ -25,19 +28,18 @@ brew reinstall awscli
 
 ensure_php_is_installed
 
-# append_to_zshrc 'source $ZSH/oh-my-zsh.sh'
-
 append_to_zshrc "source ${basePath}/components/zshrc/aliases/miscellaneous.sh"
 append_to_zshrc "source ${basePath}/components/zshrc/aliases/git.sh" 1
 append_to_zshrc "source ${basePath}/components/zshrc/aliases/docker.sh" 1
 
-append_to_zshrc "commitconfig"
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+update_file_line_in_situ ~/.zshrc 'plugins=(git)' 'plugins=(docker git zsh-autosuggestions)'
 
-# Todo: .zshrc plugins - docker, git, zsh-autosuggestions
-# Todo: .zshrc ENABLE_CORRECTION="true"
-# Todo: .zshrc COMPLETION_WAITING_DOTS="true"
+ensure_zshrc_correction_is_used
 
-# Todo: willgibson.zsh-theme
+ensure_zshrc_completion_waiting_dots_are_used
+
+ensure_correct_ohmyzsh_theme_is_used "${basePath}/components/ohmyzsh/willgibson.zsh-theme" "willgibson"
 
 # Todo: Install Spotify??
 
