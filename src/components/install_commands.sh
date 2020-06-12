@@ -36,7 +36,7 @@ ensure_homebrew_is_installed_and_up_to_date() {
     if ! command -v brew >/dev/null; then
         fancy_echo "Installing Homebrew ..."
         curl -fsS \
-            'https://raw.githubusercontent.com/Homebrew/install/master/install' | ruby
+            'https://raw.githubusercontent.com/Homebrew/install/master/install.sh'
 
         append_to_zshrc '# recommended by brew doctor'
 
