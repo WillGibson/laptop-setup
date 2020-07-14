@@ -25,6 +25,7 @@ mkdir ~/.nvm
 append_to_zshrc "source ${basePath}/components/zshrc/nvm_switcher.sh"
 
 brew reinstall git
+git config pull.ff only
 
 brew reinstall awscli
 
