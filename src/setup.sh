@@ -27,6 +27,9 @@ append_to_zshrc "source ${basePath}/components/zshrc/nvm_switcher.sh"
 brew reinstall git
 git config pull.ff only
 
+brew reinstall gpg2
+brew reinstall pinentry-mac
+
 brew reinstall awscli
 
 ensure_php_is_installed
