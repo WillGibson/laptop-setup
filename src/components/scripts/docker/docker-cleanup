@@ -2,29 +2,7 @@
 
 echo "Executing Docker Cleanup"
 
-echo "Delete all stopped containers"
-stoppedContainers=$(docker ps -q -f status=exited)
-if [ "$stoppedContainers" != '' ]; then
-    docker rm $stoppedContainers
-else
-    echo 'No stopped containers to remove'
-fi
+dockerPruneCommand="docker system prune --volumes --force"
 
-echo "Delete all dangling (unused) volumes"
-danglingVolumes=$(docker volume ls -q -f dangling=true)
-if [ "$danglingVolumes" != '' ]; then
-    docker volume rm $danglingVolumes
-else
-    echo 'No dangling volumes to remove'
-fi
-
-echo "Delete all dangling (unused) images"
-danglingImages=$(docker images -q -f dangling=true)
-if [ "$danglingImages" != '' ]; then
-    docker rmi $danglingImages
-else
-    echo 'No dangling images to remove'
-fi
-
-echo "Prune network"
-docker network prune -f
+echo "$dockerPruneCommand"
+$dockerPruneCommand

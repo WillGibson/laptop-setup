@@ -4,8 +4,6 @@
 
 echo "Executing Docker Really Brutal Cleanup"
 
-$(dirname "$0")/docker-brutal-cleanup
-
 echo "Delete all images"
 images=$(docker image ls -a -q)
 if [ "$images" != '' ]; then
@@ -13,3 +11,5 @@ if [ "$images" != '' ]; then
 else
     echo 'No images to remove'
 fi
+
+$(dirname "$0")/docker-brutal-cleanup

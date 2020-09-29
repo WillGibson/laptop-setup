@@ -18,13 +18,4 @@ else
     echo 'No volumes to remove'
 fi
 
-echo "Delete all dangling (unused) images"
-danglingImages=$(docker images -q -f dangling=true)
-if [ "$danglingImages" != '' ]; then
-    docker rmi $danglingImages
-else
-    echo 'No dangling images to remove'
-fi
-
-echo "Prune network"
-docker network prune -f
+$(dirname "$0")/docker-cleanup
