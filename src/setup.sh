@@ -16,7 +16,7 @@ ensure_laptop_setup_is_up_to_date
 
 ensure_homebrew_is_installed_and_up_to_date
 
-brew cask reinstall iterm2
+brew reinstall iterm2
 
 ensure_zsh_and_zsh_completions_are_installed
 
@@ -34,16 +34,16 @@ brew reinstall awscli
 
 ensure_php_is_installed
 
-brew cask reinstall docker
+brew reinstall docker
 brew reinstall kubectl
 brew reinstall minikube
 
 rm -rf /Applications/IntelliJ\ IDEA.app
-brew cask reinstall intellij-idea
+brew reinstall intellij-idea
 
-brew cask reinstall postman
+brew reinstall postman
 
-brew cask reinstall spotify
+brew reinstall spotify
 
 append_to_zshrc "source ${basePath}/components/zshrc/aliases/miscellaneous.sh"
 append_to_zshrc "source ${basePath}/components/zshrc/aliases/git.sh" 1
