@@ -26,5 +26,5 @@ Then you can run the script, but be aware that you may be prompted for your pass
 You will need to do the following manually...
 
 * [Create your SSH key pair](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key) or copy it from elsewhere
-* Create your GPG key or copy it from elsewhere to set up signed Git commits. See https://stackoverflow.com/a/55646482/2152144
+* Create your GPG key or copy it from elsewhere to set up signed Git commits. See https://stackoverflow.com/a/55646482/2152144 and https://anh.do/blog/gpg-catalina
 * Install DisplayLink drivers

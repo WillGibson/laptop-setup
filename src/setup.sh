@@ -20,36 +20,40 @@ brew reinstall iterm2
 
 ensure_zsh_and_zsh_completions_are_installed
 
+brew reinstall git
+git config --global pull.ff only
+
+# For signing Git commits
+brew reinstall gpg2
+brew reinstall pinentry-mac
+
+# PHP
+ensure_php_is_installed
+
+# Node.js
 brew reinstall nvm
 mkdir ~/.nvm
 append_to_zshrc "source ${basePath}/components/zshrc/nvm_switcher.sh"
 
-brew reinstall git
-git config --global pull.ff only
-
-brew reinstall gpg2
-brew reinstall pinentry-mac
-
-brew reinstall awscli
-
-ensure_php_is_installed
-
 brew reinstall docker
 brew reinstall kubectl
 brew reinstall minikube
+
+brew reinstall awscli
 
 rm -rf /Applications/IntelliJ\ IDEA.app
 brew reinstall intellij-idea
 
 brew reinstall postman
 
+# Because life without music is not living
 brew reinstall spotify
 
 append_to_zshrc "source ${basePath}/components/zshrc/aliases/miscellaneous.sh"
 append_to_zshrc "source ${basePath}/components/zshrc/aliases/git.sh" 1
 append_to_zshrc "source ${basePath}/components/zshrc/aliases/docker.sh" 1
 
-append_to_zshrc "export GPG_TTY=$(tty)"
+append_to_zshrc "export GPG_TTY=$\(tty\)"
 
 rm -rf ~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -61,4 +65,6 @@ ensure_zshrc_completion_waiting_dots_are_used
 
 ensure_correct_ohmyzsh_theme_is_used "${basePath}/components/ohmyzsh/willgibson.zsh-theme" "willgibson"
 
-fancy_echo "To reload profile now please run...\n\nsource ~/.zshrc\n"
+fancy_echo "To reload profile now please run...\nsource ~/.zshrc"
+
+fancy_echo "You may still need to carry out some manual steps, these are documented at...\nhttps://github.com/WillGibson/laptop-setup#what-it-wont-do-for-you-yet\n"
