@@ -46,6 +46,8 @@ brew reinstall intellij-idea
 
 brew reinstall postman
 
+brew reinstall tree
+
 # Because life without music is not living
 brew reinstall spotify
 
