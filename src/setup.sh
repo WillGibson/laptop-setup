@@ -29,6 +29,7 @@ brew reinstall pinentry-mac
 
 # PHP
 ensure_php_is_installed
+brew reinstall composer
 
 # Node.js
 brew reinstall nvm

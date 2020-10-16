@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [unreleased]
 ### Added
 - Install tree
+- Install composer
 ### Changed
 - Change deprecated `brew cask reinstall` commands to just `brew reinstall`
 - `git-delete-all-local-branches-except-master-develop-and-current` becomes `git-delete-all-local-branches-except-main-develop-and-current`, but it still doesn't delete master.
