@@ -8,6 +8,12 @@ cp ~/.zshrc "${HOME}/.zshrc.backup.$(date)"
 # shellcheck disable=SC1090
 source "${basePath}/components/install_commands.sh"
 
+# Preflight checks
+if docker version | grep --quiet "Server: Docker Engine"; then
+    echo "Error: Please quit Docker before running the setup."
+    exit 1
+fi
+
 append_to_zshrc "# The rest should have been added by laptop-setup..."
 
 ensure_git_name_and_email_are_set
@@ -36,6 +42,14 @@ brew reinstall nvm
 mkdir ~/.nvm
 append_to_zshrc "source ${basePath}/components/zshrc/nvm_switcher.sh"
 
+# Java
+brew reinstall java11
+brew reinstall maven
+brew reinstall gradle
+brew tap pivotal/tap
+brew reinstall springboot
+
+# Docker etc.
 brew reinstall docker
 brew reinstall kubectl
 brew reinstall minikube
