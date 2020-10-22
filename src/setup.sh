@@ -50,7 +50,9 @@ brew tap pivotal/tap
 brew reinstall springboot
 
 # Docker etc.
+rm /usr/local/bin/docker
 brew reinstall docker
+rm -f /usr/local/bin/kubectl
 brew reinstall kubectl
 brew reinstall minikube
 
@@ -59,11 +61,13 @@ brew reinstall awscli
 rm -rf /Applications/IntelliJ\ IDEA.app
 brew reinstall intellij-idea
 
+rm -rf /Applications/Postman.app
 brew reinstall postman
 
 brew reinstall tree
 
 # Because life without music is not living
+rm -rf /Applications/Spotify.app
 brew reinstall spotify
 
 append_to_zshrc "source ${basePath}/components/zshrc/aliases/miscellaneous.sh"
