@@ -10,8 +10,7 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v1
             - Debug Information
-              run: pwd \
-                ls -al
+              run: pwd && ls -al
             - name: Run Setup
               run: ./src/setup.sh
               env:
