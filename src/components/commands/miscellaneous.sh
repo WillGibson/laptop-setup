@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Three functions taken from the thoughtbot laptop script and messed
+# Two functions taken from the thoughtbot laptop script and messed
 # about so we can use some components of that as we see fit here.
 # See https://github.com/thoughtbot/laptop/issues/583
 
@@ -52,7 +52,6 @@ update_file_line_in_situ() {
 }
 
 ensure_symlink_exists() {
-
     realPath="$1"
     linkPath="$2"
 
