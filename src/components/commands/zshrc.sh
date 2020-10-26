@@ -31,23 +31,30 @@ ensure_correct_ohmyzsh_theme_is_used() {
     update_file_line_in_situ ${zshrc} "${defaultOhMyZSHThemeString}" "${desiredOhMyZSHThemeString}"
 }
 
+ensure_zsh_autosuggestions_are_installed() {
+    rm -rf ~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+}
+
 ensure_zsh_and_zsh_completions_are_installed() {
     brew reinstall zsh zsh-completions
     echo $SHELL
     if [[ "$SHELL" != "/bin/zsh" ]]; then
         chsh -s /bin/zsh
     fi
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-    append_to_zshrc "export GIT_USER_NAME=\"$GIT_USER_NAME\""
-    append_to_zshrc "export GIT_USER_EMAIL=\"$GIT_USER_EMAIL\"" 1
 }
 
-ensure_zshrc_correction_is_used() {
+ensure_ohmyzsh_is_installed() {
+    rm -rf ~/.oh-my-zsh
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+}
+
+ensure_zsh_correction_is_used() {
     local zshrc="$HOME/.zshrc"
     update_file_line_in_situ ${zshrc} '# ENABLE_CORRECTION="true"' 'ENABLE_CORRECTION="true"'
 }
 
-ensure_zshrc_completion_waiting_dots_are_used() {
+ensure_zsh_completion_waiting_dots_are_used() {
     local zshrc="$HOME/.zshrc"
     update_file_line_in_situ ${zshrc} '# COMPLETION_WAITING_DOTS="true"' 'COMPLETION_WAITING_DOTS="true"'
 }
