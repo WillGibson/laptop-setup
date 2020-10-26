@@ -15,7 +15,7 @@ jobs:
                 ls -al
                 sw_vers
             - name: Add .zshrc file to prevent main step borking
-              run: ./src/setup.sh
+              run: touch /Users/runner/.zshrc
             - name: Run Setup
               run: ./src/setup.sh
               env:
