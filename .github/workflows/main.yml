@@ -4,13 +4,21 @@ on:
         branches: [main]
     pull_request:
 jobs:
-    marun-setup:
+    run-setup:
         runs-on: macOS-latest
         steps:
             - name: Checkout
               uses: actions/checkout@v1
+            - name: Debug Information
+              run: |
+                pwd
+                ls -al
+                sw_vers
+            - name: Add .zshrc file to prevent main step borking
+              run: touch /Users/runner/.zshrc
             - name: Run Setup
               run: ./src/setup.sh
               env:
+                  # Needed to prevent it stopping and asking you to add them
                   GIT_USER_NAME: Name does not matter for build
                   GIT_USER_EMAIL: email-does@not.matter.either

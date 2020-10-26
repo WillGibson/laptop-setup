@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [unreleased]
 ### Added
 - GitHub Actions pipeline
+### Changed
+- Split up the commands and extract more things to one liners
 
 ## [0.1.4] - 2020-10-26
 ### Added
