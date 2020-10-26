@@ -74,18 +74,18 @@ ensure_git_name_and_email_are_set
 #rm -rf /Applications/IntelliJ\ IDEA.app
 #brew reinstall intellij-idea
 
-brew cask install visual-studio-code
+brew reinstall visual-studio-code
 
 #rm -rf /Applications/Postman.app
 #brew reinstall postman
 #
 #brew reinstall tree
 
-brew cask install google-chrome
+brew reinstall google-chrome
 
-brew cask install slack
+brew reinstall slack
 
-brew cask install microsoft-teams
+brew reinstall microsoft-teams
 
 ## Because life without music is not living
 #rm -rf /Applications/Spotify.app
