@@ -14,10 +14,10 @@ jobs:
                 pwd
                 ls -al
                 sw_vers
+            - name: Add .zshrc file to prevent main step borking
+              run: ./src/setup.sh
             - name: Run Setup
-              run: |
-                touch /Users/runner/.zshrc
-                ./src/setup.sh
+              run: ./src/setup.sh
               env:
                   # Needed to prevent it stopping and asking you to add them
                   GIT_USER_NAME: Name does not matter for build
