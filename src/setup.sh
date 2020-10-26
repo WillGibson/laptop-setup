@@ -71,17 +71,24 @@ brew reinstall minikube
 
 brew reinstall awscli
 
-rm -rf /Applications/IntelliJ\ IDEA.app
-brew reinstall intellij-idea
+installMacStyleApplication "intellij-idea" "IntelliJ IDEA"
 
-rm -rf /Applications/Postman.app
-brew reinstall postman
+installMacStyleApplication "visual-studio-code" "Visual Studio Code"
+
+installMacStyleApplication "postman" "Postman"
 
 brew reinstall tree
 
-# Because life without music is not living
-rm -rf /Applications/Spotify.app
-brew reinstall spotify
+## Likely to bork if checksum does not match after a Chrome release
+## not reflected in the cask, so we're letting it fail gracefully
+installMacStyleApplication "google-chrome" "Google Chrome"
+
+installMacStyleApplication "slack" "Slack"
+
+# Sadly this uses sudo during the install so we need to use sudo to clean up before reinstalling...
+installMacStyleApplication "microsoft-teams" "Microsoft Teams" "sudo"
+
+installMacStyleApplication "spotify" "Spotify"
 
 append_to_zshrc "source ${basePath}/components/zshrc/aliases/miscellaneous.sh"
 append_to_zshrc "source ${basePath}/components/zshrc/aliases/git.sh" 1

@@ -40,6 +40,26 @@ ensure_homebrew_is_installed_and_up_to_date() {
 
 # Our own stuff
 
+ensure_symlink_exists() {
+    realPath="$1"
+    linkPath="$2"
+
+    rm -f "${linkPath}"
+    ln -s ${realPath} ${linkPath}
+
+    echo "Created symlink $realPath -> $linkPath"
+}
+
+installMacStyleApplication() {
+    cask="$1"
+    appToDelete="$2"
+    sudo="$3"
+
+    deleteCommand="${sudo} rm -rf \"/Applications/${appToDelete}.app\""
+    $deleteCommand
+    brew reinstall "${cask}"
+}
+
 update_file_line_in_situ() {
     filePath="$1"
     defaultLine="$2"
@@ -49,14 +69,4 @@ update_file_line_in_situ() {
         find "${filePath}" -type f -exec \
             sed -i '' -e "s/${defaultLine}/${desiredLine}/g" {} \;
     fi
-}
-
-ensure_symlink_exists() {
-    realPath="$1"
-    linkPath="$2"
-
-    rm -f "${linkPath}"
-    ln -s ${realPath} ${linkPath}
-
-    echo "Created symlink $realPath -> $linkPath"
 }
