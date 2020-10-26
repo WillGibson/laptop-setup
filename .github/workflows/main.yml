@@ -15,7 +15,9 @@ jobs:
                 ls -al
                 sw_vers
             - name: Run Setup
-              run: ./src/setup.sh
+              run: |
+                touch /Users/runner/.zshrc
+                ./src/setup.sh
               env:
                   # Needed to prevent it stopping and asking you to add them
                   GIT_USER_NAME: Name does not matter for build
