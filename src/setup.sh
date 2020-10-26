@@ -25,13 +25,12 @@ append_to_zshrc "# The rest should have been added by laptop-setup..."
 
 pull_latest_laptop_setup_code
 
-set +e
-ensure_homebrew_is_installed_and_up_to_date
-set -e
+set +e && ensure_homebrew_is_installed_and_up_to_date && set -e
 
 # Terminal
 brew reinstall iterm2
-ensure_zsh_and_zsh_completions_are_installed
+ensure_zsh_is_installed
+brew reinstall zsh zsh-completions
 ensure_ohmyzsh_is_installed
 ensure_zsh_autosuggestions_are_installed
 ensure_zsh_correction_is_used

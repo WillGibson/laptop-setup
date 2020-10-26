@@ -36,8 +36,8 @@ ensure_zsh_autosuggestions_are_installed() {
     git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 }
 
-ensure_zsh_and_zsh_completions_are_installed() {
-    brew reinstall zsh zsh-completions
+ensure_zsh_is_installed() {
+    brew reinstall zsh
     echo $SHELL
     if [[ "$SHELL" != "/bin/zsh" ]]; then
         chsh -s /bin/zsh
