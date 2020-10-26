@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.1.5] - 2020-10-26
 ### Added
 - GitHub Actions pipeline
-- Install VS Code
+- Install Visual Studio Code
 - Install Slack
 - Install Microsoft Teams
 - Install Google Chrome
