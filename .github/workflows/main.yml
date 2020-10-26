@@ -1,0 +1,13 @@
+name: CI
+on:
+    push:
+        branches: [main]
+    pull_request:
+jobs:
+    marun-setup:
+        runs-on: macOS-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v1
+            - name: Run Setup
+              run: ./src/setup.sh
