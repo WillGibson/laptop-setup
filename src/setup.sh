@@ -25,7 +25,9 @@ append_to_zshrc "# The rest should have been added by laptop-setup..."
 
 pull_latest_laptop_setup_code
 
+set +e
 ensure_homebrew_is_installed_and_up_to_date
+set -e
 
 # Terminal
 brew reinstall iterm2
