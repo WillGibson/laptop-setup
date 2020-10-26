@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# set -e
+set -e
 
 # shellcheck disable=SC2164
 basePath="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
