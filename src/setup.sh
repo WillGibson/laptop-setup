@@ -71,12 +71,13 @@ brew reinstall minikube
 
 brew reinstall awscli
 
-rm -rf /Applications/IntelliJ\ IDEA.app
+rm -r /Applications/IntelliJ\ IDEA.app
 brew reinstall intellij-idea
 
+rm -f /Applications/Visual\ Studio\ Code.app
 brew reinstall visual-studio-code
 
-rm -rf /Applications/Postman.app
+rm -r /Applications/Postman.app
 brew reinstall postman
 
 brew reinstall tree
@@ -85,12 +86,14 @@ brew reinstall tree
 # not reflected in the cask, so we're letting it fail gracefully
 set +e && brew reinstall google-chrome && set -e
 
+rm -r /Applications/Slack.app
 brew reinstall slack
 
+rm -r /Applications/Microsoft\ Teams.app
 brew reinstall microsoft-teams
 
 # Because life without music is not living
-rm -rf /Applications/Spotify.app
+rm -r /Applications/Spotify.app
 brew reinstall spotify
 
 append_to_zshrc "source ${basePath}/components/zshrc/aliases/miscellaneous.sh"
