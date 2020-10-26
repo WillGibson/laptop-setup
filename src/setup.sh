@@ -79,13 +79,14 @@ installMacStyleApplication "postman" "Postman"
 
 brew reinstall tree
 
-# Likely to bork if checksum does not match after a Chrome release
-# not reflected in the cask, so we're letting it fail gracefully
-set +e && installMacStyleApplication "google-chrome" "Google Chrome" && set -e
+## Likely to bork if checksum does not match after a Chrome release
+## not reflected in the cask, so we're letting it fail gracefully
+installMacStyleApplication "google-chrome" "Google Chrome"
 
 installMacStyleApplication "slack" "Slack"
 
-installMacStyleApplication "microsoft-teams" "Microsoft Teams"
+# Sadly this uses sudo during the install so we need to use sudo to clean up before reinstalling...
+installMacStyleApplication "microsoft-teams" "Microsoft Teams" "sudo"
 
 installMacStyleApplication "spotify" "Spotify"
 

@@ -19,7 +19,9 @@ Before you start the first time, export these variables in your terminal...
     export GIT_USER_NAME "<your name>"
     export GIT_USER_EMAIL "<your email address>"
 
-Then you can run the script, but be aware that you may be prompted for your password, e.g. when changing the shell to ZSH, fact there a few points where you will be asked for some input.
+If you have Docker running, please quit it.
+
+Then you can run the script, but be aware you may be prompted for your password, e.g. when changing the shell to ZSH, installing Microsoft Teams etc.
 
     ./src/setup.sh
 

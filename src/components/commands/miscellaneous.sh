@@ -53,8 +53,10 @@ ensure_symlink_exists() {
 installMacStyleApplication() {
     cask="$1"
     appToDelete="$2"
+    sudo="$3"
 
-    rm -rf "/Applications/${appToDelete}.app"
+    deleteCommand="${sudo} rm -rf \"/Applications/${appToDelete}.app\""
+    $deleteCommand
     brew reinstall "${cask}"
 }
 
