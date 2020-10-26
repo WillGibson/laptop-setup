@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Exit on silly errors like file does not exist
-set -e
-
 # shellcheck disable=SC2164
 basePath="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
@@ -15,10 +12,6 @@ source "${basePath}/components/commands/miscellaneous.sh"
 source "${basePath}/components/commands/php.sh"
 source "${basePath}/components/commands/pull_latest.sh"
 source "${basePath}/components/commands/zshrc.sh"
-
-# Don't exit on errors now because homebrew will do some errors
-# then find other ways to do things and succeed in the end
-set +e
 
 # Preflight checks
 if docker version | grep --quiet "Server: Docker Engine"; then
