@@ -3,10 +3,15 @@
 # shellcheck disable=SC2164
 basePath="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
+# In case there's something essential in there we hand rolled
 cp ~/.zshrc "${HOME}/.zshrc.backup.$(date)"
 
 # shellcheck disable=SC1090
-source "${basePath}/components/install_commands.sh"
+source "${basePath}/components/git.sh"
+source "${basePath}/components/miscellaneous.sh"
+source "${basePath}/components/php.sh"
+source "${basePath}/components/pull_latest.sh"
+source "${basePath}/components/zshrc.sh"
 
 # Preflight checks
 if docker version | grep --quiet "Server: Docker Engine"; then
@@ -18,7 +23,7 @@ append_to_zshrc "# The rest should have been added by laptop-setup..."
 
 ensure_git_name_and_email_are_set
 
-ensure_laptop_setup_is_up_to_date
+pull_latest_laptop_setup_code
 
 ensure_homebrew_is_installed_and_up_to_date
 
