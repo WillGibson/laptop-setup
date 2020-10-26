@@ -71,30 +71,23 @@ brew reinstall minikube
 
 brew reinstall awscli
 
-rm -r /Applications/IntelliJ\ IDEA.app
-brew reinstall intellij-idea
+installMacStyleApplication "intellij-idea" "IntelliJ IDEA"
 
-rm -f /Applications/Visual\ Studio\ Code.app
-brew reinstall visual-studio-code
+installMacStyleApplication "visual-studio-code" "Visual Studio Code"
 
-rm -r /Applications/Postman.app
-brew reinstall postman
+installMacStyleApplication "postman" "Postman"
 
 brew reinstall tree
 
 # Likely to bork if checksum does not match after a Chrome release
 # not reflected in the cask, so we're letting it fail gracefully
-set +e && brew reinstall google-chrome && set -e
+set +e && installMacStyleApplication "google-chrome" "Google Chrome" && set -e
 
-rm -r /Applications/Slack.app
-brew reinstall slack
+installMacStyleApplication "slack" "Slack"
 
-rm -r /Applications/Microsoft\ Teams.app
-brew reinstall microsoft-teams
+installMacStyleApplication "microsoft-teams" "Microsoft Teams"
 
-# Because life without music is not living
-rm -r /Applications/Spotify.app
-brew reinstall spotify
+installMacStyleApplication "spotify" "Spotify"
 
 append_to_zshrc "source ${basePath}/components/zshrc/aliases/miscellaneous.sh"
 append_to_zshrc "source ${basePath}/components/zshrc/aliases/git.sh" 1
