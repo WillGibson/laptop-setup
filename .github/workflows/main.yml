@@ -13,6 +13,7 @@ jobs:
               run: |
                 pwd
                 ls -al
+                sw_vers
             - name: Run Setup
               run: ./src/setup.sh
               env:
