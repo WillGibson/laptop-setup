@@ -62,7 +62,7 @@ brew tap pivotal/tap
 brew reinstall springboot
 
 # Docker etc.
-rm /usr/local/bin/docker
+rm -f /usr/local/bin/docker
 brew reinstall docker
 rm -f /usr/local/bin/kubectl
 brew reinstall kubectl
