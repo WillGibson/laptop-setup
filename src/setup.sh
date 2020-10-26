@@ -6,6 +6,9 @@ basePath="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 # In case there's something essential in there we hand rolled
 cp ~/.zshrc "${HOME}/.zshrc.backup.$(date)"
 
+# Exit on error
+set -e
+
 # shellcheck disable=SC1090
 source "${basePath}/components/git.sh"
 source "${basePath}/components/miscellaneous.sh"
