@@ -10,11 +10,11 @@ cp ~/.zshrc "${HOME}/.zshrc.backup.$(date)"
 set -e
 
 # shellcheck disable=SC1090
-source "${basePath}/components/git.sh"
-source "${basePath}/components/miscellaneous.sh"
-source "${basePath}/components/php.sh"
-source "${basePath}/components/pull_latest.sh"
-source "${basePath}/components/zshrc.sh"
+source "${basePath}/components/commands/git.sh"
+source "${basePath}/components/commands/miscellaneous.sh"
+source "${basePath}/components/commands/php.sh"
+source "${basePath}/components/commands/pull_latest.sh"
+source "${basePath}/components/commands/zshrc.sh"
 
 # Preflight checks
 if docker version | grep --quiet "Server: Docker Engine"; then
