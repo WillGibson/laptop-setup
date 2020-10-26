@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ensure_git_name_and_email_are_set() {
     if [ -z "$GIT_USER_NAME" ]; then
         fancy_echo "Please export GIT_USER_NAME=\"<your name>\""

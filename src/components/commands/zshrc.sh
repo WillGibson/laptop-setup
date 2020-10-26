@@ -1,3 +1,5 @@
+#!/bin/bash
+
 append_to_zshrc() {
     local text="$1" zshrc
     local skip_new_line="${2:-0}"

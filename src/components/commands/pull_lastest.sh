@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 pull_latest_laptop_setup_code() {
     fancy_echo "Ensure laptop-setup up to date ..."
