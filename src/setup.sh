@@ -81,7 +81,9 @@ brew reinstall visual-studio-code
 #
 #brew reinstall tree
 
-brew reinstall google-chrome
+# Likely to bork if checksum does not match after a Chrome release
+# not reflected in the cask, so we're letting it fail gracefully
+set +e && brew reinstall google-chrome && set -e
 
 brew reinstall slack
 
