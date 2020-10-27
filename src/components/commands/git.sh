@@ -1,14 +1,15 @@
 #!/bin/bash
 
 ensure_git_name_and_email_are_set() {
+        echo_line "\nEnsure Git name and email are set"
     if [ -z "$GIT_USER_NAME" ]; then
-        echo_line "Please export GIT_USER_NAME=\"<your name>\""
+        echo_line "\nPlease export GIT_USER_NAME=\"<your name>\""
         exit 1
     else
         git config --global user.name "$GIT_USER_NAME"
     fi
     if [ -z "$GIT_USER_EMAIL" ]; then
-        echo_line "Please export GIT_USER_EMAIL=\"<your email address>\""
+        echo_line "\nPlease export GIT_USER_EMAIL=\"<your email address>\""
         exit 1
     else
         git config --global user.email "$GIT_USER_EMAIL"

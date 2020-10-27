@@ -5,7 +5,7 @@ echo_heading() {
 }
 
 echo_line() {
-    echo -e "\033[48;34;2m$1\033[0m"
+    echo -e "\033[48;33;2m$1\033[0m"
 }
 
 ensure_symlink_exists() {
