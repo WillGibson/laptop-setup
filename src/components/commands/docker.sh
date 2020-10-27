@@ -1,8 +1,9 @@
 #!/bin/bash
 
 ensure_docker_not_running() {
+        echo_line "\nEnsure Docker is not running"
     if docker version 2>/dev/null | grep --quiet "Server: Docker Engine"; then
-        echo "Error: Please quit Docker before running the setup."
+        echo_line "\nError: Please quit Docker before running the setup."
         exit 1
     fi
 }
