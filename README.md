@@ -39,4 +39,4 @@ You will need to do the following manually...
 
 If you use this tool on a machine which has already had some of the things installed manually, it can get a bit tricky with permissions here and there
 
-E.g. If it fails trying to delete an existing app from `/Applications` due to permissions, you might need to `sudo rm -rf /Applications/Offending\ App.app` to get rid of the one which is not managed with Homebrew
+E.g. If it fails trying to delete an existing app from `/Applications` due to permissions, you might need to `sudo rm -rf /Applications/OffendingApp.app` to get rid of the one which is not managed with Homebrew
