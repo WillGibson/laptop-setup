@@ -48,9 +48,8 @@ installApplicationHomebrewStyle "git" 1
 git config --global pull.ff only
 
 # GPG for signing Git commits
-echo_heading "Install GPG"
-brew reinstall gpg2
-brew reinstall pinentry-mac
+installApplicationHomebrewStyle "gpg2"
+installApplicationHomebrewStyle p"inentry-mac"
 
 # PHP
 ensure_php_is_installed
@@ -59,6 +58,7 @@ installApplicationHomebrewStyle "composer"
 # NVM & Node.js
 ensure_nvm_is_installed
 echo_heading "Install current long term support version of Node.js"
+echo_empty_line
 nvm install --lts
 
 # Java etc.

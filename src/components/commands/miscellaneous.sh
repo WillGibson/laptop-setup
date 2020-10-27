@@ -8,6 +8,10 @@ echo_line() {
     echo -e "\033[48;33;2m$1\033[0m"
 }
 
+echo_empty_line() {
+    echo ""
+}
+
 ensure_symlink_exists() {
     realPath="$1"
     linkPath="$2"
