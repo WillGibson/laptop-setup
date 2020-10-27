@@ -23,7 +23,7 @@ Before you start the first time, export these variables in your terminal...
 
 If you have Docker running, please quit it.
 
-Then you can run the script, but be aware you may be prompted for your password, e.g. when changing the shell to ZSH, installing Microsoft Teams etc.
+Then you can run the script, but be aware you may be prompted for your password here and there when elevated privileges are required.
 
     ./src/setup.sh
 
