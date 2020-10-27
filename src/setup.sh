@@ -70,6 +70,7 @@ installApplicationHomebrewStyle "springboot"
 
 # Docker etc.
 rm -f /usr/local/bin/docker
+rm -rf /usr/local/Cellar/docker/
 installApplicationHomebrewStyle "docker"
 rm -f /usr/local/bin/kubectl
 installApplicationHomebrewStyle "kubectl"
@@ -103,5 +104,5 @@ echo_heading "Export GPG_TTY in .zshrc for signing commits"
 append_to_zshrc "export GPG_TTY=$\(tty\)"
 
 echo_heading "N.B. A couple of things"
-echo_line "1) To reload profile now please run...\n\nsource ~/.zshrc"
+echo_line "\n1) To reload profile now please run...\n\nsource ~/.zshrc"
 echo_line "\n2) You may still need to carry out some manual steps, these are documented at...\n\nhttps://github.com/WillGibson/laptop-setup#what-it-wont-do-for-you-yet\n"
