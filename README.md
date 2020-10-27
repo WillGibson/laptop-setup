@@ -10,7 +10,9 @@ Massive thanks to [Homebrew](https://brew.sh/), which is heavily leveraged here.
 
 ## Installation
 
-On a fresh laptop you can just download the zip from GitHub and run it from there as you probably don't have Git yet. After that it's probably best to clone this repository.
+On a fresh laptop you can just download the zip from GitHub and run it from there as you probably don't have Git yet.
+
+After that it's probably best to delete those files and clone this repository to the same path as they were.
 
 ## Running the setup
 
