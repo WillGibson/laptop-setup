@@ -11,13 +11,14 @@ cp ~/.zshrc "${HOME}/.zshrc.backup.$(date)"
 # shellcheck disable=SC1090
 source "${basePath}/components/commands/docker.sh"
 source "${basePath}/components/commands/git.sh"
+source "${basePath}/components/commands/homebrew.sh"
 source "${basePath}/components/commands/miscellaneous.sh"
 source "${basePath}/components/commands/nodejs.sh"
 source "${basePath}/components/commands/php.sh"
 source "${basePath}/components/commands/pull_latest.sh"
 source "${basePath}/components/commands/zshrc.sh"
 
-# Preflight checks
+echo_heading "Preflight checks"
 ensure_docker_not_running
 ensure_git_name_and_email_are_set
 
@@ -28,9 +29,11 @@ pull_latest_laptop_setup_code
 set +e && ensure_homebrew_is_installed_and_up_to_date && set -e
 
 # Terminal
-brew reinstall iterm2
+echo_heading "Install iTerm2, ohmyzsh etc."
+installApplicationHomebrewStyle "iterm2" 1
 ensure_zsh_is_installed
-brew reinstall zsh zsh-completions
+installApplicationHomebrewStyle "zsh" 1
+installApplicationHomebrewStyle "zsh-completions" 1
 ensure_ohmyzsh_is_installed
 ensure_zsh_autosuggestions_are_installed
 ensure_zsh_correction_is_used
@@ -39,63 +42,66 @@ ensure_correct_ohmyzsh_theme_is_used "${basePath}/components/ohmyzsh/willgibson.
 update_file_line_in_situ ~/.zshrc 'plugins=(git)' 'plugins=(docker git zsh-autosuggestions)'
 
 # Git
+echo_heading "Install Git"
 ensure_git_name_and_email_env_vars_are_exported_in_zshrc
-brew reinstall git
+installApplicationHomebrewStyle "git" 1
 git config --global pull.ff only
 
-# For signing Git commits
+# GPG for signing Git commits
+echo_heading "Install GPG"
 brew reinstall gpg2
 brew reinstall pinentry-mac
 
 # PHP
 ensure_php_is_installed
-brew reinstall composer
+installApplicationHomebrewStyle "composer"
 
 # NVM & Node.js
 ensure_nvm_is_installed
+echo_heading "Install current long term support version of Node.js"
 nvm install --lts
 
 # Java etc.
-brew reinstall java11
-brew reinstall maven
-brew reinstall gradle
+installApplicationHomebrewStyle "java11"
+installApplicationHomebrewStyle "maven"
+installApplicationHomebrewStyle "gradle"
 brew tap pivotal/tap
-brew reinstall springboot
+installApplicationHomebrewStyle "springboot"
 
 # Docker etc.
 rm -f /usr/local/bin/docker
-brew reinstall docker
+installApplicationHomebrewStyle "docker"
 rm -f /usr/local/bin/kubectl
-brew reinstall kubectl
-brew reinstall minikube
+installApplicationHomebrewStyle "kubectl"
+installApplicationHomebrewStyle "minikube"
 
-brew reinstall awscli
+installApplicationHomebrewStyle "awscli"
 
-installMacStyleApplication "intellij-idea" "IntelliJ IDEA"
+installApplicationMacStyle "intellij-idea" "IntelliJ IDEA"
 
-installMacStyleApplication "visual-studio-code" "Visual Studio Code"
+installApplicationMacStyle "visual-studio-code" "Visual Studio Code"
 
-installMacStyleApplication "postman" "Postman"
+installApplicationMacStyle "postman" "Postman"
 
-brew reinstall tree
+installApplicationHomebrewStyle "tree"
 
-## Likely to bork if checksum does not match after a Chrome release
-## not reflected in the cask, so we're letting it fail gracefully
-installMacStyleApplication "google-chrome" "Google Chrome"
+installApplicationMacStyle "google-chrome" "Google Chrome"
 
-installMacStyleApplication "slack" "Slack"
+installApplicationMacStyle "slack" "Slack"
 
 # Sadly this uses sudo during the install so we need to use sudo to clean up before reinstalling...
-installMacStyleApplication "microsoft-teams" "Microsoft Teams" "sudo"
+installApplicationMacStyle "microsoft-teams" "Microsoft Teams" "sudo"
 
-installMacStyleApplication "spotify" "Spotify"
+installApplicationMacStyle "spotify" "Spotify"
 
+echo_heading "Include aliases in .zshrc"
 append_to_zshrc "source ${basePath}/components/zshrc/aliases/miscellaneous.sh"
 append_to_zshrc "source ${basePath}/components/zshrc/aliases/git.sh" 1
 append_to_zshrc "source ${basePath}/components/zshrc/aliases/docker.sh" 1
 
+echo_heading "Export GPG_TTY in .zshrc for signing commits"
 append_to_zshrc "export GPG_TTY=$\(tty\)"
 
-fancy_echo "To reload profile now please run...\nsource ~/.zshrc"
-
-fancy_echo "You may still need to carry out some manual steps, these are documented at...\nhttps://github.com/WillGibson/laptop-setup#what-it-wont-do-for-you-yet\n"
+echo_heading "N.B. A couple of things"
+echo_line "1) To reload profile now please run...\n\nsource ~/.zshrc"
+echo_line "\n2) You may still need to carry out some manual steps, these are documented at...\n\nhttps://github.com/WillGibson/laptop-setup#what-it-wont-do-for-you-yet\n"

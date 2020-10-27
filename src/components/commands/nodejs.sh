@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ensure_nvm_is_installed() {
-    brew reinstall nvm
+    installApplicationHomebrewStyle "nvm"
     if [ ! -d ~/.nvm ]; then
         mkdir ~/.nvm
     fi
