@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.1.6] - 2020-10-27
 ### Changed
 - Make output more useful
+- Invalidate sudo timestamp in a bunch of places to make it clearer where elevated privileges are used
 
 ## [0.1.5] - 2020-10-26
 ### Added

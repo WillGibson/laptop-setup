@@ -40,6 +40,7 @@ installApplicationHomebrewStyle() {
     installCommand="brew reinstall $cask"
     echo_line "\n$installCommand\n"
     $installCommand
+    sudo --reset-timestamp
 }
 
 installApplicationMacStyle() {
@@ -55,5 +56,6 @@ installApplicationMacStyle() {
     fi
     echo_line "\n$deleteCommand"
     $deleteCommand
+    sudo --reset-timestamp
     installApplicationHomebrewStyle "${cask}" 1
 }
