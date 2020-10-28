@@ -28,7 +28,7 @@ ensure_homebrew_is_installed_and_up_to_date() {
         brew update
     fi
 
-    append_to_zshrc "export PATH=\"/usr/local/sbin:$PATH\""
+#    append_to_zshrc "export PATH=\"/usr/local/sbin:$PATH\""
 }
 
 installApplicationHomebrewStyle() {

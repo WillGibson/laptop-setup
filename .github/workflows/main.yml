@@ -14,6 +14,7 @@ jobs:
                 pwd
                 ls -al
                 sw_vers
+                zsh --version
             - name: Add .zshrc file to prevent main step borking
               run: touch /Users/runner/.zshrc
             - name: Run Setup
