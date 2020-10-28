@@ -54,7 +54,7 @@ installApplicationHomebrewStyle "gpg2"
 installApplicationHomebrewStyle p"inentry-mac"
 
 # Python3
-brew unlink python
+brew unlink python@3.8
 installApplicationHomebrewStyle "python"
 
 # PHP
