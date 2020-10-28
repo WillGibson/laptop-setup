@@ -1,21 +1,5 @@
 #!/bin/bash
 
-append_text_to_file() {
-    filePath="$1"
-    local text="$2"
-    local skipNewLine="${3:-0}"
-
-    echo_line "\nAppend \"$text\" to $filePath"
-
-    if ! grep -Fqs "$text" "$filePath"; then
-        if [ "$skipNewLine" -eq 1 ]; then
-            printf "%s\\n" "$text" >>"$filePath"
-        else
-            printf "\\n%s\\n" "$text" >>"$filePath"
-        fi
-    fi
-}
-
 append_to_zshrc() {
     local text="$1"
     local skipNewLine="${2:-0}"

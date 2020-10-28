@@ -1,5 +1,21 @@
 #!/bin/bash
 
+append_text_to_file() {
+    filePath="$1"
+    local text="$2"
+    local skipNewLine="${3:-0}"
+
+    echo_line "\nAppend \"$text\" to $filePath"
+
+    if ! grep -Fqs "$text" "$filePath"; then
+        if [ "$skipNewLine" -eq 1 ]; then
+            printf "%s\\n" "$text" >>"$filePath"
+        else
+            printf "\\n%s\\n" "$text" >>"$filePath"
+        fi
+    fi
+}
+
 echo_heading() {
     echo -e "\n\033[48;32;1m# $1 #\033[0m"
 }

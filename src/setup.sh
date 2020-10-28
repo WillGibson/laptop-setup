@@ -6,7 +6,7 @@ set -e
 basePath="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 # In case there's something essential in there we hand rolled
-cp ~/.zshrc "${HOME}/.zshrc.backup.$(date)"
+[[ -e ~/.zshrc ]] && cp ~/.zshrc "${HOME}/.zshrc.backup.$(date)"
 
 # shellcheck disable=SC1090
 source "${basePath}/components/commands/docker.sh"
