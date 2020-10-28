@@ -54,8 +54,8 @@ installApplicationHomebrewStyle "gpg2"
 installApplicationHomebrewStyle p"inentry-mac"
 
 # Python3
-brew unlink python@3.8
-brew reinstall python@3.9
+brew unlink python
+installApplicationHomebrewStyle "python"
 
 # PHP
 ensure_php_is_installed
