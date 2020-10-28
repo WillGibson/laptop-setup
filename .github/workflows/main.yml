@@ -21,5 +21,3 @@ jobs:
                   # Needed to prevent it stopping and asking you to add them
                   GIT_USER_NAME: Name does not matter for build
                   GIT_USER_EMAIL: email-does@not.matter.either
-            - name: Check source ~/.zshrc
-              run: source ~/.zshrc
