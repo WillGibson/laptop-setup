@@ -27,8 +27,6 @@ ensure_homebrew_is_installed_and_up_to_date() {
         echo_line "\nUpdating Homebrew and formulae\n"
         brew update
     fi
-
-    append_to_zshrc "export PATH=\"/usr/local/sbin:$PATH\""
 }
 
 installApplicationHomebrewStyle() {
