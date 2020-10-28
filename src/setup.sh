@@ -46,6 +46,8 @@ echo_heading "Install Git"
 ensure_git_name_and_email_env_vars_are_exported_in_zshrc
 installApplicationHomebrewStyle "git" 1
 git config --global pull.ff only
+ensure_symlink_exists "${basePath}/components/static_files/.gitignore_global" ~/.gitignore_global
+git config --global core.excludesfile ~/.gitignore_global
 
 # GPG for signing Git commits
 installApplicationHomebrewStyle "gpg2"

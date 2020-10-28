@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [unreleased]
 ### Changed
 - Tidy up some zshrc aliases
+### Added
+- .gitignore_global
 
 ## [1.0.0] - 2020-10-27
 ### Changed
