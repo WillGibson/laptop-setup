@@ -11,7 +11,7 @@ load-nvmrc() {
     if [ -n "$nvmrc_path" ]; then
         nvm install
     else
-        nvm use default
+        nvm use --lts
     fi
 }
 load-nvmrc

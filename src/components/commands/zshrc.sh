@@ -1,24 +1,17 @@
 #!/bin/bash
 
 append_to_zshrc() {
-    local text="$1" zshrc
+    local text="$1"
     local skipNewLine="${2:-0}"
 
-    echo_line "\nAppend \"$text\" to .zshrc"
+    append_text_to_file ~/.zshrc "$text" $skipNewLine
+}
 
-    if [ -w "$HOME/.zshrc.local" ]; then
-        zshrc="$HOME/.zshrc.local"
-    else
-        zshrc="$HOME/.zshrc"
-    fi
+append_to_zshrc_parts() {
+    local text="$1"
+    local skipNewLine="${2:-0}"
 
-    if ! grep -Fqs "$text" "$zshrc"; then
-        if [ "$skipNewLine" -eq 1 ]; then
-            printf "%s\\n" "$text" >>"$zshrc"
-        else
-            printf "\\n%s\\n" "$text" >>"$zshrc"
-        fi
-    fi
+    append_text_to_file ~/.zshrc_parts_from_laptop_setup.sh "$text" $skipNewLine
 }
 
 ensure_correct_ohmyzsh_theme_is_used() {
@@ -43,9 +36,16 @@ ensure_zsh_autosuggestions_are_installed() {
 
 ensure_zsh_is_installed() {
     installApplicationHomebrewStyle "zsh" 1
-    echo $SHELL
+    echo_line "Current shell is $SHELL"
     if [[ "$SHELL" != "/bin/zsh" ]]; then
+        # This causes the GitHub Actions pipeline to bork becuase we do not seem
+        # to be able to programmatically get around needing to enter a password,
+        # so stop exiting on error temporarily...
+        set +e
         chsh -s /bin/zsh
+        echo_line "Shell is now changed to $SHELL"
+        # Then re-enable exiting on error...
+        set -e
     fi
 }
 
