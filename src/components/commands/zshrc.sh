@@ -1,24 +1,33 @@
 #!/bin/bash
 
-append_to_zshrc() {
-    local text="$1" zshrc
-    local skipNewLine="${2:-0}"
+append_text_to_file() {
+    filePath="$1"
+    local text="$2"
+    local skipNewLine="${3:-0}"
 
-    echo_line "\nAppend \"$text\" to .zshrc"
+    echo_line "\nAppend \"$text\" to $filePath"
 
-    if [ -w "$HOME/.zshrc.local" ]; then
-        zshrc="$HOME/.zshrc.local"
-    else
-        zshrc="$HOME/.zshrc"
-    fi
-
-    if ! grep -Fqs "$text" "$zshrc"; then
+    if ! grep -Fqs "$text" "$filePath"; then
         if [ "$skipNewLine" -eq 1 ]; then
-            printf "%s\\n" "$text" >>"$zshrc"
+            printf "%s\\n" "$text" >>"$filePath"
         else
-            printf "\\n%s\\n" "$text" >>"$zshrc"
+            printf "\\n%s\\n" "$text" >>"$filePath"
         fi
     fi
+}
+
+append_to_zshrc() {
+    local text="$1"
+    local skipNewLine="${2:-0}"
+
+    append_text_to_file ~/.zshrc "$text" $skipNewLine
+}
+
+append_to_zshrc_parts() {
+    local text="$1"
+    local skipNewLine="${2:-0}"
+
+    append_text_to_file ~/.zshrc_parts_from_laptop_setup.sh "$text" $skipNewLine
 }
 
 ensure_correct_ohmyzsh_theme_is_used() {

@@ -13,7 +13,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Run `brew cleanup`
 - Run `brew doctor` at the end to highlight possible issues
 - Add `/usr/local/sbin` to PATH
-- Explicitly install Python 3.9 to avoid issues when it clashes with Pythin 3.8 during installation as a PHP dependency
+- Explicitly install Python 3.9 to avoid issues when it clashes with Python 3.8 during installation as a PHP dependency
+## Fixed
+- Issue where reinstalling OhMyZSH wiped the changes previously made in `.zshrc` 
 
 ## [1.0.0] - 2020-10-27
 ### Changed

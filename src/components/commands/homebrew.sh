@@ -17,10 +17,10 @@ ensure_homebrew_is_installed_and_up_to_date() {
         curl -fsS \
             'https://raw.githubusercontent.com/Homebrew/install/master/install.sh'
 
-        append_to_zshrc '# recommended by brew doctor'
+        append_to_zshrc_parts '# recommended by brew doctor'
 
         # shellcheck disable=SC2016
-        append_to_zshrc 'export PATH="/usr/local/bin:$PATH"' 1
+        append_to_zshrc_parts 'export PATH="/usr/local/bin:$PATH"' 1
 
         export PATH="/usr/local/bin:$PATH"
     else
@@ -28,7 +28,7 @@ ensure_homebrew_is_installed_and_up_to_date() {
         brew update
     fi
 
-    append_to_zshrc "export PATH=\"/usr/local/sbin:$PATH\""
+    append_to_zshrc_parts "export PATH=\"/usr/local/sbin:\$PATH\""
 }
 
 installApplicationHomebrewStyle() {
