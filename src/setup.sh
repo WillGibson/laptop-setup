@@ -82,6 +82,8 @@ rm -f /usr/local/bin/kubectl
 installApplicationHomebrewStyle "kubectl"
 installApplicationHomebrewStyle "minikube"
 
+# AWS
+rm '/usr/local/bin/aws'
 installApplicationHomebrewStyle "awscli"
 
 installApplicationMacStyle "intellij-idea" "IntelliJ IDEA"
