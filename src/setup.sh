@@ -109,7 +109,7 @@ echo_heading "Run brew cleanup"
 brew cleanup
 
 echo_heading "Run brew doctor"
-brew doctor
+set +e && brew doctor && set -e
 
 echo_heading "A couple of other things to note"
 echo_line "\n1) To reload profile now please run...\n\nsource ~/.zshrc"

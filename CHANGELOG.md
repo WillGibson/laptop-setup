@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - .gitignore_global
 - Run `brew cleanup`
 - Run `brew doctor` at the end to highlight possible issues
+- Add `/usr/local/sbin` to PATH
 
 ## [1.0.0] - 2020-10-27
 ### Changed
