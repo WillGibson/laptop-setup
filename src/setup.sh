@@ -83,8 +83,8 @@ installApplicationHomebrewStyle "kubectl"
 installApplicationHomebrewStyle "minikube"
 
 # AWS
-rm /usr/local/bin/aws
-rm /usr/local/bin/aws_completer
+rm -f /usr/local/bin/aws
+rm -f /usr/local/bin/aws_completer
 installApplicationHomebrewStyle "awscli"
 
 installApplicationMacStyle "intellij-idea" "IntelliJ IDEA"
@@ -99,7 +99,6 @@ installApplicationMacStyle "google-chrome" "Google Chrome"
 
 installApplicationMacStyle "slack" "Slack"
 
-# Sadly this uses sudo during the install so we need to use sudo to clean up before reinstalling...
 installApplicationMacStyle "microsoft-teams" "Microsoft Teams" "sudo"
 
 installApplicationMacStyle "spotify" "Spotify"
@@ -113,7 +112,7 @@ echo_heading "Export GPG_TTY in .zshrc for signing commits"
 append_to_zshrc "export GPG_TTY=$\(tty\)"
 
 echo_heading "Run brew cleanup"
-brew cleanup
+set +e && brew cleanup && set -e
 
 echo_heading "Run brew doctor"
 set +e && brew doctor && set -e
