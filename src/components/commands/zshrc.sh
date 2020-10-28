@@ -43,9 +43,16 @@ ensure_zsh_autosuggestions_are_installed() {
 
 ensure_zsh_is_installed() {
     installApplicationHomebrewStyle "zsh" 1
-    echo $SHELL
+    echo_line "Current shell is $SHELL"
     if [[ "$SHELL" != "/bin/zsh" ]]; then
+        # This causes the GitHub Actions pipeline to bork becuase we do not seem
+        # to be able to programmatically get around needing to enter a password,
+        # so stop exiting on error temporarily...
+        set +e
         chsh -s /bin/zsh
+        echo_line "Shell is now changed to $SHELL"
+        # Then re-enable exiting on error...
+        set -e
     fi
 }
 

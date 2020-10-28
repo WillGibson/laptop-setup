@@ -41,11 +41,6 @@ ensure_zsh_completion_waiting_dots_are_used
 ensure_correct_ohmyzsh_theme_is_used "${basePath}/components/ohmyzsh/willgibson.zsh-theme" "willgibson"
 update_file_line_in_situ ~/.zshrc 'plugins=(git)' 'plugins=(docker git zsh-autosuggestions)'
 
-echo_heading "Add /usr/local/sbin to the PATH to support Homebrew"
-# Doing this in the Homebrew section before the ZSH stuff causes
-# an issue in Travis when it tries to change the shell :-(
-append_to_zshrc "export PATH=\"/usr/local/sbin:$PATH\""
-
 # Git
 echo_heading "Install Git"
 ensure_git_name_and_email_env_vars_are_exported_in_zshrc
