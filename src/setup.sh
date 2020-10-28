@@ -53,6 +53,10 @@ git config --global core.excludesfile ~/.gitignore_global
 installApplicationHomebrewStyle "gpg2"
 installApplicationHomebrewStyle p"inentry-mac"
 
+# Python3
+brew unlink python@3.8
+brew reinstall python@3.9
+
 # PHP
 ensure_php_is_installed
 installApplicationHomebrewStyle "composer"
