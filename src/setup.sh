@@ -89,6 +89,9 @@ rm -f /usr/local/bin/aws
 rm -f /usr/local/bin/aws_completer
 installApplicationHomebrewStyle "awscli"
 
+# Selenium things
+installApplicationHomebrewStyle "brew reinstall chromedriver"
+
 installApplicationMacStyle "intellij-idea" "IntelliJ IDEA"
 
 installApplicationMacStyle "visual-studio-code" "Visual Studio Code"
