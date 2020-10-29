@@ -91,6 +91,7 @@ installApplicationHomebrewStyle "awscli"
 
 # Selenium things
 installApplicationHomebrewStyle "brew reinstall chromedriver"
+xattr -d com.apple.quarantine $(which chromedriver)
 
 installApplicationMacStyle "intellij-idea" "IntelliJ IDEA"
 
