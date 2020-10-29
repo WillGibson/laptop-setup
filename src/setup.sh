@@ -90,7 +90,7 @@ rm -f /usr/local/bin/aws_completer
 installApplicationHomebrewStyle "awscli"
 
 # Selenium things
-installApplicationHomebrewStyle "brew reinstall chromedriver"
+installApplicationHomebrewStyle "chromedriver"
 xattr -d com.apple.quarantine $(which chromedriver)
 
 installApplicationMacStyle "intellij-idea" "IntelliJ IDEA"
