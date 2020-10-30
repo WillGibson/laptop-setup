@@ -38,6 +38,12 @@ ensure_symlink_exists() {
     echo "Created symlink $realPath -> $linkPath"
 }
 
+run_command_but_dont_exit_on_error() {
+    command="$1"
+
+    set +e; $command; set -e
+}
+
 update_file_line_in_situ() {
     filePath="$1"
     defaultLine="$2"
