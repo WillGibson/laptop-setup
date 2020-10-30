@@ -29,7 +29,7 @@ ensure_git_name_and_email_are_set
 
 pull_latest_laptop_setup_code
 
-set +e && ensure_homebrew_is_installed_and_up_to_date && set -e
+run_command_but_dont_exit_on_error "ensure_homebrew_is_installed_and_up_to_date"
 
 # Terminal
 echo_heading "Install iTerm2, ohmyzsh etc."
@@ -89,6 +89,11 @@ rm -f /usr/local/bin/aws
 rm -f /usr/local/bin/aws_completer
 installApplicationHomebrewStyle "awscli"
 
+# Selenium things
+installApplicationHomebrewStyle "chromedriver"
+# This does not get quarantined in the GitHub Actions pipeline so...
+run_command_but_dont_exit_on_error "xattr -d com.apple.quarantine \$(which chromedriver)"
+
 installApplicationMacStyle "intellij-idea" "IntelliJ IDEA"
 
 installApplicationMacStyle "visual-studio-code" "Visual Studio Code"
@@ -118,11 +123,11 @@ append_to_zshrc "source ~/.zshrc_parts_from_laptop_setup.sh" 1
 
 echo_heading "Run brew cleanup"
 echo_empty_line
-set +e && brew cleanup && set -e
+run_command_but_dont_exit_on_error "brew cleanup"
 
 echo_heading "Run brew doctor"
 echo_empty_line
-set +e && brew doctor && set -e
+run_command_but_dont_exit_on_error "brew doctor"
 
 echo_heading "A couple of other things to note"
 echo_line "\n1) To reload profile now please run...\n\nsource ~/.zshrc"
