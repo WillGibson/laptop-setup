@@ -100,6 +100,8 @@ installApplicationMacStyle "visual-studio-code" "Visual Studio Code"
 
 installApplicationMacStyle "postman" "Postman"
 
+installApplicationMacStyle "arduino" "Arduino"
+
 installApplicationHomebrewStyle "tree"
 
 installApplicationMacStyle "google-chrome" "Google Chrome"
