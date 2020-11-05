@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Wrap up some git commands into one to try and avoid
+# race conditions during trunk based development
+
 set -e
 
 commitMessage="$*"
