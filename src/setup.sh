@@ -88,6 +88,9 @@ installApplicationHomebrewStyle "minikube"
 rm -f /usr/local/bin/aws
 rm -f /usr/local/bin/aws_completer
 installApplicationHomebrewStyle "awscli"
+installApplicationHomebrewStyle "awsebcli"
+
+installApplicationHomebrewStyle "serverless"
 
 # Selenium things
 installApplicationHomebrewStyle "chromedriver"
