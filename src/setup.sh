@@ -18,11 +18,6 @@ source "${basePath}/components/commands/php.sh"
 source "${basePath}/components/commands/pull_latest.sh"
 source "${basePath}/components/commands/zshrc.sh"
 
-# Clean start for .zshrc_parts_from_laptop_setup.sh
-rm -f ~/.zshrc_parts_from_laptop_setup.sh
-touch ~/.zshrc_parts_from_laptop_setup.sh
-append_to_zshrc_parts "#!/bin/bash" 1
-
 echo_heading "Preflight checks"
 ensure_docker_not_running
 ensure_git_name_and_email_are_set
@@ -31,7 +26,12 @@ pull_latest_laptop_setup_code
 
 run_command_but_dont_exit_on_error "ensure_homebrew_is_installed_and_up_to_date"
 
+# Clean start for .zshrc_parts_from_laptop_setup.sh
+
 # Terminal
+rm -f ~/.zshrc_parts_from_laptop_setup.sh
+touch ~/.zshrc_parts_from_laptop_setup.sh
+append_to_zshrc_parts "#!/bin/bash" 1
 echo_heading "Install iTerm2, ohmyzsh etc."
 installApplicationHomebrewStyle "iterm2" 1
 ensure_zsh_is_installed
