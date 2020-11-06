@@ -26,8 +26,6 @@ pull_latest_laptop_setup_code
 
 run_command_but_dont_exit_on_error "ensure_homebrew_is_installed_and_up_to_date"
 
-# Clean start for .zshrc_parts_from_laptop_setup.sh
-
 # Terminal
 rm -f ~/.zshrc_parts_from_laptop_setup.sh
 touch ~/.zshrc_parts_from_laptop_setup.sh
