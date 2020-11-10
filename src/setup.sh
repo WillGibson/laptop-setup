@@ -89,8 +89,6 @@ rm -f /usr/local/bin/aws
 rm -f /usr/local/bin/aws_completer
 installApplicationHomebrewStyle "awscli"
 installApplicationHomebrewStyle "awsebcli"
-echo_line "\nInstall aws-azure-login\n"
-npm install -g aws-azure-login
 
 installApplicationHomebrewStyle "serverless"
 
