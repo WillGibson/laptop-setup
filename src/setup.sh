@@ -60,7 +60,6 @@ fi
 if include "gpg"; then
     installApplicationHomebrewStyle "gpg2"
     installApplicationHomebrewStyle "pinentry-mac"
-    echo_heading "Export GPG_TTY in .zshrc for signing commits"
     append_to_zshrc_parts "export GPG_TTY=$\(tty\)"
 fi
 
