@@ -33,7 +33,7 @@ run_command_but_dont_exit_on_error "ensure_homebrew_is_installed_and_up_to_date"
 
 # Terminal
 echo_heading "Install iTerm2, ohmyzsh etc."
-reinstallApplicationHomebrewStyle "iterm2" 1
+installApplicationHomebrewStyle "iterm2" 1
 ensure_zsh_is_installed
 ensure_ohmyzsh_is_installed
 installApplicationHomebrewStyle "zsh-completions" 1
@@ -43,75 +43,75 @@ ensure_zsh_completion_waiting_dots_are_used
 ensure_correct_ohmyzsh_theme_is_used "${basePath}/components/ohmyzsh/willgibson.zsh-theme" "willgibson"
 update_file_line_in_situ ~/.zshrc 'plugins=(git)' 'plugins=(docker git zsh-autosuggestions)'
 
-## Git
-#echo_heading "Install Git"
-#ensure_git_name_and_email_env_vars_are_exported_in_zshrc
-#installApplicationHomebrewStyle "git" 1
-#git config --global pull.ff only
-#ensure_symlink_exists "${basePath}/components/static_files/.gitignore_global" ~/.gitignore_global
-#git config --global core.excludesfile ~/.gitignore_global
-#
-## GPG for signing Git commits
-#installApplicationHomebrewStyle "gpg2"
-#installApplicationHomebrewStyle "pinentry-mac"
-#
-## Python3
-#run_command_but_dont_exit_on_error "brew unlink python@3.8"
-#installApplicationHomebrewStyle "python"
-#
-## PHP
-#ensure_php_is_installed
-#installApplicationHomebrewStyle "composer"
-#
-## NVM & Node.js
-#ensure_nvm_is_installed
-#echo_heading "Install current long term support version of Node.js"
-#echo_empty_line
-#nvm install --lts
-#
-## Java etc.
-#installApplicationHomebrewStyle "java11"
-#installApplicationHomebrewStyle "maven"
-#installApplicationHomebrewStyle "gradle"
-#brew tap pivotal/tap
-#installApplicationHomebrewStyle "springboot"
-#
-## Docker etc.
-#installApplicationHomebrewStyle "docker"
-#installApplicationHomebrewStyle "kubectl"
-#installApplicationHomebrewStyle "minikube"
-#
-## AWS
-#rm -f /usr/local/bin/aws
-#rm -f /usr/local/bin/aws_completer
-#installApplicationHomebrewStyle "awscli"
-#installApplicationHomebrewStyle "awsebcli"
-#
-#installApplicationHomebrewStyle "serverless"
-#
-## Selenium things
-#installApplicationHomebrewStyle "chromedriver"
-## This does not get quarantined in the GitHub Actions pipeline so...
-#pathToChromeDriver=$(which chromedriver)
-#run_command_but_dont_exit_on_error "xattr -d com.apple.quarantine $pathToChromeDriver)"
-#
-#installApplicationMacStyle "intellij-idea" "IntelliJ IDEA"
-#
-#installApplicationMacStyle "visual-studio-code" "Visual Studio Code"
-#
-#installApplicationMacStyle "postman" "Postman"
-#
-#installApplicationMacStyle "arduino" "Arduino"
-#
-#installApplicationHomebrewStyle "tree"
-#
-#installApplicationMacStyle "google-chrome" "Google Chrome"
-#
-#installApplicationMacStyle "slack" "Slack"
-#
-#installApplicationMacStyle "microsoft-teams" "Microsoft Teams" "sudo"
-#
-#installApplicationMacStyle "spotify" "Spotify"
+# Git
+echo_heading "Install Git"
+ensure_git_name_and_email_env_vars_are_exported_in_zshrc
+installApplicationHomebrewStyle "git" 1
+git config --global pull.ff only
+ensure_symlink_exists "${basePath}/components/static_files/.gitignore_global" ~/.gitignore_global
+git config --global core.excludesfile ~/.gitignore_global
+
+# GPG for signing Git commits
+installApplicationHomebrewStyle "gpg2"
+installApplicationHomebrewStyle "pinentry-mac"
+
+# Python3
+run_command_but_dont_exit_on_error "brew unlink python@3.8"
+installApplicationHomebrewStyle "python"
+
+# PHP
+ensure_php_is_installed
+installApplicationHomebrewStyle "composer"
+
+# NVM & Node.js
+ensure_nvm_is_installed
+echo_heading "Install current long term support version of Node.js"
+echo_empty_line
+nvm install --lts
+
+# Java etc.
+installApplicationHomebrewStyle "java11"
+installApplicationHomebrewStyle "maven"
+installApplicationHomebrewStyle "gradle"
+brew tap pivotal/tap
+installApplicationHomebrewStyle "springboot"
+
+# Docker etc.
+installApplicationHomebrewStyle "docker"
+installApplicationHomebrewStyle "kubectl"
+installApplicationHomebrewStyle "minikube"
+
+# AWS
+rm -f /usr/local/bin/aws
+rm -f /usr/local/bin/aws_completer
+installApplicationHomebrewStyle "awscli"
+installApplicationHomebrewStyle "awsebcli"
+
+installApplicationHomebrewStyle "serverless"
+
+# Selenium things
+installApplicationHomebrewStyle "chromedriver"
+# This does not get quarantined in the GitHub Actions pipeline so...
+pathToChromeDriver=$(which chromedriver)
+run_command_but_dont_exit_on_error "xattr -d com.apple.quarantine $pathToChromeDriver)"
+
+installApplicationMacStyle "intellij-idea" "IntelliJ IDEA"
+
+installApplicationMacStyle "visual-studio-code" "Visual Studio Code"
+
+installApplicationMacStyle "postman" "Postman"
+
+installApplicationMacStyle "arduino" "Arduino"
+
+installApplicationHomebrewStyle "tree"
+
+installApplicationMacStyle "google-chrome" "Google Chrome"
+
+installApplicationMacStyle "slack" "Slack"
+
+installApplicationMacStyle "microsoft-teams" "Microsoft Teams" "sudo"
+
+installApplicationMacStyle "spotify" "Spotify"
 
 echo_heading "Include aliases in .zshrc"
 append_to_zshrc_parts "source ${basePath}/components/zshrc/aliases/miscellaneous.sh"
