@@ -77,10 +77,7 @@ brew tap pivotal/tap
 installApplicationHomebrewStyle "springboot"
 
 # Docker etc.
-rm -f /usr/local/bin/docker
-rm -rf /usr/local/Cellar/docker/
 installApplicationHomebrewStyle "docker"
-#rm -f /usr/local/bin/kubectl
 installApplicationHomebrewStyle "kubectl"
 installApplicationHomebrewStyle "minikube"
 
