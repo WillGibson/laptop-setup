@@ -2,7 +2,7 @@
 
 Just intended to automate as many of the commands I run to set up a new MacBook for developing as possible, trying to get away from copying them one by one from a note I have with them all in.
 
-The intention is not to provide the fastest way to do this, but to provide a reliable idempotent way to setup a new MacBook and, as far as possible, update all the things as time goes by. This last part is why Homebrew commands are largely `reinstall` etc.
+The intention is not to provide the fastest way to do this, but to provide a reliable idempotent way to setup a new MacBook and, as far as possible, update all the things as time goes by.
 
 Over time it is hoped that it will become more flexible and maybe work for more people than just me :-)
 
@@ -27,18 +27,20 @@ Then you can run the script, but be aware you may be prompted for your password 
 
     ./src/setup.sh
 
+## Configuration
+
+By default everything is installed. If that's not what you need, create a `.config.json` file based on `config.json.example` which contains all the available options.
+
 ## What it won't do for you (yet)
 
 You will need to do the following manually...
 
 * [Create your SSH key pair](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key) or copy it from elsewhere
 * Create your GPG key or copy it from elsewhere to set up signed Git commits. See https://stackoverflow.com/a/55646482/2152144 and https://anh.do/blog/gpg-catalina
-* Install DisplayLink drivers
 * Use TouchID to elevate privileges in terminal. Add `auth       sufficient     pam_tid.so` to `/etc/pam.d/sudo`.
-
 
 ## Troubleshooting
 
-If you use this tool on a machine which has already had some of the things installed manually, it can get a bit tricky with permissions here and there
+If you use this tool on a machine which has already had some of the things installed manually, it can get a bit tricky with permissions here and there.
 
 E.g. If it fails trying to delete an existing app from `/Applications` due to permissions, you might need to `sudo rm -rf /Applications/OffendingApp.app` to get rid of the one which is not managed with Homebrew
