@@ -39,9 +39,18 @@ installApplicationHomebrewStyle() {
         echo_heading "Install $cask"
     fi
 
-    installCommand="brew reinstall $cask"
-    echo_line "\n$installCommand\n"
-    $installCommand
+    echo_line "\nCheck if keg is already installed"
+    installedCheck=$(brew list $cask 2>/dev/null || true)
+    if grep -q "$installedCheck" <<< "Error: No such keg"; then
+        installCommand="brew install $cask"
+        echo_line "\n$installCommand\n"
+        $installCommand
+    else
+        upgradeCommand="brew upgrade $cask"
+        echo_line "\n$upgradeCommand\n"
+        $upgradeCommand
+    fi
+
     sudo --reset-timestamp
 }
 

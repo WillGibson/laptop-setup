@@ -24,12 +24,14 @@ ensure_git_name_and_email_are_set
 
 pull_latest_laptop_setup_code
 
-run_command_but_dont_exit_on_error "ensure_homebrew_is_installed_and_up_to_date"
-
-# Terminal
+# Clean start for .zshrc_parts_from_laptop_setup.sh
 rm -f ~/.zshrc_parts_from_laptop_setup.sh
 touch ~/.zshrc_parts_from_laptop_setup.sh
 append_to_zshrc_parts "#!/bin/bash" 1
+
+run_command_but_dont_exit_on_error "ensure_homebrew_is_installed_and_up_to_date"
+
+# Terminal
 echo_heading "Install iTerm2, ohmyzsh etc."
 installApplicationHomebrewStyle "iterm2" 1
 ensure_zsh_is_installed
@@ -51,10 +53,10 @@ git config --global core.excludesfile ~/.gitignore_global
 
 # GPG for signing Git commits
 installApplicationHomebrewStyle "gpg2"
-installApplicationHomebrewStyle p"inentry-mac"
+installApplicationHomebrewStyle "pinentry-mac"
 
 # Python3
-brew unlink python@3.8
+run_command_but_dont_exit_on_error "brew unlink python@3.8"
 installApplicationHomebrewStyle "python"
 
 # PHP
@@ -78,7 +80,7 @@ installApplicationHomebrewStyle "springboot"
 rm -f /usr/local/bin/docker
 rm -rf /usr/local/Cellar/docker/
 installApplicationHomebrewStyle "docker"
-rm -f /usr/local/bin/kubectl
+#rm -f /usr/local/bin/kubectl
 installApplicationHomebrewStyle "kubectl"
 installApplicationHomebrewStyle "minikube"
 
@@ -87,6 +89,8 @@ rm -f /usr/local/bin/aws
 rm -f /usr/local/bin/aws_completer
 installApplicationHomebrewStyle "awscli"
 installApplicationHomebrewStyle "awsebcli"
+echo_line "\nInstall aws-azure-login\n"
+npm install -g aws-azure-login
 
 installApplicationHomebrewStyle "serverless"
 
