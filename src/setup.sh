@@ -99,6 +99,7 @@ if include "aws"; then
     rm -f /usr/local/bin/aws_completer
     installApplicationHomebrewStyle "awscli"
     installApplicationHomebrewStyle "awsebcli"
+    npm install -g aws-azure-login
 fi
 
 if include "serverless"; then
