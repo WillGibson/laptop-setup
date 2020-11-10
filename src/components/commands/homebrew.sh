@@ -41,6 +41,7 @@ installApplicationHomebrewStyle() {
 
     echo_line "\nCheck if keg is already installed"
     installedCheck="$(brew list $cask 2>&1 1>/dev/null || true)"
+    echo "$installedCheck"
     command="upgrade"
     if [[ "$installedCheck" == *"Error: No such keg"* ]] && \
         [[ ! "$installedCheck" == *"Found a cask named"* ]]; then
