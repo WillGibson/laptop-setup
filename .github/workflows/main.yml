@@ -15,6 +15,7 @@ jobs:
                 ls -al
                 sw_vers
                 zsh --version
+                echo "$SHELL"
             - name: Run Setup
               run: ./src/setup.sh
               env:

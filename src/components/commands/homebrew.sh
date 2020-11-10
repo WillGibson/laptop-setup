@@ -39,9 +39,18 @@ installApplicationHomebrewStyle() {
         echo_heading "Install $cask"
     fi
 
-    installCommand="brew reinstall $cask"
-    echo_line "\n$installCommand\n"
-    $installCommand
+    echo_line "\nCheck if keg is already installed"
+    installedCheck="$(brew list $cask 2>&1 1>/dev/null || true)"
+    command="upgrade"
+    # Todo: Investigate why this if conditional does not work in GiHub actions
+    if [[ "$installedCheck" == *"Error: No such keg"* ]] && \
+        [[ ! "$installedCheck" == *"Found a cask named \"$cask\" instead"* ]]; then
+        command="install"
+    fi
+    fullCommand="brew $command $cask"
+    echo_line "\n$fullCommand"
+    $fullCommand
+
     sudo --reset-timestamp
 }
 
