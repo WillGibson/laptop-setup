@@ -10,6 +10,7 @@ basePath="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 # shellcheck disable=SC1090
 source "${basePath}/components/commands/docker.sh"
+source "${basePath}/components/commands/filter.sh"
 source "${basePath}/components/commands/git.sh"
 source "${basePath}/components/commands/homebrew.sh"
 source "${basePath}/components/commands/miscellaneous.sh"
@@ -29,89 +30,119 @@ rm -f ~/.zshrc_parts_from_laptop_setup.sh
 touch ~/.zshrc_parts_from_laptop_setup.sh
 append_to_zshrc_parts "#!/bin/bash" 1
 
-run_command_but_dont_exit_on_error "ensure_homebrew_is_installed_and_up_to_date"
+#run_command_but_dont_exit_on_error "ensure_homebrew_is_installed_and_up_to_date"
+#
+#installApplicationHomebrewStyle "jq"
 
-# Terminal
-echo_heading "Install iTerm2, ohmyzsh etc."
-installApplicationHomebrewStyle "iterm2" 1
-ensure_zsh_is_installed
-ensure_ohmyzsh_is_installed
-installApplicationHomebrewStyle "zsh-completions" 1
-ensure_zsh_autosuggestions_are_installed
-ensure_zsh_correction_is_used
-ensure_zsh_completion_waiting_dots_are_used
-ensure_correct_ohmyzsh_theme_is_used "${basePath}/components/ohmyzsh/willgibson.zsh-theme" "willgibson"
-update_file_line_in_situ ~/.zshrc 'plugins=(git)' 'plugins=(docker git zsh-autosuggestions)'
+echo ""
+if include terminal; then
+    echo "include terminal"
+else
+    echo "exclude terminal"
+fi
 
-# Git
-echo_heading "Install Git"
-ensure_git_name_and_email_env_vars_are_exported_in_zshrc
-installApplicationHomebrewStyle "git" 1
-git config --global pull.ff only
-ensure_symlink_exists "${basePath}/components/static_files/.gitignore_global" ~/.gitignore_global
-git config --global core.excludesfile ~/.gitignore_global
+echo ""
+if include php; then
+    echo "include php"
+else
+    echo "exclude php"
+fi
 
-# GPG for signing Git commits
-installApplicationHomebrewStyle "gpg2"
-installApplicationHomebrewStyle "pinentry-mac"
+echo ""
+if include java; then
+    echo "include java"
+else
+    echo "exclude java"
+fi
 
-# Python3
-run_command_but_dont_exit_on_error "brew unlink python@3.8"
-installApplicationHomebrewStyle "python"
+echo ""
+if include spotify; then
+    echo "include spotify"
+else
+    echo "exclude spotify"
+fi
 
-# PHP
-ensure_php_is_installed
-installApplicationHomebrewStyle "composer"
-
-# NVM & Node.js
-ensure_nvm_is_installed
-echo_heading "Install current long term support version of Node.js"
-echo_empty_line
-nvm install --lts
-
-# Java etc.
-installApplicationHomebrewStyle "java11"
-installApplicationHomebrewStyle "maven"
-installApplicationHomebrewStyle "gradle"
-brew tap pivotal/tap
-installApplicationHomebrewStyle "springboot"
-
-# Docker etc.
-installApplicationHomebrewStyle "docker"
-installApplicationHomebrewStyle "kubectl"
-installApplicationHomebrewStyle "minikube"
-
-# AWS
-rm -f /usr/local/bin/aws
-rm -f /usr/local/bin/aws_completer
-installApplicationHomebrewStyle "awscli"
-installApplicationHomebrewStyle "awsebcli"
-
-installApplicationHomebrewStyle "serverless"
-
-# Selenium things
-installApplicationHomebrewStyle "chromedriver"
-# This does not get quarantined in the GitHub Actions pipeline so...
-pathToChromeDriver=$(which chromedriver)
-run_command_but_dont_exit_on_error "xattr -d com.apple.quarantine $pathToChromeDriver)"
-
-installApplicationMacStyle "intellij-idea" "IntelliJ IDEA"
-
-installApplicationMacStyle "visual-studio-code" "Visual Studio Code"
-
-installApplicationMacStyle "postman" "Postman"
-
-installApplicationMacStyle "arduino" "Arduino"
-
-installApplicationHomebrewStyle "tree"
-
-installApplicationMacStyle "google-chrome" "Google Chrome"
-
-installApplicationMacStyle "slack" "Slack"
-
-installApplicationMacStyle "microsoft-teams" "Microsoft Teams" "sudo"
-
-installApplicationMacStyle "spotify" "Spotify"
+## Terminal
+#echo_heading "Install iTerm2, ohmyzsh etc."
+#installApplicationHomebrewStyle "iterm2" 1
+#ensure_zsh_is_installed
+#ensure_ohmyzsh_is_installed
+#installApplicationHomebrewStyle "zsh-completions" 1
+#ensure_zsh_autosuggestions_are_installed
+#ensure_zsh_correction_is_used
+#ensure_zsh_completion_waiting_dots_are_used
+#ensure_correct_ohmyzsh_theme_is_used "${basePath}/components/ohmyzsh/willgibson.zsh-theme" "willgibson"
+#update_file_line_in_situ ~/.zshrc 'plugins=(git)' 'plugins=(docker git zsh-autosuggestions)'
+#
+## Git
+#echo_heading "Install Git"
+#ensure_git_name_and_email_env_vars_are_exported_in_zshrc
+#installApplicationHomebrewStyle "git" 1
+#git config --global pull.ff only
+#ensure_symlink_exists "${basePath}/components/static_files/.gitignore_global" ~/.gitignore_global
+#git config --global core.excludesfile ~/.gitignore_global
+#
+## GPG for signing Git commits
+#installApplicationHomebrewStyle "gpg2"
+#installApplicationHomebrewStyle "pinentry-mac"
+#
+## Python3
+#run_command_but_dont_exit_on_error "brew unlink python@3.8"
+#installApplicationHomebrewStyle "python"
+#
+## PHP
+#ensure_php_is_installed
+#installApplicationHomebrewStyle "composer"
+#
+## NVM & Node.js
+#ensure_nvm_is_installed
+#echo_heading "Install current long term support version of Node.js"
+#echo_empty_line
+#nvm install --lts
+#
+## Java etc.
+#installApplicationHomebrewStyle "java11"
+#installApplicationHomebrewStyle "maven"
+#installApplicationHomebrewStyle "gradle"
+#brew tap pivotal/tap
+#installApplicationHomebrewStyle "springboot"
+#
+## Docker etc.
+#installApplicationHomebrewStyle "docker"
+#installApplicationHomebrewStyle "kubectl"
+#installApplicationHomebrewStyle "minikube"
+#
+## AWS
+#rm -f /usr/local/bin/aws
+#rm -f /usr/local/bin/aws_completer
+#installApplicationHomebrewStyle "awscli"
+#installApplicationHomebrewStyle "awsebcli"
+#
+#installApplicationHomebrewStyle "serverless"
+#
+## Selenium things
+#installApplicationHomebrewStyle "chromedriver"
+## This does not get quarantined in the GitHub Actions pipeline so...
+#pathToChromeDriver=$(which chromedriver)
+#run_command_but_dont_exit_on_error "xattr -d com.apple.quarantine $pathToChromeDriver)"
+#
+#installApplicationMacStyle "intellij-idea" "IntelliJ IDEA"
+#
+#installApplicationMacStyle "visual-studio-code" "Visual Studio Code"
+#
+#installApplicationMacStyle "postman" "Postman"
+#
+#installApplicationMacStyle "arduino" "Arduino"
+#
+#installApplicationHomebrewStyle "tree"
+#
+#installApplicationMacStyle "google-chrome" "Google Chrome"
+#
+#installApplicationMacStyle "slack" "Slack"
+#
+#installApplicationMacStyle "microsoft-teams" "Microsoft Teams" "sudo"
+#
+#installApplicationMacStyle "spotify" "Spotify"
 
 echo_heading "Include aliases in .zshrc"
 append_to_zshrc_parts "source ${basePath}/components/zshrc/aliases/miscellaneous.sh"
@@ -124,13 +155,13 @@ append_to_zshrc_parts "export GPG_TTY=$\(tty\)"
 append_to_zshrc "# Added by laptop-setup..."
 append_to_zshrc "source ~/.zshrc_parts_from_laptop_setup.sh" 1
 
-echo_heading "Run brew cleanup"
-echo_empty_line
-run_command_but_dont_exit_on_error "brew cleanup"
-
-echo_heading "Run brew doctor"
-echo_empty_line
-run_command_but_dont_exit_on_error "brew doctor"
+#echo_heading "Run brew cleanup"
+#echo_empty_line
+#run_command_but_dont_exit_on_error "brew cleanup"
+#
+#echo_heading "Run brew doctor"
+#echo_empty_line
+#run_command_but_dont_exit_on_error "brew doctor"
 
 echo_heading "A couple of other things to note"
 echo_line "\n1) To reload profile now please run...\n\nsource ~/.zshrc"
