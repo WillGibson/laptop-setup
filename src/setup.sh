@@ -33,7 +33,7 @@ run_command_but_dont_exit_on_error "ensure_homebrew_is_installed_and_up_to_date"
 
 # Terminal
 echo_heading "Install iTerm2, ohmyzsh etc."
-installApplicationHomebrewStyle "iterm2" 1
+reinstallApplicationHomebrewStyle "iterm2" 1
 ensure_zsh_is_installed
 ensure_ohmyzsh_is_installed
 installApplicationHomebrewStyle "zsh-completions" 1

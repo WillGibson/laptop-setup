@@ -53,6 +53,22 @@ installApplicationHomebrewStyle() {
     sudo --reset-timestamp
 }
 
+# Some packages can get weird with the install or update
+# thing so lets just stick to reinstall for those
+reinstallApplicationHomebrewStyle() {
+    local cask="$1"
+    local skipHeading="${2:-0}"
+
+    if [ ! "$skipHeading" -eq 1 ]; then
+        echo_heading "Install $cask"
+    fi
+
+    installCommand="brew reinstall $cask"
+    echo_line "\n$installCommand\n"
+    $installCommand
+    sudo --reset-timestamp
+}
+
 installApplicationMacStyle() {
     local cask="$1"
     local appName="$2"
