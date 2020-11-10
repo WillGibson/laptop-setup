@@ -95,7 +95,8 @@ installApplicationHomebrewStyle "serverless"
 # Selenium things
 installApplicationHomebrewStyle "chromedriver"
 # This does not get quarantined in the GitHub Actions pipeline so...
-run_command_but_dont_exit_on_error "xattr -d com.apple.quarantine \$(which chromedriver)"
+pathToChromeDriver=$(which chromedriver)
+run_command_but_dont_exit_on_error "xattr -d com.apple.quarantine $pathToChromeDriver)"
 
 installApplicationMacStyle "intellij-idea" "IntelliJ IDEA"
 

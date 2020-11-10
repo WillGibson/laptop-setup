@@ -40,16 +40,15 @@ installApplicationHomebrewStyle() {
     fi
 
     echo_line "\nCheck if keg is already installed"
-    installedCheck=$(brew list $cask 2>/dev/null || true)
-    if grep -q "$installedCheck" <<< "Error: No such keg"; then
-        installCommand="brew install $cask"
-        echo_line "\n$installCommand\n"
-        $installCommand
-    else
-        upgradeCommand="brew upgrade $cask"
-        echo_line "\n$upgradeCommand\n"
-        $upgradeCommand
+    installedCheck="$(brew list $cask 2>&1 1>/dev/null || true)"
+    command="upgrade"
+    if [[ "$installedCheck" == *"Error: No such keg"* ]] && \
+        [[ ! "$installedCheck" == *"Found a cask named"* ]]; then
+        command="install"
     fi
+    fullCommand="brew $command $cask"
+    echo_line "\n$fullCommand"
+    $fullCommand
 
     sudo --reset-timestamp
 }
