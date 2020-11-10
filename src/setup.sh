@@ -60,6 +60,8 @@ fi
 if include "gpg"; then
     installApplicationHomebrewStyle "gpg2"
     installApplicationHomebrewStyle "pinentry-mac"
+    echo_heading "Export GPG_TTY in .zshrc for signing commits"
+    append_to_zshrc_parts "export GPG_TTY=$\(tty\)"
 fi
 
 if include "python"; then
@@ -151,9 +153,6 @@ echo_heading "Include aliases in .zshrc"
 append_to_zshrc_parts "source ${basePath}/components/zshrc/aliases/miscellaneous.sh"
 append_to_zshrc_parts "source ${basePath}/components/zshrc/aliases/git.sh" 1
 append_to_zshrc_parts "source ${basePath}/components/zshrc/aliases/docker.sh" 1
-
-echo_heading "Export GPG_TTY in .zshrc for signing commits"
-append_to_zshrc_parts "export GPG_TTY=$\(tty\)"
 
 append_to_zshrc "# Added by laptop-setup..."
 append_to_zshrc "source ~/.zshrc_parts_from_laptop_setup.sh" 1
