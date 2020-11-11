@@ -9,6 +9,7 @@ basePath="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 [[ -e ~/.zshrc ]] && cp ~/.zshrc "${HOME}/.zshrc.backup.$(date)"
 
 # shellcheck disable=SC1090
+source "${basePath}/components/commands/additionalCommands.sh"
 source "${basePath}/components/commands/docker.sh"
 source "${basePath}/components/commands/filter.sh"
 source "${basePath}/components/commands/git.sh"
@@ -34,6 +35,8 @@ run_command_but_dont_exit_on_error "ensure_homebrew_is_installed_and_up_to_date"
 
 # always install this, we need it for the include logic
 installApplicationHomebrewStyle "jq"
+
+additionalCommands "pre"
 
 if include "terminal"; then
     echo_heading "Install iTerm2, ohmyzsh etc."
@@ -155,6 +158,8 @@ append_to_zshrc_parts "source ${basePath}/components/zshrc/aliases/docker.sh" 1
 
 append_to_zshrc "# Added by laptop-setup..."
 append_to_zshrc "source ~/.zshrc_parts_from_laptop_setup.sh" 1
+
+additionalCommands "post"
 
 echo_heading "Run brew cleanup"
 echo_empty_line

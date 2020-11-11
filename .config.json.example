@@ -21,5 +21,13 @@
         "terminal": true,
         "tree": true,
         "visualStudioCode": true
-    }
+    },
+     "additionalCommands": {
+         "pre": [
+             "date"
+         ],
+         "post": [
+             "pwd"
+         ]
+     }
 }

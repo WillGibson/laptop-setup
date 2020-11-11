@@ -31,6 +31,10 @@ Then you can run the script, but be aware you may be prompted for your password 
 
 By default everything is installed. If that's not what you need, create a `.config.json` file based on `config.json.example` which contains all the available options.
 
+## Adding your own commands
+
+If you need a bit more you can add additional commands to`.config.json` to be run at the beginning and end of the process. See the `additionalCommands` section in `config.json.example`.
+
 ## What it won't do for you (yet)
 
 You will need to do the following manually...
