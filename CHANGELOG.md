@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [unreleased]
 ### Added
 - Make what gets installed configurable by a config file
-- Install aws-azure-login
+- Option to config additional commands to run at the beginning and end ot the process
 ### Changed
 - Be more intelligent about whether to install or upgrade
 ### Fixed
