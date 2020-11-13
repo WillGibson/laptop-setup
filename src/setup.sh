@@ -132,29 +132,29 @@ if include "postman"; then
     installApplicationMacStyle "postman" "Postman"
 fi
 
-#if include "arduino"; then
-#    installApplicationMacStyle "arduino" "Arduino"
-#fi
-#
-#if include "tree"; then
-#    installApplicationHomebrewStyle "tree"
-#fi
-#
-#if include "googleChrome"; then
-#    installApplicationMacStyle "google-chrome" "Google Chrome"
-#fi
-#
-#if include "slack"; then
-#    installApplicationMacStyle "slack" "Slack"
-#fi
-#
-#if include "microsoftTeams"; then
-#    installApplicationMacStyle "microsoft-teams" "Microsoft Teams" "sudo"
-#fi
-#
-#if include "spotify"; then
-#    installApplicationMacStyle "spotify" "Spotify"
-#fi
+if include "arduino"; then
+    installApplicationMacStyle "arduino" "Arduino"
+fi
+
+if include "tree"; then
+    installApplicationHomebrewStyle "tree"
+fi
+
+if include "googleChrome"; then
+    installApplicationMacStyle "google-chrome" "Google Chrome"
+fi
+
+if include "slack"; then
+    installApplicationMacStyle "slack" "Slack"
+fi
+
+if include "microsoftTeams"; then
+    installApplicationMacStyle "microsoft-teams" "Microsoft Teams" "sudo"
+fi
+
+if include "spotify"; then
+    installApplicationMacStyle "spotify" "Spotify"
+fi
 
 echo_heading "Include aliases in .zshrc"
 append_to_zshrc_parts "source ${basePath}/components/zshrc/aliases/miscellaneous.sh"
