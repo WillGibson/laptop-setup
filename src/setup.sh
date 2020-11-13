@@ -97,6 +97,11 @@ if include "docker"; then
     installApplicationHomebrewStyle "minikube"
 fi
 
+if include "rubyThings"; then
+    installApplicationHomebrewStyle "rbenv"
+    append_to_zshrc_parts "eval \"\$(rbenv init -)\""
+fi
+
 if include "aws"; then
     rm -f /usr/local/bin/aws
     rm -f /usr/local/bin/aws_completer
