@@ -161,6 +161,8 @@ append_to_zshrc_parts "source ${basePath}/components/zshrc/aliases/miscellaneous
 append_to_zshrc_parts "source ${basePath}/components/zshrc/aliases/git.sh" 1
 append_to_zshrc_parts "source ${basePath}/components/zshrc/aliases/docker.sh" 1
 
+append_to_zshrc_parts "${basePath}/components/scripts/ssh/ssh_add.sh"
+
 append_to_zshrc "# Added by laptop-setup..."
 append_to_zshrc "source ~/.zshrc_parts_from_laptop_setup.sh" 1
 
@@ -173,6 +175,10 @@ run_command_but_dont_exit_on_error "brew cleanup"
 echo_heading "Run brew doctor"
 echo_empty_line
 run_command_but_dont_exit_on_error "brew doctor"
+
+echo_heading "Check contents of ~/.zshrc_parts_from_laptop_setup.sh"
+echo_empty_line
+cat ~/.zshrc_parts_from_laptop_setup.sh
 
 echo_heading "A couple of other things to note"
 echo_line "\n1) To reload profile now please run...\n\nsource ~/.zshrc"

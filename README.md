@@ -39,7 +39,6 @@ If you need a bit more you can add additional commands to`.config.json` to be ru
 
 You will need to do the following manually...
 
-* [Create your SSH key pair](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key) or copy it from elsewhere
 * Create your GPG key or copy it from elsewhere to set up signed Git commits. See https://stackoverflow.com/a/55646482/2152144 and https://anh.do/blog/gpg-catalina
 * Use TouchID to elevate privileges in terminal. Add `auth       sufficient     pam_tid.so` to `/etc/pam.d/sudo`.
 
