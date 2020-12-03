@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Install rbenv
 - Automatically add default SSH key, generating if required
+### Fixed
+- Issue with `gtc` command when running from a repository's subdirectory
 
 ## [1.5.0] - 2020-11-11
 ### Added

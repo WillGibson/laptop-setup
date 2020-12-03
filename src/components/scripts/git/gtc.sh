@@ -11,7 +11,11 @@ if [ "$commitMessage" == "" ]; then
     exit 1
 fi
 branch=$(git rev-parse --abbrev-ref HEAD)
+echo "Pull from remote..." && \
 git pull origin "$branch" && \
-git add . && \
+echo "Add all local changes..." && \
+git add --all && \
+echo "Commit..." && \
 git commit -m "$commitMessage" && \
+echo "Push..." && \
 git push origin "$branch"
