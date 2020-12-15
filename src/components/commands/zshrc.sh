@@ -57,6 +57,12 @@ ensure_zsh_correction_is_used() {
     update_file_line_in_situ ${zshrc} '# ENABLE_CORRECTION="true"' 'ENABLE_CORRECTION="true"'
 }
 
+ensure_zsh_correction_is_not_used() {
+    echo_line "\nEnsure ZSH correction is used\n"
+    local zshrc="$HOME/.zshrc"
+    update_file_line_in_situ ${zshrc} '# ENABLE_CORRECTION="true"' 'ENABLE_CORRECTION="true"'
+}
+
 ensure_zsh_completion_waiting_dots_are_used() {
     echo_line "\nEnsure ZSH completion waiting dots are used\n"
     local zshrc="$HOME/.zshrc"

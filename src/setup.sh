@@ -45,7 +45,6 @@ if include "terminal"; then
     ensure_ohmyzsh_is_installed
     installApplicationHomebrewStyle "zsh-completions" 1
     ensure_zsh_autosuggestions_are_installed
-    ensure_zsh_correction_is_used
     ensure_zsh_completion_waiting_dots_are_used
     ensure_correct_ohmyzsh_theme_is_used "${basePath}/components/ohmyzsh/willgibson.zsh-theme" "willgibson"
     update_file_line_in_situ ~/.zshrc 'plugins=(git)' 'plugins=(docker git zsh-autosuggestions)'
