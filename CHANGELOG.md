@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Install rbenv
 - Automatically add default SSH key, generating if required
+- Stop it repeatedly updating Homebrew
 ### Fixed
 - Issue with `gtc` command when running from a repository's subdirectory
 ### Removed

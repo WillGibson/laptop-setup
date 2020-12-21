@@ -31,6 +31,8 @@ rm -f ~/.zshrc_parts_from_laptop_setup.sh
 touch ~/.zshrc_parts_from_laptop_setup.sh
 append_to_zshrc_parts "#!/bin/bash" 1
 
+export HOMEBREW_NO_AUTO_UPDATE=1
+
 run_command_but_dont_exit_on_error "ensure_homebrew_is_installed_and_up_to_date"
 
 # always install this, we need it for the include logic
