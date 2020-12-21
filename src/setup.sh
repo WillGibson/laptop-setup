@@ -79,9 +79,10 @@ fi
 
 if include "node"; then
     ensure_nvm_is_installed
-    echo_heading "Install current long term support version of Node.js"
-    echo_empty_line
-    nvm install --lts
+    # Todo: Figure out why this started blowing up on "that" laptop...
+    # echo_heading "Install current long term support version of Node.js"
+    # echo_empty_line
+    # nvm install --lts
 fi
 
 if include "java"; then

@@ -9,5 +9,6 @@ ensure_nvm_is_installed() {
 
     # So we can use it right away...
     export NVM_DIR="$HOME/.nvm"
-    [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+    # Todo: Figure out why this started blowing up on "that" laptop...
+    #  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 }
