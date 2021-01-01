@@ -41,11 +41,14 @@ installApplicationHomebrewStyle() {
     fi
 
     echo_line "\nCheck if keg is already installed"
-    installedCheck="$(brew list $applicationName 2>&1 1>/dev/null || true)"
+    installedCheck="$(brew list $commandOptions $applicationName 2>&1 1>/dev/null || true)"
     command="upgrade"
     # Todo: Investigate why this if conditional does not work in GiHub actions
     if [[ "$installedCheck" == *"Error: No such keg"* ]] && \
         [[ ! "$installedCheck" == *"Found a cask named \"$applicationName\" instead"* ]]; then
+        command="install"
+    fi
+    if [[ "$installedCheck" == *"Error: Cask '$applicationName' is not installed."* ]]; then
         command="install"
     fi
     fullCommand="brew $command $commandOptions $applicationName"
