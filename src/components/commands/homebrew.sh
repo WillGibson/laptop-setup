@@ -7,9 +7,9 @@
 ensure_homebrew_is_installed_and_up_to_date() {
     echo_heading "Ensure Homebrew is installed and up to date"
 
-    if brew list --formula | grep -Fq brew-cask; then
+    if brew list --formula | grep -Fq brew-applicationName; then
         echo_line "\nUninstalling old Homebrew-Cask\n"
-        brew uninstall --force brew-cask
+        brew uninstall --force brew-applicationName
     fi
 
     if ! command -v brew >/dev/null; then
@@ -32,22 +32,23 @@ ensure_homebrew_is_installed_and_up_to_date() {
 }
 
 installApplicationHomebrewStyle() {
-    local cask="$1"
+    local applicationName="$1"
     local skipHeading="${2:-0}"
+    local commandOptions="$3"
 
     if [ ! "$skipHeading" -eq 1 ]; then
-        echo_heading "Install $cask"
+        echo_heading "Install $applicationName"
     fi
 
     echo_line "\nCheck if keg is already installed"
-    installedCheck="$(brew list $cask 2>&1 1>/dev/null || true)"
+    installedCheck="$(brew list $applicationName 2>&1 1>/dev/null || true)"
     command="upgrade"
     # Todo: Investigate why this if conditional does not work in GiHub actions
     if [[ "$installedCheck" == *"Error: No such keg"* ]] && \
-        [[ ! "$installedCheck" == *"Found a cask named \"$cask\" instead"* ]]; then
+        [[ ! "$installedCheck" == *"Found a applicationName named \"$applicationName\" instead"* ]]; then
         command="install"
     fi
-    fullCommand="brew $command $cask"
+    fullCommand="brew $command $commandOptions $applicationName"
     echo_line "\n$fullCommand"
     $fullCommand
 
@@ -55,7 +56,7 @@ installApplicationHomebrewStyle() {
 }
 
 installApplicationMacStyle() {
-    local cask="$1"
+    local applicationName="$1"
     local appName="$2"
     local sudo="$3"
 
@@ -68,5 +69,5 @@ installApplicationMacStyle() {
     echo_line "\n$deleteCommand"
     $deleteCommand
     sudo --reset-timestamp
-    installApplicationHomebrewStyle "${cask}" 1
+    installApplicationHomebrewStyle "${applicationName}" 1 "--cask"
 }
