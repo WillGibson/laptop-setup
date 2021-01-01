@@ -54,20 +54,3 @@ installApplicationHomebrewStyle() {
 
     sudo --reset-timestamp
 }
-
-installApplicationMacStyle() {
-    local applicationName="$1"
-    local appName="$2"
-    local sudo="$3"
-
-    echo_heading "Install $appName"
-
-    deleteCommand="rm -rf \"/Applications/${appName}.app\""
-    if [ ! -z "$sudo" ];then
-        deleteCommand="sudo $deleteCommand"
-    fi
-    echo_line "\n$deleteCommand"
-    $deleteCommand
-    sudo --reset-timestamp
-    installApplicationHomebrewStyle "${applicationName}" 1 "--cask"
-}
