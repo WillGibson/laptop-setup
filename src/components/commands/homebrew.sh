@@ -7,9 +7,9 @@
 ensure_homebrew_is_installed_and_up_to_date() {
     echo_heading "Ensure Homebrew is installed and up to date"
 
-    if brew list --formula | grep -Fq brew-applicationName; then
+    if brew list --formula | grep -Fq brew-cask; then
         echo_line "\nUninstalling old Homebrew-Cask\n"
-        brew uninstall --force brew-applicationName
+        brew uninstall --force brew-cask
     fi
 
     if ! command -v brew >/dev/null; then
@@ -45,7 +45,7 @@ installApplicationHomebrewStyle() {
     command="upgrade"
     # Todo: Investigate why this if conditional does not work in GiHub actions
     if [[ "$installedCheck" == *"Error: No such keg"* ]] && \
-        [[ ! "$installedCheck" == *"Found a applicationName named \"$applicationName\" instead"* ]]; then
+        [[ ! "$installedCheck" == *"Found a cask named \"$applicationName\" instead"* ]]; then
         command="install"
     fi
     fullCommand="brew $command $commandOptions $applicationName"
