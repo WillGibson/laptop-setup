@@ -93,7 +93,7 @@ if include "java"; then
 fi
 
 if include "docker"; then
-    installApplicationHomebrewStyle "docker"
+    installApplicationHomebrewStyle "docker" 0 "--cask"
     installApplicationHomebrewStyle "kubectl"
     installApplicationHomebrewStyle "minikube"
 fi
@@ -122,19 +122,19 @@ if include "seleniumThings"; then
 fi
 
 if include "intellijIdea"; then
-    installApplicationMacStyle "intellij-idea" "IntelliJ IDEA"
+    installApplicationHomebrewStyle "intellij-idea" 0 "--cask"
 fi
 
 if include "visualStudioCode"; then
-    installApplicationMacStyle "visual-studio-code" "Visual Studio Code"
+    installApplicationHomebrewStyle "visual-studio-code" 0 "--cask"
 fi
 
 if include "postman"; then
-    installApplicationMacStyle "postman" "Postman"
+    installApplicationHomebrewStyle "postman" 0 "--cask"
 fi
 
 if include "arduino"; then
-    installApplicationMacStyle "arduino" "Arduino"
+    installApplicationHomebrewStyle "arduino" 0 "--cask"
 fi
 
 if include "tree"; then
@@ -142,19 +142,19 @@ if include "tree"; then
 fi
 
 if include "googleChrome"; then
-    installApplicationMacStyle "google-chrome" "Google Chrome"
+    installApplicationHomebrewStyle "google-chrome" "Google Chrome"
 fi
 
 if include "slack"; then
-    installApplicationMacStyle "slack" "Slack"
+    installApplicationHomebrewStyle "slack" "Slack"
 fi
 
 if include "microsoftTeams"; then
-    installApplicationMacStyle "microsoft-teams" "Microsoft Teams" "sudo"
+    installApplicationHomebrewStyle "microsoft-teams" 0 "--cask"
 fi
 
 if include "spotify"; then
-    installApplicationMacStyle "spotify" "Spotify"
+    installApplicationHomebrewStyle "spotify" 0 "--cask"
 fi
 
 echo_heading "Include aliases in .zshrc"
