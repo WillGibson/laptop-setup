@@ -107,6 +107,7 @@ if include "aws"; then
     rm -f /usr/local/bin/aws
     rm -f /usr/local/bin/aws_completer
     installApplicationHomebrewStyle "awscli"
+    brew unlink awscli && brew link awscli
     installApplicationHomebrewStyle "awsebcli"
 fi
 
