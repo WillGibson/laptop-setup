@@ -7,11 +7,15 @@ export NVM_DIR="$HOME/.nvm"
 # Automatically flip node version on CD if there a .nvmrc file in the repo
 autoload -U add-zsh-hook
 load-nvmrc() {
-    local nvmrc_path="$(nvm_find_nvmrc)"
-    if [ -n "$nvmrc_path" ]; then
-        nvm install
+    if [ -f ".nvmrc" ]; then
+        local nvmrc_path="$(nvm_find_nvmrc)"
+        if [ -n "$nvmrc_path" ]; then
+            nvm install
+        else
+            nvm use --lts
+        fi
     else
-        nvm use --lts
+        nvm use default
     fi
 }
 load-nvmrc
