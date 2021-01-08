@@ -41,6 +41,7 @@ You will need to do the following manually...
 
 * Create your GPG key or copy it from elsewhere to set up signed Git commits. See https://stackoverflow.com/a/55646482/2152144 and https://anh.do/blog/gpg-catalina
 * Use TouchID to elevate privileges in terminal. Add `auth       sufficient     pam_tid.so` to `/etc/pam.d/sudo`.
+* Disable boot on lid open or power plugged in `sudo nvram AutoBoot=%00`.
 
 ## Troubleshooting
 
