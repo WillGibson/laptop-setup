@@ -7,7 +7,7 @@ alias gac="gaa && gc"
 alias gcqa="gc --amend --no-edit"
 alias gcd="gco development"
 alias gcwhatever='gaa && gc -m "Whatever $(date)" && ggpush'
-alias glog="git log --branches --tags --graph --oneline --decorate"
-alias ghist="git log --pretty=format:\"%h %ad | %s%d %an\" --graph --date=short"
+alias glog="glola"
+alias ghist="git log --graph --pretty='%Cred%h%Creset - %Cgreen%cI%Creset -%C(auto)%d%Creset %s %C(bold blue)<%an>%Creset'"
 alias git-delete-all-local-branches-except-main-develop-and-current='git branch | grep -v "master" | grep -v "main" | grep -v "develop" | xargs git branch -D'
 alias gtc="${basePath}scripts/git/gtc.sh"
