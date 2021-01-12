@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.6.2]
 ### Fixed
 - Fallback to using default Node.js when no .nvmrc instead of borking up
+- Made gtc alias cope with the branch not being in the remote yet
 
 ## [1.6.1]
 ### Fixed

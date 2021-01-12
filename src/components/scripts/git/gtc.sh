@@ -10,9 +10,16 @@ if [ "$commitMessage" == "" ]; then
     echo "Please enter a commit message"
     exit 1
 fi
+
 branch=$(git rev-parse --abbrev-ref HEAD)
-echo "Pull from remote..." && \
-git pull origin "$branch" && \
+
+if [ "$(git ls-remote --heads origin "$branch")" == "" ]; then
+    echo "Branch not pushed yet, nothing to pull."
+else
+    echo "Pull from remote..."
+    git pull origin "$branch"
+fi
+
 echo "Add all local changes..." && \
 git add --all && \
 echo "Commit..." && \
