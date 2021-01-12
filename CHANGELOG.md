@@ -6,16 +6,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
+###
+- Add `gtp` git trigger pipeline alias
 ### Changed
-- Make glog and ghist aliases better
+- Make `glog` and ghist aliases better
 
 ## [1.6.3]
 ### Fixed
-- Made gtc alias cope with the branch not being in the remote yet
+- Made `gtc` alias cope with the branch not being in the remote yet
 
 ## [1.6.2]
 ### Fixed
-- Fallback to using default Node.js when no .nvmrc instead of borking up
+- Fallback to using default Node.js when no `.nvmrc` instead of borking up
 
 ## [1.6.1]
 ### Fixed
