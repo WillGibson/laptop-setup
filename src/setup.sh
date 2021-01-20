@@ -143,11 +143,11 @@ if include "tree"; then
 fi
 
 if include "googleChrome"; then
-    installApplicationHomebrewStyle "google-chrome" "Google Chrome"
+    installApplicationHomebrewStyle "google-chrome"
 fi
 
 if include "slack"; then
-    installApplicationHomebrewStyle "slack" "Slack"
+    installApplicationHomebrewStyle "slack"
 fi
 
 if include "microsoftTeams"; then
