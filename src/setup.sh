@@ -142,6 +142,10 @@ if include "tree"; then
     installApplicationHomebrewStyle "tree"
 fi
 
+if include "braveBrowser"; then
+    installApplicationHomebrewStyle "brave-browser" 0 "--cask"
+fi
+
 if include "googleChrome"; then
     installApplicationHomebrewStyle "google-chrome"
 fi

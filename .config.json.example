@@ -3,6 +3,7 @@
     "includeGroup": {
         "arduino": true,
         "aws": true,
+        "braveBrowser": true,
         "docker": true,
         "git": true,
         "googleChrome": true,
