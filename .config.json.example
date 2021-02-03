@@ -15,6 +15,7 @@
         "php": true,
         "postman": true,
         "python": true,
+        "rectangle": true,
         "seleniumThings": true,
         "serverless": true,
         "slack": true,

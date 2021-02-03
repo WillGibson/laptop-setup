@@ -142,6 +142,10 @@ if include "tree"; then
     installApplicationHomebrewStyle "tree"
 fi
 
+if include "rectangle"; then
+    installApplicationHomebrewStyle "rectangle"
+fi
+
 if include "braveBrowser"; then
     installApplicationHomebrewStyle "brave-browser" 0 "--cask"
 fi
