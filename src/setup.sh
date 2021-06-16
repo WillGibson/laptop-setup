@@ -49,7 +49,7 @@ if include "terminal"; then
     ensure_zsh_autosuggestions_are_installed
     ensure_zsh_completion_waiting_dots_are_used
     ensure_correct_ohmyzsh_theme_is_used "${basePath}/components/ohmyzsh/willgibson.zsh-theme" "willgibson"
-    update_file_line_in_situ ~/.zshrc 'plugins=(git)' 'plugins=(docker git zsh-autosuggestions)'
+    update_file_line_in_situ ~/.zshrc 'plugins=(git)' 'plugins=(docker git kubectl zsh-autosuggestions)'
 fi
 
 if include "git"; then
