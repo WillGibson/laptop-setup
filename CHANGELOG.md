@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Use kubectl ohmyzsh plugin
 - Install krew
+- Install coreutils
 ### Changed
 - Separate docker and kubernetes installs
 

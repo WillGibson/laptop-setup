@@ -35,8 +35,11 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 
 run_command_but_dont_exit_on_error "ensure_homebrew_is_installed_and_up_to_date"
 
-# always install this, we need it for the include logic
+# Always install this, we need it for the include logic...
 installApplicationHomebrewStyle "jq"
+
+# Other things we are going to want all the time...
+installApplicationHomebrewStyle "coreutils"
 
 additionalCommands "pre"
 
