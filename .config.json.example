@@ -10,6 +10,7 @@
         "gpg": true,
         "intellijIdea": true,
         "java": true,
+        "kubernetes": true,
         "microsoftTeams": true,
         "node": true,
         "php": true,

@@ -94,6 +94,10 @@ fi
 
 if include "docker"; then
     installApplicationHomebrewStyle "docker" 0 "--cask"
+fi
+
+if include "kubernetes"; then
+    installApplicationHomebrewStyle "krew"
     installApplicationHomebrewStyle "kubectl"
     installApplicationHomebrewStyle "minikube"
 fi
