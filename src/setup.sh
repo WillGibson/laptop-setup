@@ -102,6 +102,7 @@ fi
 
 if include "kubernetes"; then
     installApplicationHomebrewStyle "krew"
+    append_to_zshrc_parts "export PATH=\"${PATH}:${HOME}/.krew/bin\""
     installApplicationHomebrewStyle "kubectl"
     installApplicationHomebrewStyle "minikube"
 fi
