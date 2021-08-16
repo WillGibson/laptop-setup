@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Install coreutils
 ### Changed
 - Separate docker and kubernetes installs
+- Switch to using Docker formula
 
 ## [1.8.0]
 ### Added

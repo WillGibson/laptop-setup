@@ -97,7 +97,7 @@ if include "java"; then
 fi
 
 if include "docker"; then
-    installApplicationHomebrewStyle "docker" 0 "--cask"
+    installApplicationHomebrewStyle "docker"
 fi
 
 if include "kubernetes"; then
