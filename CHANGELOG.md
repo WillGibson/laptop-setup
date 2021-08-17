@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [unreleased]
+## [1.10.0] - 2021-08-17
 ### Added
 - Use kubectl ohmyzsh plugin
 - Install krew
@@ -14,15 +14,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Separate docker and kubernetes installs
 - Switch to using Docker formula
 
-## [1.8.0]
+## [1.9.0] - 2021-02-03
 ### Added
 - Install Rectangle
 
-## [1.8.0]
+## [1.8.0] - 2021-01-22
 ### Added
 - Install Brave browser
 
-## [1.7.0]
+## [1.7.0] - 2021-01-20
 ### Added
 - Add `gtp` git trigger pipeline alias
 ### Changed
@@ -30,15 +30,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Corrected Google Chrome and Slack install commands
 
-## [1.6.3]
+## [1.6.3] - 2021-01-12
 ### Fixed
 - Made `gtc` alias cope with the branch not being in the remote yet
 
-## [1.6.2]
+## [1.6.2] - 2021-01-05
 ### Fixed
 - Fallback to using default Node.js when no `.nvmrc` instead of borking up
 
-## [1.6.1]
+## [1.6.1] - 2021-01-04
 ### Fixed
 - Always relink awscli to prevent command not found issue
 
