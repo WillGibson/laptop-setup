@@ -1,21 +1,30 @@
 #!/bin/bash
 
-# Automatically add default SSH key, generating if required
-
+# Check default key exists
 temp="$(cat ~/.ssh/id_rsa.pub)";
 sshKeyComment="${temp##* }";
-
 if [ "$sshKeyComment" == "" ]; then
     echo "Creating default SSH key.."
     echo "N.B. If the email for the comment is wrong, exit and run it manually"
     command="ssh-keygen -t rsa -b 4096 -C \"$GIT_USER_EMAIL\""
     echo "$command"
     $command
+    echo "Your new public SSH key is..."
+    cat ~/.ssh/id_rsa.pub
+    ssh-add -D
 fi
 
-grepResult="$(ssh-add -l | grep "$sshKeyComment")";
+# Suggest rotating key if older than 3 months
+days=$(( ( $(gdate '+%s') - $(gdate -d '3 months ago' '+%s') ) / 86400 ))
+if [ "$(find ~/.ssh/id_rsa.pub -mtime +$days -type f)" != "" ]; then
+    echo -e "\nYour default SSH key is more than 3 months old."
+    echo "When you have time to update it in the places it will inevitably need updating, we suggest you run the following command..."
+    echo -e "\nrm -f ~/.ssh/id_rsa ~/.ssh/id_rsa.pub && source ~/.zshrc\n"
+fi
 
-if [ "$grepResult" == "" ]; then
+# Add default key
+grepResult="$(ssh-add -l)";
+if [ "$grepResult" == "The agent has no identities." ]; then
     echo "Adding default SSH key..."
     ssh-add
 fi
