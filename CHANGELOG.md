@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Update Spring Boot install
 - Correct the git repository check in pull_latest_laptop_setup_code()
+- Replace deprecated homebrew install command
 
 ## [1.11.0] - 2021-08-18
 ### Added
