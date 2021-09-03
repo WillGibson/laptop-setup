@@ -3,7 +3,7 @@
 pull_latest_laptop_setup_code() {
     echo_heading "Ensure laptop-setup up to date"
     # shellcheck disable=SC2154
-    if [ ! -f "${basePath}/../.git" ]; then
+    if [ -d "${basePath}/../.git" ]; then
         echo_line "\nPulling latest code\n"
         currentDirectory=$(pwd)
         cd "${basePath}/../" || exit
