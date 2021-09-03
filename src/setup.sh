@@ -92,8 +92,8 @@ if include "java"; then
     installApplicationHomebrewStyle "java11"
     installApplicationHomebrewStyle "maven"
     installApplicationHomebrewStyle "gradle"
-    brew tap pivotal/tap
-    installApplicationHomebrewStyle "springboot"
+    brew tap spring-io/tap
+    installApplicationHomebrewStyle "spring-boot"
 fi
 
 if include "docker"; then
