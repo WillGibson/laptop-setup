@@ -4,14 +4,11 @@
 temp="$(cat ~/.ssh/id_rsa.pub)";
 sshKeyComment="${temp##* }";
 if [ "$sshKeyComment" == "" ]; then
-    echo "Creating default SSH key.."
+    echo "Creating default SSH key... Rerun \"source ~/.zshrc\" when it's done."
     echo "N.B. If the email for the comment is wrong, exit and run it manually"
     command="ssh-keygen -t rsa -b 4096 -C \"$GIT_USER_EMAIL\""
     echo "$command"
     $command
-    echo "Your new public SSH key is..."
-    cat ~/.ssh/id_rsa.pub
-    ssh-add -D
 fi
 
 # Suggest rotating key if older than 3 months
