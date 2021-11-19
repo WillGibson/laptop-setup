@@ -41,6 +41,7 @@ installApplicationHomebrewStyle "jq"
 # Other things we are going to want all the time...
 installApplicationHomebrewStyle "coreutils"
 installApplicationHomebrewStyle "curl"
+installApplicationHomebrewStyle "watch"
 append_to_zshrc_parts 'export PATH="/usr/local/opt/curl/bin:$PATH"'
 
 
