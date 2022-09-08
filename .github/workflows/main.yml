@@ -5,7 +5,7 @@ on:
     pull_request:
 jobs:
     run-setup:
-        runs-on: macos-12
+        runs-on: macos-latest
         steps:
             - name: Checkout
               uses: actions/checkout@v1
