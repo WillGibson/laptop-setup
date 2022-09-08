@@ -101,19 +101,22 @@ if include "java"; then
 fi
 
 if include "docker"; then
+    append_to_zshrc_parts "export DOCKER_BUILDKIT=0"
     installApplicationHomebrewStyle "docker" 0 "--cask"
 fi
 
 if include "kubernetes"; then
     installApplicationHomebrewStyle "krew"
-    append_to_zshrc_parts "export PATH=\"${PATH}:${HOME}/.krew/bin\""
+    append_to_zshrc_parts "export PATH=${PATH}:${HOME}/.krew/bin"
     installApplicationHomebrewStyle "kubectl"
+    append_to_zshrc_parts "export KUBECONFIG=$HOME/.kube/config"
+    append_to_zshrc_parts "echo \"Using namespace $(kubectl config view --minify --output 'jsonpath={..namespace}'; echo)\""
     installApplicationHomebrewStyle "minikube"
 fi
 
 if include "rubyThings"; then
-    installApplicationHomebrewStyle "rbenv"
-    append_to_zshrc_parts "eval \"\$(rbenv init -)\""
+    installApplicationHomebrewStyle "rvm"
+    append_to_zshrc_parts "source \"$HOME/.rvm/scripts/rvm\""
 fi
 
 if include "aws"; then
