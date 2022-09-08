@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.13.0] - 2022-09-08
+### Added
+- Install Java 17
+- Install jenv
+- Source rvm in the shell
+### Changed
+- Stop Homebrew auto updating everything when you just want to install one small thing
+# Removed
+- Stop installing rbenv (I prefer rvm)
+### Fixed
+- Remove the python unlink that pointed to a version which didn't exist
+- Disable Docker Buildkit
+- Make the krew PATH export not expand the variables 
+
 ## [1.12.0] - 2021-11-24
 ### Added
 - Install latest version of curl
