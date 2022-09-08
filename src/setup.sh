@@ -117,7 +117,7 @@ if include "kubernetes"; then
 fi
 
 if include "rubyThings"; then
-    installApplicationHomebrewStyle "rvm"
+    \curl -sSL https://get.rvm.io | bash -s stable
     append_to_zshrc_parts "source \"$HOME/.rvm/scripts/rvm\""
 fi
 
