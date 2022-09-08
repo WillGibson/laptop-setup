@@ -59,8 +59,6 @@ installApplicationHomebrewStyle() {
     if [[ "$installedCheck" == *"find: /usr/local/Caskroom/$applicationName: No such file or directory"* ]]; then
         command="install"
     fi
-    echo "installedCheck: $installedCheck"
-    echo "command: $command"
     fullCommand="brew $command $commandOptions $applicationName"
     echo_line "\n$fullCommand"
     $fullCommand

@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Disable Docker Buildkit
 - Make the krew PATH export not expand the variables 
 - Make the additional commands bit actually work
+- Make the pipeline work again :-)
 
 ## [1.12.0] - 2021-11-24
 ### Added
