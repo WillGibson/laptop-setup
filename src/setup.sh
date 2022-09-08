@@ -44,7 +44,6 @@ installApplicationHomebrewStyle "curl"
 installApplicationHomebrewStyle "watch"
 append_to_zshrc_parts 'export PATH="/usr/local/opt/curl/bin:$PATH"'
 
-
 additionalCommands "pre"
 
 if include "terminal"; then
@@ -113,7 +112,7 @@ if include "kubernetes"; then
     append_to_zshrc_parts 'export PATH=${PATH}:${HOME}/.krew/bin'
     installApplicationHomebrewStyle "kubectl"
     append_to_zshrc_parts "export KUBECONFIG=$HOME/.kube/config"
-    append_to_zshrc_parts "echo \"Using namespace $(kubectl config view --minify --output 'jsonpath={..namespace}'; echo)\""
+    append_to_zshrc_parts "echo -e \"\nUsing namespace $(kubectl config view --minify --output 'jsonpath={..namespace}'; echo)\""
     installApplicationHomebrewStyle "minikube"
 fi
 
