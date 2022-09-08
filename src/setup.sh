@@ -174,7 +174,7 @@ if include "microsoftTeams"; then
 fi
 
 if include "spotify"; then
-    installApplicationHomebrewStyle "spotify" 0 "--cask"
+    run_command_but_dont_exit_on_error 'installApplicationHomebrewStyle "spotify" 0 "--cask"'
 fi
 
 echo_heading "Include aliases in .zshrc"
