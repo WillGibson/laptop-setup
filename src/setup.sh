@@ -10,14 +10,17 @@ basePath="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 # shellcheck disable=SC1090
 source "${basePath}/components/commands/additionalCommands.sh"
+source "${basePath}/components/commands/curl.sh"
 source "${basePath}/components/commands/docker.sh"
 source "${basePath}/components/commands/filter.sh"
 source "${basePath}/components/commands/git.sh"
 source "${basePath}/components/commands/homebrew.sh"
+source "${basePath}/components/commands/jenv.sh"
 source "${basePath}/components/commands/miscellaneous.sh"
 source "${basePath}/components/commands/nodejs.sh"
 source "${basePath}/components/commands/php.sh"
 source "${basePath}/components/commands/pull_latest.sh"
+source "${basePath}/components/commands/rvm.sh"
 source "${basePath}/components/commands/zshrc.sh"
 
 echo_heading "Preflight checks"
