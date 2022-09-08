@@ -7,3 +7,8 @@ ensure_docker_not_running() {
         exit 1
     fi
 }
+
+ensure_docker_is_installed() {
+    append_to_zshrc_parts "export DOCKER_BUILDKIT=0"
+    installApplicationHomebrewStyle "docker" 0 "--cask"
+}

@@ -10,14 +10,17 @@ basePath="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 # shellcheck disable=SC1090
 source "${basePath}/components/commands/additionalCommands.sh"
+source "${basePath}/components/commands/curl.sh"
 source "${basePath}/components/commands/docker.sh"
 source "${basePath}/components/commands/filter.sh"
 source "${basePath}/components/commands/git.sh"
 source "${basePath}/components/commands/homebrew.sh"
+source "${basePath}/components/commands/jenv.sh"
 source "${basePath}/components/commands/miscellaneous.sh"
 source "${basePath}/components/commands/nodejs.sh"
 source "${basePath}/components/commands/php.sh"
 source "${basePath}/components/commands/pull_latest.sh"
+source "${basePath}/components/commands/rvm.sh"
 source "${basePath}/components/commands/zshrc.sh"
 
 echo_heading "Preflight checks"
@@ -40,10 +43,8 @@ installApplicationHomebrewStyle "jq"
 
 # Other things we are going to want all the time...
 installApplicationHomebrewStyle "coreutils"
-installApplicationHomebrewStyle "curl"
+ensure_curl_is_installed
 installApplicationHomebrewStyle "watch"
-append_to_zshrc_parts 'export PATH="/usr/local/opt/curl/bin:$PATH"'
-
 
 additionalCommands "pre"
 
@@ -61,12 +62,7 @@ if include "terminal"; then
 fi
 
 if include "git"; then
-    echo_heading "Install Git"
-    ensure_git_name_and_email_env_vars_are_exported_in_zshrc
-    installApplicationHomebrewStyle "git" 1
-    git config --global pull.ff only
-    ensure_symlink_exists "${basePath}/components/static_files/.gitignore_global" ~/.gitignore_global
-    git config --global core.excludesfile ~/.gitignore_global
+    ensure_git_is_installed
 fi
 
 if include "gpg"; then
@@ -76,7 +72,6 @@ if include "gpg"; then
 fi
 
 if include "python"; then
-    run_command_but_dont_exit_on_error "brew unlink python@3.8"
     installApplicationHomebrewStyle "python"
 fi
 
@@ -93,7 +88,9 @@ if include "node"; then
 fi
 
 if include "java"; then
+    ensure_jenv_is_installed
     installApplicationHomebrewStyle "java11"
+    installApplicationHomebrewStyle "openjdk@17"
     installApplicationHomebrewStyle "maven"
     installApplicationHomebrewStyle "gradle"
     brew tap spring-io/tap
@@ -101,19 +98,20 @@ if include "java"; then
 fi
 
 if include "docker"; then
-    installApplicationHomebrewStyle "docker" 0 "--cask"
+    ensure_docker_is_installed
 fi
 
 if include "kubernetes"; then
     installApplicationHomebrewStyle "krew"
-    append_to_zshrc_parts "export PATH=\"${PATH}:${HOME}/.krew/bin\""
+    append_to_zshrc_parts 'export PATH=${PATH}:${HOME}/.krew/bin'
     installApplicationHomebrewStyle "kubectl"
+    append_to_zshrc_parts "export KUBECONFIG=$HOME/.kube/config"
+    append_to_zshrc_parts "echo -e \"\nUsing namespace $(kubectl config view --minify --output 'jsonpath={..namespace}'; echo)\""
     installApplicationHomebrewStyle "minikube"
 fi
 
 if include "rubyThings"; then
-    installApplicationHomebrewStyle "rbenv"
-    append_to_zshrc_parts "eval \"\$(rbenv init -)\""
+    ensure_rvm_is_installed
 fi
 
 if include "aws"; then
@@ -176,7 +174,7 @@ if include "microsoftTeams"; then
 fi
 
 if include "spotify"; then
-    installApplicationHomebrewStyle "spotify" 0 "--cask"
+    run_command_but_dont_exit_on_error 'installApplicationHomebrewStyle "spotify" 0 "--cask"'
 fi
 
 echo_heading "Include aliases in .zshrc"

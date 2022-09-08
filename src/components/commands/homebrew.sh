@@ -28,6 +28,8 @@ ensure_homebrew_is_installed_and_up_to_date() {
         brew update
     fi
 
+    append_to_zshrc_parts "export HOMEBREW_NO_AUTO_UPDATE=1"
+
     append_to_zshrc_parts "export PATH=\"/usr/local/sbin:\$PATH\""
 }
 
@@ -41,14 +43,20 @@ installApplicationHomebrewStyle() {
     fi
 
     echo_line "\nCheck if keg is already installed"
-    installedCheck="$(brew list $commandOptions $applicationName 2>&1 1>/dev/null || true)"
+    # Get installedCheck without colours etc. (that's the sed bit) so we can do string comparisons...
+    installedCheck="$(brew list $commandOptions $applicationName 2>&1 1>/dev/null | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g" || true)"
     command="upgrade"
-    # Todo: Investigate why this if conditional does not work in GitHub actions
     if [[ "$installedCheck" == *"Error: No such keg"* ]] && \
         [[ ! "$installedCheck" == *"Found a cask named \"$applicationName\" instead"* ]]; then
         command="install"
     fi
     if [[ "$installedCheck" == *"Error: Cask '$applicationName' is not installed."* ]]; then
+        command="install"
+    fi
+    if [[ "$installedCheck" == *"Error: $applicationName not installed"* ]]; then
+        command="install"
+    fi
+    if [[ "$installedCheck" == *"find: /usr/local/Caskroom/$applicationName: No such file or directory"* ]]; then
         command="install"
     fi
     fullCommand="brew $command $commandOptions $applicationName"
