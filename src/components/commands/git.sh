@@ -20,3 +20,12 @@ ensure_git_name_and_email_env_vars_are_exported_in_zshrc() {
     append_to_zshrc_parts "export GIT_USER_NAME=\"$GIT_USER_NAME\""
     append_to_zshrc_parts "export GIT_USER_EMAIL=\"$GIT_USER_EMAIL\"" 1
 }
+
+ensure_git_is_installed() {
+    echo_heading "Install Git"
+    ensure_git_name_and_email_env_vars_are_exported_in_zshrc
+    installApplicationHomebrewStyle "git" 1
+    git config --global pull.ff only
+    ensure_symlink_exists "${basePath}/components/static_files/.gitignore_global" ~/.gitignore_global
+    git config --global core.excludesfile ~/.gitignore_global
+}

@@ -40,9 +40,8 @@ installApplicationHomebrewStyle "jq"
 
 # Other things we are going to want all the time...
 installApplicationHomebrewStyle "coreutils"
-installApplicationHomebrewStyle "curl"
+ensure_curl_is_installed
 installApplicationHomebrewStyle "watch"
-append_to_zshrc_parts 'export PATH="/usr/local/opt/curl/bin:$PATH"'
 
 additionalCommands "pre"
 
@@ -60,12 +59,7 @@ if include "terminal"; then
 fi
 
 if include "git"; then
-    echo_heading "Install Git"
-    ensure_git_name_and_email_env_vars_are_exported_in_zshrc
-    installApplicationHomebrewStyle "git" 1
-    git config --global pull.ff only
-    ensure_symlink_exists "${basePath}/components/static_files/.gitignore_global" ~/.gitignore_global
-    git config --global core.excludesfile ~/.gitignore_global
+    ensure_git_is_installed
 fi
 
 if include "gpg"; then
@@ -101,8 +95,7 @@ if include "java"; then
 fi
 
 if include "docker"; then
-    append_to_zshrc_parts "export DOCKER_BUILDKIT=0"
-    installApplicationHomebrewStyle "docker" 0 "--cask"
+    ensure_docker_is_installed
 fi
 
 if include "kubernetes"; then
