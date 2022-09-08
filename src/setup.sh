@@ -117,7 +117,8 @@ if include "kubernetes"; then
 fi
 
 if include "rubyThings"; then
-    \curl -sSL https://get.rvm.io | bash -s stable
+    curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+    curl -sSL https://get.rvm.io | bash -s stable
     append_to_zshrc_parts "source \"$HOME/.rvm/scripts/rvm\""
 fi
 
