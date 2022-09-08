@@ -46,7 +46,6 @@ installApplicationHomebrewStyle() {
     installedCheck="$(brew list $commandOptions $applicationName 2>&1 1>/dev/null | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g" || true)"
     command="upgrade"
     if [[ "$installedCheck" == *"Error: No such keg"* ]]; then echo "zzz"; fi
-    fi
     if [[ ! "$installedCheck" == *"Found a cask named \"$applicationName\" instead"* ]]; then
         echo "yyy"
     fi
