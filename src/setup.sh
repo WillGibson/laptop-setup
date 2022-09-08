@@ -76,7 +76,6 @@ if include "gpg"; then
 fi
 
 if include "python"; then
-    run_command_but_dont_exit_on_error "brew unlink python@3.8"
     installApplicationHomebrewStyle "python"
 fi
 
@@ -94,6 +93,7 @@ fi
 
 if include "java"; then
     installApplicationHomebrewStyle "java11"
+    installApplicationHomebrewStyle "openjdk@17"
     installApplicationHomebrewStyle "maven"
     installApplicationHomebrewStyle "gradle"
     brew tap spring-io/tap
@@ -107,7 +107,7 @@ fi
 
 if include "kubernetes"; then
     installApplicationHomebrewStyle "krew"
-    append_to_zshrc_parts "export PATH=${PATH}:${HOME}/.krew/bin"
+    append_to_zshrc_parts 'export PATH=${PATH}:${HOME}/.krew/bin'
     installApplicationHomebrewStyle "kubectl"
     append_to_zshrc_parts "export KUBECONFIG=$HOME/.kube/config"
     append_to_zshrc_parts "echo \"Using namespace $(kubectl config view --minify --output 'jsonpath={..namespace}'; echo)\""
