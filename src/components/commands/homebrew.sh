@@ -53,6 +53,9 @@ installApplicationHomebrewStyle() {
     if [[ "$installedCheck" == *"Error: Cask '$applicationName' is not installed."* ]]; then
         command="install"
     fi
+    if [[ "$installedCheck" == *"Error: $applicationName is not installed."* ]]; then
+        command="install"
+    fi
     fullCommand="brew $command $commandOptions $applicationName"
     echo_line "\n$fullCommand"
     $fullCommand
