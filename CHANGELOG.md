@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Remove the python unlink that pointed to a version which didn't exist
 - Disable Docker Buildkit
 - Make the krew PATH export not expand the variables 
+- Make the additional commands bit actually work
 
 ## [1.12.0] - 2021-11-24
 ### Added
