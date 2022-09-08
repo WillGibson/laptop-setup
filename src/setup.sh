@@ -119,7 +119,8 @@ fi
 if include "rubyThings"; then
     # Todo: RVM install works locally, but not in GitHub actions, so we will run it without exiting on error for now...
     curl -sSL https://rvm.io/mpapis.asc | gpg --import -
-    run_command_but_dont_exit_on_error ""curl -sSL https://get.rvm.io | bash -s stable"
+    curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
+    run_command_but_dont_exit_on_error "curl -sSL https://get.rvm.io | bash -s stable"
     append_to_zshrc_parts "source \"$HOME/.rvm/scripts/rvm\""
 fi
 
