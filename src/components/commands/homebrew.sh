@@ -43,12 +43,9 @@ installApplicationHomebrewStyle() {
     fi
 
     echo_line "\nCheck if keg is already installed"
+    # Get installedCheck without colours etc. (that's the sed bit) so we can do string comparisons...
     installedCheck="$(brew list $commandOptions $applicationName 2>&1 1>/dev/null | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g" || true)"
     command="upgrade"
-    if [[ "$installedCheck" == *"Error: No such keg"* ]]; then echo "zzz"; fi
-    if [[ ! "$installedCheck" == *"Found a cask named \"$applicationName\" instead"* ]]; then
-        echo "yyy"
-    fi
     if [[ "$installedCheck" == *"Error: No such keg"* ]] && \
         [[ ! "$installedCheck" == *"Found a cask named \"$applicationName\" instead"* ]]; then
         command="install"
@@ -57,6 +54,9 @@ installApplicationHomebrewStyle() {
         command="install"
     fi
     if [[ "$installedCheck" == *"Error: $applicationName not installed"* ]]; then
+        command="install"
+    fi
+    if [[ "$installedCheck" == *"find: /usr/local/Caskroom/$applicationName: No such file or directory"* ]]; then
         command="install"
     fi
     echo "installedCheck: $installedCheck"
