@@ -9,7 +9,10 @@ additionalCommands() {
     fi
 
     commands=$(jq ".additionalCommands.$stage" "$configFile")
-    if [ "$commands" != null ]; then
+    echo "${commands}"
+    if [ "$commands" == null ]; then
+        echo_heading "There are no additional commands for stage $stage"
+    else
         echo_heading "Additional commands for stage $stage"
         for base64Command in $(jq -r '.[] | @base64' <<< "$commands"); do
             command=$(echo "$base64Command"  | base64 --decode)
