@@ -56,6 +56,8 @@ installApplicationHomebrewStyle() {
     if [[ "$installedCheck" == *"Error: $applicationName not installed"* ]]; then
         command="install"
     fi
+    echo "installedCheck: $installedCheck"
+    echo "command: $command"
     fullCommand="brew $command $commandOptions $applicationName"
     echo_line "\n$fullCommand"
     $fullCommand
