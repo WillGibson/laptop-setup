@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.14.0] - 2022-11-02
+### Added
+- Install Git Large File Storage
+
 ## [1.13.0] - 2022-09-08
 ### Added
 - Install Java 17

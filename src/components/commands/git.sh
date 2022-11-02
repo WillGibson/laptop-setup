@@ -28,4 +28,5 @@ ensure_git_is_installed() {
     git config --global pull.ff only
     ensure_symlink_exists "${basePath}/components/static_files/.gitignore_global" ~/.gitignore_global
     git config --global core.excludesfile ~/.gitignore_global
+    installApplicationHomebrewStyle "git-lfs" 1
 }
