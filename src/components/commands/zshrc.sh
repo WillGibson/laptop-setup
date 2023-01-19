@@ -25,7 +25,7 @@ ensure_correct_ohmyzsh_theme_is_used() {
 
     ensure_symlink_exists "${themeFilePath}" "${HOME}/.oh-my-zsh/custom/themes/${themeName}.zsh-theme"
 
-    update_file_line_in_situ ${zshrc} "${defaultOhMyZSHThemeString}" "${desiredOhMyZSHThemeString}"
+    update_file_line_in_situ "${zshrc}" "${defaultOhMyZSHThemeString}" "${desiredOhMyZSHThemeString}"
 }
 
 ensure_zsh_autosuggestions_are_installed() {
@@ -54,17 +54,17 @@ ensure_ohmyzsh_is_installed() {
 ensure_zsh_correction_is_used() {
     echo_line "\nEnsure ZSH correction is used\n"
     local zshrc="$HOME/.zshrc"
-    update_file_line_in_situ ${zshrc} '# ENABLE_CORRECTION="true"' 'ENABLE_CORRECTION="true"'
+    update_file_line_in_situ "${zshrc}" '# ENABLE_CORRECTION="true"' 'ENABLE_CORRECTION="true"'
 }
 
 ensure_zsh_correction_is_not_used() {
     echo_line "\nEnsure ZSH correction is used\n"
     local zshrc="$HOME/.zshrc"
-    update_file_line_in_situ ${zshrc} '# ENABLE_CORRECTION="true"' 'ENABLE_CORRECTION="true"'
+    update_file_line_in_situ "${zshrc}" '# ENABLE_CORRECTION="true"' 'ENABLE_CORRECTION="true"'
 }
 
 ensure_zsh_completion_waiting_dots_are_used() {
     echo_line "\nEnsure ZSH completion waiting dots are used\n"
     local zshrc="$HOME/.zshrc"
-    update_file_line_in_situ ${zshrc} '# COMPLETION_WAITING_DOTS="true"' 'COMPLETION_WAITING_DOTS="true"'
+    update_file_line_in_situ "${zshrc}" '# COMPLETION_WAITING_DOTS="true"' 'COMPLETION_WAITING_DOTS="true"'
 }
