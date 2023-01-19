@@ -1,8 +1,15 @@
 #!/bin/bash
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# Extract this to reduce duplication...
+if [ -f "/opt/homebrew/opt/nvm/nvm.sh" ]; then
+    local nvmLocation="/opt/homebrew/opt/nvm"
+else
+    local nvmLocation="/usr/local/opt/nvm"
+fi
+[ -s "${nvmLocation}/nvm.sh" ] && \. "${nvmLocation}/nvm.sh"  # This loads nvm
+[ -s "${nvmLocation}/etc/bash_completion.d/nvm" ] && \. "${nvmLocation}/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Automatically flip node version on CD if there a .nvmrc file in the repo
 autoload -U add-zsh-hook

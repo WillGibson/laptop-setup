@@ -8,6 +8,12 @@ ensure_nvm_is_installed() {
     append_to_zshrc_parts "source ${basePath}/components/zshrc/nvm_switcher.sh"
 
     # So we can use it right away...
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+    # Extract this to reduce duplication...
+    if [ -f "/opt/homebrew/opt/nvm/nvm.sh" ]; then
+        local nvmLocation="/opt/homebrew/opt/nvm"
+    else
+        local nvmLocation="/usr/local/opt/nvm"
+    fi
+    [ -s "${nvmLocation}/nvm.sh" ] && \. "${nvmLocation}/nvm.sh"  # This loads nvm
+    [ -s "${nvmLocation}/etc/bash_completion.d/nvm" ] && \. "${nvmLocation}/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 }
