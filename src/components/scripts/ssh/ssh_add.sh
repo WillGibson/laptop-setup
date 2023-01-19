@@ -23,5 +23,6 @@ fi
 grepResult="$(ssh-add -l)";
 if [ "$grepResult" == "The agent has no identities." ]; then
     echo "Adding default SSH key..."
+    eval "$(ssh-agent)"
     ssh-add
 fi
