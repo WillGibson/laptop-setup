@@ -7,25 +7,29 @@
 ensure_homebrew_is_installed_and_up_to_date() {
     echo_heading "Ensure Homebrew is installed and up to date"
 
-    if brew list --formula | grep -Fq brew-cask; then
-        echo_line "\nUninstalling old Homebrew-Cask\n"
-        brew uninstall --force brew-cask
-    fi
-
-    if ! command -v brew >/dev/null; then
-        echo_line "\nInstalling Homebrew\n"
-        /bin/bash -c \
-            "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-
-        append_to_zshrc_parts '# recommended by brew doctor'
-
-        # shellcheck disable=SC2016
-        append_to_zshrc_parts 'export PATH="/usr/local/bin:$PATH"' 1
-
-        export PATH="/usr/local/bin:$PATH"
+    if [ "${configOnly}" == "true" ]; then
+        echo_line "ConfigOnly: Skipping install of Homebrew"
     else
-        echo_line "\nUpdating Homebrew and formulae\n"
-        brew update
+        if brew list --formula | grep -Fq brew-cask; then
+            echo_line "\nUninstalling old Homebrew-Cask\n"
+            brew uninstall --force brew-cask
+        fi
+
+        if ! command -v brew >/dev/null; then
+            echo_line "\nInstalling Homebrew\n"
+            /bin/bash -c \
+                "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+
+            append_to_zshrc_parts '# recommended by brew doctor'
+
+            # shellcheck disable=SC2016
+            append_to_zshrc_parts 'export PATH="/usr/local/bin:$PATH"' 1
+
+            export PATH="/usr/local/bin:$PATH"
+        else
+            echo_line "\nUpdating Homebrew and formulae\n"
+            brew update
+        fi
     fi
 
     append_to_zshrc_parts "export HOMEBREW_NO_AUTO_UPDATE=1"
@@ -40,6 +44,11 @@ installApplicationHomebrewStyle() {
 
     if [ ! "$skipHeading" -eq 1 ]; then
         echo_heading "Install $applicationName"
+    fi
+
+    if [ "${configOnly}" == "true" ]; then
+        echo_line "ConfigOnly: Skipping install of ${applicationName}"
+        return
     fi
 
     echo_line "\nCheck if keg is already installed"

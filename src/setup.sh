@@ -2,8 +2,24 @@
 
 set -e
 
+configOnly="aaa"
+while getopts "c" opt; do
+    case $opt in
+        c) configOnly="true"
+    ;;
+        \?) echo "Invalid option -$OPTARG" >&2
+        exit 1
+    ;;
+    esac
+done
+
 # shellcheck disable=SC2164
 basePath="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+
+# Maybe we want to do just do the config bits becuase we cannot install things as the current user
+if [ ! -z "${LAPTOP_SETUP_HOME_DIRECTORY}" ]; then
+    HOME="${LAPTOP_SETUP_HOME_DIRECTORY}"
+fi
 
 # In case there's something essential in there we hand rolled
 [[ -e ~/.zshrc ]] && cp ~/.zshrc "${HOME}/.zshrc.backup.$(date)"
