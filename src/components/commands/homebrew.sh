@@ -65,7 +65,7 @@ installApplicationHomebrewStyle() {
     if [[ "$installedCheck" == *"Error: $applicationName not installed"* ]]; then
         command="install"
     fi
-    if [[ "$installedCheck" == *"find: /usr/local/Caskroom/$applicationName: No such file or directory"* ]]; then
+    if [[ "$installedCheck" == *"find: $(brew --prefix)/Caskroom/$applicationName: No such file or directory"* ]]; then
         command="install"
     fi
     fullCommand="brew $command $commandOptions $applicationName"
