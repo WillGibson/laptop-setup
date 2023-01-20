@@ -20,10 +20,8 @@ if [ "$(find ~/.ssh/id_rsa.pub -mtime +$days -type f)" != "" ]; then
 fi
 
 # Add default key
-# eval "$(ssh-agent)"
 grepResult="$(ssh-add -l)";
 if [ "$grepResult" == "The agent has no identities." ]; then
     echo "Adding default SSH key..."
-    # eval "$(ssh-agent)"
     ssh-add
 fi

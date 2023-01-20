@@ -37,11 +37,13 @@ source "${basePath}/components/commands/nodejs.sh"
 source "${basePath}/components/commands/php.sh"
 source "${basePath}/components/commands/pull_latest.sh"
 source "${basePath}/components/commands/rvm.sh"
+source "${basePath}/components/commands/ssh.sh"
 source "${basePath}/components/commands/zshrc.sh"
 
 echo_heading "Preflight checks"
 ensure_docker_not_running
 ensure_git_name_and_email_are_set
+ensure_ssh_rsa_works
 
 pull_latest_laptop_setup_code
 
