@@ -121,8 +121,7 @@ if include "kubernetes"; then
     append_to_zshrc_parts 'export PATH=${PATH}:${HOME}/.krew/bin'
     installApplicationHomebrewStyle "kubectl"
     append_to_zshrc_parts "export KUBECONFIG=$HOME/.kube/config"
-    # Todo, fix this?
-    append_to_zshrc_parts "echo -e \"\nUsing namespace $(kubectl config view --minify --output 'jsonpath={..namespace}'; echo)\""
+    append_to_zshrc_parts "${basePath}/components/scripts/kubernetes/using_namespace.sh"
     installApplicationHomebrewStyle "minikube"
 fi
 

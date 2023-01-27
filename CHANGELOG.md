@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Handle usernames which include spaces
 - Get Cellar and NVM directories dynamically
 - Make SSH not working in MacOS 13/Ventura
+- Make the using Kubernetes namespace thing work
 
 ## [1.14.0] - 2022-11-02
 ### Added
