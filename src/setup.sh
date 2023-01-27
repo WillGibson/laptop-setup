@@ -31,6 +31,7 @@ source "${basePath}/components/commands/docker.sh"
 source "${basePath}/components/commands/filter.sh"
 source "${basePath}/components/commands/git.sh"
 source "${basePath}/components/commands/homebrew.sh"
+source "${basePath}/components/commands/identity.sh"
 source "${basePath}/components/commands/jenv.sh"
 source "${basePath}/components/commands/miscellaneous.sh"
 source "${basePath}/components/commands/nodejs.sh"
@@ -42,15 +43,17 @@ source "${basePath}/components/commands/zshrc.sh"
 
 echo_heading "Preflight checks"
 ensure_docker_not_running
+ensure_identity_related_environment_variables_are_set
 ensure_git_name_and_email_are_set
 ensure_ssh_rsa_works
-
 pull_latest_laptop_setup_code
 
 # Clean start for .zshrc_parts_from_laptop_setup.sh
 rm -f ~/.zshrc_parts_from_laptop_setup.sh
 touch ~/.zshrc_parts_from_laptop_setup.sh
 append_to_zshrc_parts "#!/bin/bash" 1
+
+ensure_identity_related_environment_variables_are_set_in_zshrc
 
 export HOMEBREW_NO_AUTO_UPDATE=1
 
