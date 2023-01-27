@@ -6,7 +6,7 @@ ensure_identity_related_environment_variables_are_set() {
         echo_line "\nPlease export GIT_USER_NAME=\"<your name>\""
         exitSetup=1
     else
-        git config --global user.name "$GIT_USER_NAME"
+        git config --global --replace-all user.name "$GIT_USER_NAME"
     fi
 
     if [ -z "$GIT_USER_EMAIL" ]; then
@@ -14,7 +14,7 @@ ensure_identity_related_environment_variables_are_set() {
         echo_line "\nNote that there are privacy concerns about this so use a private one where possible"
         exitSetup=1
     else
-        git config --global user.email "$GIT_USER_EMAIL"
+        git config --global --replace-all user.email "$GIT_USER_EMAIL"
     fi
 
     if [ -z "$SSH_USER_EMAIL" ]; then
