@@ -16,7 +16,14 @@ jobs:
                 sw_vers
                 zsh --version
                 echo "$SHELL"
-            - name: Run Setup
+            - name: Run Config Only Setup
+              run: ./src/setup.sh -c
+              env:
+                # Needed to prevent it stopping and asking you to add them
+                GIT_USER_NAME: Name does not matter for build
+                GIT_USER_EMAIL: email-does@not.matter.either
+                SSH_USER_EMAIL: email-does@not.matter.either
+            - name: Run Full Setup
               run: ./src/setup.sh
               env:
                   # Needed to prevent it stopping and asking you to add them
