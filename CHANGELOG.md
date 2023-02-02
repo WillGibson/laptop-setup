@@ -5,14 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [1.15.0] - 2023-01-27
+## [1.15.0] - 2023-02-02
 ### Added
 - Allow for a config only run
 - Cater for using private GitHub email
 ### Fixed
 - Handle usernames which include spaces
 - Get Cellar and NVM directories dynamically
-- Make SSH not working in MacOS 13/Ventura
+- Make SSH work in MacOS 13/Ventura
 - Make the using Kubernetes namespace thing work
 
 ## [1.14.0] - 2022-11-02

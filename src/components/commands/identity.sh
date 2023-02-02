@@ -27,8 +27,6 @@ ensure_identity_related_environment_variables_are_set() {
     fi
 }
 
-
-
 ensure_identity_related_environment_variables_are_set_in_zshrc() {
     append_to_zshrc_parts "export GIT_USER_NAME=\"$GIT_USER_NAME\""
     append_to_zshrc_parts "export GIT_USER_EMAIL=\"$GIT_USER_EMAIL\"" 1

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-ensure_git_name_and_email_are_set() {
-    echo_line "\nEnsure Git name and email are set"
+ensure_git_name_and_email_are_set_for_this_run() {
+    echo_line "\nEnsure Git name and email are set for this run"
     git config --global user.name "$GIT_USER_NAME"
     git config --global user.email "$GIT_USER_EMAIL"
 }

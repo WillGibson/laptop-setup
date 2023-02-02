@@ -38,7 +38,7 @@ source "${basePath}/components/commands/zshrc.sh"
 echo_heading "Preflight checks"
 ensure_docker_not_running
 ensure_identity_related_environment_variables_are_set
-ensure_git_name_and_email_are_set
+ensure_git_name_and_email_are_set_for_this_run
 ensure_ssh_rsa_works
 pull_latest_laptop_setup_code
 

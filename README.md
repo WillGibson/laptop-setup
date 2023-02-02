@@ -41,7 +41,7 @@ If you need a bit more you can add additional commands to`.config.json` to be ru
 You will need to do the following manually...
 
 * If you want to use GPG encryption: Create your GPG key or copy it from elsewhere to set up signed Git commits. See https://stackoverflow.com/a/55646482/2152144 and https://anh.do/blog/gpg-catalina
-* if you want to use TouchID to elevate privileges in terminal: Add `auth       sufficient     pam_tid.so` to `/etc/pam.d/sudo`.
+* If you want to use TouchID to elevate privileges in terminal: Add `auth       sufficient     pam_tid.so` to `/etc/pam.d/sudo`.
 * Disable boot on lid open or power plugged in `sudo nvram AutoBoot=%00`. Note that this may not work on M1 MacBooks.
 
 ## Troubleshooting
