@@ -18,8 +18,9 @@ After that it's probably best to delete those files and clone this repository to
 
 Before you start the first time, export these variables in your terminal...
 
-    export GIT_USER_NAME "<your name>"
-    export GIT_USER_EMAIL "<your email address>"
+    export GIT_USER_NAME="<your name>" \
+        GIT_USER_EMAIL="<your (maybe private GitHub) email address>" \
+        SSH_USER_EMAIL="<your email address>"
 
 If you have Docker running, please quit it.
 
@@ -39,9 +40,9 @@ If you need a bit more you can add additional commands to`.config.json` to be ru
 
 You will need to do the following manually...
 
-* Create your GPG key or copy it from elsewhere to set up signed Git commits. See https://stackoverflow.com/a/55646482/2152144 and https://anh.do/blog/gpg-catalina
-* Use TouchID to elevate privileges in terminal. Add `auth       sufficient     pam_tid.so` to `/etc/pam.d/sudo`.
-* Disable boot on lid open or power plugged in `sudo nvram AutoBoot=%00`.
+* If you want to use GPG encryption: Create your GPG key or copy it from elsewhere to set up signed Git commits. See https://stackoverflow.com/a/55646482/2152144 and https://anh.do/blog/gpg-catalina
+* If you want to use TouchID to elevate privileges in terminal: Add `auth       sufficient     pam_tid.so` to `/etc/pam.d/sudo`.
+* Disable boot on lid open or power plugged in `sudo nvram AutoBoot=%00`. Note that this may not work on M1 MacBooks.
 
 ## Troubleshooting
 

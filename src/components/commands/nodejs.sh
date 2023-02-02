@@ -5,9 +5,10 @@ ensure_nvm_is_installed() {
     if [ ! -d ~/.nvm ]; then
         mkdir ~/.nvm
     fi
-    append_to_zshrc_parts "source ${basePath}/components/zshrc/nvm_switcher.sh"
+    nvmScriptPath="${basePath}/components/scripts/nvm"
+    append_to_zshrc_parts "source ${nvmScriptPath}/initialise_nvm.sh"
+    append_to_zshrc_parts "source ${nvmScriptPath}/nvm_switcher.sh" 1
 
     # So we can use it right away...
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+    source "${nvmScriptPath}/initialise_nvm.sh"
 }

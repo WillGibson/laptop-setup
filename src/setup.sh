@@ -2,6 +2,16 @@
 
 set -e
 
+while getopts "c" opt; do
+    case $opt in
+        c) configOnly="true"
+    ;;
+        \?) echo "Invalid option -$OPTARG" >&2
+        exit 1
+    ;;
+    esac
+done
+
 # shellcheck disable=SC2164
 basePath="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
@@ -15,24 +25,29 @@ source "${basePath}/components/commands/docker.sh"
 source "${basePath}/components/commands/filter.sh"
 source "${basePath}/components/commands/git.sh"
 source "${basePath}/components/commands/homebrew.sh"
+source "${basePath}/components/commands/identity.sh"
 source "${basePath}/components/commands/jenv.sh"
 source "${basePath}/components/commands/miscellaneous.sh"
 source "${basePath}/components/commands/nodejs.sh"
 source "${basePath}/components/commands/php.sh"
 source "${basePath}/components/commands/pull_latest.sh"
 source "${basePath}/components/commands/rvm.sh"
+source "${basePath}/components/commands/ssh.sh"
 source "${basePath}/components/commands/zshrc.sh"
 
 echo_heading "Preflight checks"
 ensure_docker_not_running
-ensure_git_name_and_email_are_set
-
+ensure_identity_related_environment_variables_are_set
+ensure_git_name_and_email_are_set_for_this_run
+ensure_ssh_rsa_works
 pull_latest_laptop_setup_code
 
 # Clean start for .zshrc_parts_from_laptop_setup.sh
 rm -f ~/.zshrc_parts_from_laptop_setup.sh
 touch ~/.zshrc_parts_from_laptop_setup.sh
 append_to_zshrc_parts "#!/bin/bash" 1
+
+ensure_identity_related_environment_variables_are_set_in_zshrc
 
 export HOMEBREW_NO_AUTO_UPDATE=1
 
@@ -106,7 +121,7 @@ if include "kubernetes"; then
     append_to_zshrc_parts 'export PATH=${PATH}:${HOME}/.krew/bin'
     installApplicationHomebrewStyle "kubectl"
     append_to_zshrc_parts "export KUBECONFIG=$HOME/.kube/config"
-    append_to_zshrc_parts "echo -e \"\nUsing namespace $(kubectl config view --minify --output 'jsonpath={..namespace}'; echo)\""
+    append_to_zshrc_parts "${basePath}/components/scripts/kubernetes/using_namespace.sh"
     installApplicationHomebrewStyle "minikube"
 fi
 

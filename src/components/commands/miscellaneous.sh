@@ -33,7 +33,7 @@ ensure_symlink_exists() {
     linkPath="$2"
 
     rm -f "${linkPath}"
-    ln -s ${realPath} ${linkPath}
+    ln -s "${realPath}" "${linkPath}"
 
     echo "Created symlink $realPath -> $linkPath"
 }
