@@ -141,6 +141,14 @@ if include "serverless"; then
     installApplicationHomebrewStyle "serverless"
 fi
 
+if include "terraform"; then
+    installApplicationHomebrewStyle "terraform"
+fi
+
+if include "checkov"; then
+    installApplicationHomebrewStyle "checkov"
+fi
+
 if include "seleniumThings"; then
     installApplicationHomebrewStyle "chromedriver"
     # This does not get quarantined in the GitHub Actions pipeline so...

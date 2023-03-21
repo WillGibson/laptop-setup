@@ -4,6 +4,7 @@
         "arduino": true,
         "aws": true,
         "braveBrowser": true,
+        "checkov": true,
         "docker": true,
         "git": true,
         "googleChrome": true,
@@ -22,6 +23,7 @@
         "slack": true,
         "spotify": true,
         "terminal": true,
+        "terraform": true,
         "tree": true,
         "visualStudioCode": true
     },
