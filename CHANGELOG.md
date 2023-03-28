@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.16.0] - 2023-03-??
 ### Added
-- Install Terraform
+- Install tfenv and latest version of Terraform
 - Install checkov
 
 ## [1.15.1] - 2023-03-20

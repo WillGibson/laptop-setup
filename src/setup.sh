@@ -142,7 +142,8 @@ if include "serverless"; then
 fi
 
 if include "terraform"; then
-    installApplicationHomebrewStyle "terraform"
+    installApplicationHomebrewStyle "tfenv"
+    tfenv install latest
 fi
 
 if include "checkov"; then
