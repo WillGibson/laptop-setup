@@ -87,7 +87,12 @@ if include "gpg"; then
 fi
 
 if include "python"; then
-    installApplicationHomebrewStyle "python"
+    installApplicationHomebrewStyle "pyenv"
+    if [ ! "${configOnly}" == "true" ]; then
+        pyenv install --skip-existing 3
+    fi
+    source "${basePath}/components/scripts/python/pyenv_init.sh"
+    append_to_zshrc_parts "source ${basePath}/components/scripts/python/pyenv_init.sh"
 fi
 
 if include "php"; then
@@ -97,9 +102,11 @@ fi
 
 if include "node"; then
     ensure_nvm_is_installed
-    echo_heading "Install current long term support version of Node.js"
-    echo_empty_line
-    nvm install --lts
+    if [ ! "${configOnly}" == "true" ]; then
+        echo_heading "Install current long term support version of Node.js"
+        echo_empty_line
+        nvm install --lts
+    fi
 fi
 
 if include "java"; then
