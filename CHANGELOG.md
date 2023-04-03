@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Install tfenv and latest version of Terraform
 - Install checkov
+- Install AWS Copilot CLI
 ### Changed
 - Install pyenv and latest version of Python 3
 - Don't install latest version of Node.js on a config only run

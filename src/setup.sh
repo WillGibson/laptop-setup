@@ -142,6 +142,7 @@ if include "aws"; then
     installApplicationHomebrewStyle "awscli"
     brew unlink awscli && brew link awscli
     installApplicationHomebrewStyle "awsebcli"
+    installApplicationHomebrewStyle "copilot"
 fi
 
 if include "serverless"; then
