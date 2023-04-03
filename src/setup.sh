@@ -152,6 +152,7 @@ fi
 if include "terraform"; then
     installApplicationHomebrewStyle "tfenv"
     tfenv install latest
+    installApplicationHomebrewStyle "tflint"
 fi
 
 if include "checkov"; then
