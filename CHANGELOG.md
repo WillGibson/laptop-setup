@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.16.0] - 2023-06-08
+### Added
+- Install tfenv and latest version of Terraform
+- Install checkov
+- Install AWS Copilot CLI
+- Install tflint
+### Changed
+- Install pyenv and latest version of Python 3
+- Don't install latest version of Node.js on a config only run
+
 ## [1.15.1] - 2023-03-20
 ### Fixed
 - Set the required Homebrew environment variables in all new terminal sessions
