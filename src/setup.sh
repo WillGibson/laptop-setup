@@ -168,6 +168,7 @@ fi
 
 if include "intellijIdea"; then
     installApplicationHomebrewStyle "intellij-idea" 0 "--cask"
+    append_to_zshrc_parts 'export PATH=${PATH}:/Applications/IntelliJ\ IDEA.app/Contents/MacOS'
 fi
 
 if include "visualStudioCode"; then
