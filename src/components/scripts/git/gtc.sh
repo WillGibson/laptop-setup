@@ -26,3 +26,4 @@ echo "Commit..." && \
 git commit -m "$commitMessage" && \
 echo "Push..." && \
 git push origin "$branch"
+echo "Commit hash: $(git log -n 1 --pretty=format:"%H")"
