@@ -1,7 +1,9 @@
 local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
 local exit_code="%(?::%{$fg_bold[red]%}Exit code: %? )"
 
-PROMPT='%* %{$fg_bold[cyan]%}${PWD/#$HOME/~}$reset_color%} $(git_prompt_info)
+PROMPT='----------
+%* %{$fg_bold[cyan]%}${PWD/#$HOME/~}$reset_color%}
+$(git_prompt_info)
 ${exit_code}$reset_color${ret_status}$reset_color'
 # RPROMPT='%*'
 
