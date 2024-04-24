@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.17.0] - 2024-04-24
+### Added
+- `gmm` command (updates `main` branch and merge it into current branch)
+### Changed
+- Change git prompt to multilined
+- Output commit hash at the end of `gtc` output
+### Fixed
+- removed redundant errors from `git-delete-all-local-branches-except-main-develop-and-current` output
+
 ## [1.16.1] - 2023-07-19
 ### Fixed
 - Add Intellij IDEA to path so the command line launcher works

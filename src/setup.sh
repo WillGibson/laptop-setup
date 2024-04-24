@@ -89,9 +89,9 @@ fi
 if include "python"; then
     export PYENV_ROOT="${HOME}/.pyenv"
     installApplicationHomebrewStyle "pyenv"
-    # if [ ! "${configOnly}" == "true" ]; then
-    #     pyenv install --skip-existing 3
-    # fi
+    if [ ! "${configOnly}" == "true" ]; then
+        pyenv install --skip-existing 3
+    fi
     source "${basePath}/components/scripts/python/pyenv_init.sh"
     append_to_zshrc_parts "source ${basePath}/components/scripts/python/pyenv_init.sh"
 fi
