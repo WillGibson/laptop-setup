@@ -87,6 +87,7 @@ if include "gpg"; then
 fi
 
 if include "python"; then
+    export PYENV_ROOT="${HOME}/.pyenv"
     installApplicationHomebrewStyle "pyenv"
     if [ ! "${configOnly}" == "true" ]; then
         pyenv install --skip-existing 3
@@ -137,10 +138,14 @@ if include "rubyThings"; then
 fi
 
 if include "aws"; then
-    rm -f /usr/local/bin/aws
-    rm -f /usr/local/bin/aws_completer
+    if [ "${configOnly}" != "true" ]; then
+        rm -f /usr/local/bin/aws
+        rm -f /usr/local/bin/aws_completer
+    fi
     installApplicationHomebrewStyle "awscli"
-    brew unlink awscli && brew link awscli
+    if [ "${configOnly}" != "true" ]; then
+        brew unlink awscli && brew link awscli
+    fi
     installApplicationHomebrewStyle "awsebcli"
     installApplicationHomebrewStyle "copilot"
 fi
@@ -161,9 +166,11 @@ fi
 
 if include "seleniumThings"; then
     installApplicationHomebrewStyle "chromedriver"
-    # This does not get quarantined in the GitHub Actions pipeline so...
-    pathToChromeDriver=$(which chromedriver)
-    run_command_but_dont_exit_on_error "xattr -d com.apple.quarantine $pathToChromeDriver"
+    if [ "${configOnly}" != "true" ]; then
+        # This does not get quarantined in the GitHub Actions pipeline so...
+        pathToChromeDriver=$(which chromedriver)
+        run_command_but_dont_exit_on_error "xattr -d com.apple.quarantine $pathToChromeDriver"
+    fi
 fi
 
 if include "intellijIdea"; then
