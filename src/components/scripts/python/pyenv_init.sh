@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Todo: Remove this in favour of asdf
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/shims:$PATH"
 

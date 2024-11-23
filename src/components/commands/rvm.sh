@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Todo: Remove this in favour of asdf
 ensure_rvm_is_installed() {
     curl -sSL https://rvm.io/mpapis.asc | gpg --import -
     curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -

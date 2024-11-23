@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Todo: Remove this in favour of asdf
 ensure_nvm_is_installed() {
     installApplicationHomebrewStyle "nvm"
     if [ ! -d ~/.nvm ]; then
