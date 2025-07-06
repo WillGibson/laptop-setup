@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Todo: Remove this in favour of asdf
 export NVM_DIR="$HOME/.nvm"
 
 # Extract this to reduce duplication...

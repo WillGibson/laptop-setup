@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Changed
+- Output contents of public key after generating
+
 ## [1.17.0] - 2024-04-24
 ### Added
 - `gmm` command (updates `main` branch and merge it into current branch)

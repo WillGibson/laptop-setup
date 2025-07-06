@@ -29,7 +29,6 @@ source "${basePath}/components/commands/identity.sh"
 source "${basePath}/components/commands/jenv.sh"
 source "${basePath}/components/commands/miscellaneous.sh"
 source "${basePath}/components/commands/nodejs.sh"
-source "${basePath}/components/commands/php.sh"
 source "${basePath}/components/commands/pull_latest.sh"
 source "${basePath}/components/commands/rvm.sh"
 source "${basePath}/components/commands/ssh.sh"
@@ -40,7 +39,7 @@ ensure_docker_not_running
 ensure_identity_related_environment_variables_are_set
 ensure_git_name_and_email_are_set_for_this_run
 ensure_ssh_rsa_works
-pull_latest_laptop_setup_code
+#pull_latest_laptop_setup_code
 
 # Clean start for .zshrc_parts_from_laptop_setup.sh
 rm -f ~/.zshrc_parts_from_laptop_setup.sh
@@ -86,21 +85,22 @@ if include "gpg"; then
     append_to_zshrc_parts "export GPG_TTY=$\(tty\)"
 fi
 
-if include "python"; then
-    export PYENV_ROOT="${HOME}/.pyenv"
-    installApplicationHomebrewStyle "pyenv"
-    if [ ! "${configOnly}" == "true" ]; then
-        pyenv install --skip-existing 3
-    fi
-    source "${basePath}/components/scripts/python/pyenv_init.sh"
-    append_to_zshrc_parts "source ${basePath}/components/scripts/python/pyenv_init.sh"
+if include "asdf"; then
+    installApplicationHomebrewStyle "asdf"
+    append_to_zshrc_parts '$(brew --prefix asdf)/libexec/asdf.sh'
+    chmod +x "$(brew --prefix asdf)/libexec/asdf.sh"
+    # Todo: Drop some defaults into $HOME/.tool-versions
+    # python 3.13.0
 fi
 
-if include "php"; then
-    ensure_php_is_installed
-    installApplicationHomebrewStyle "composer"
+if include "direnv"; then
+    installApplicationHomebrewStyle "direnv"
+    append_to_zshrc_parts 'eval "$(direnv hook zsh)"'
+    # Todo: asdf plugin add direnv
+    # Todo: asdf direnv setup --version latest, but do it in zshrc parts which makes: source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
 fi
 
+# Todo: Remove this in favour of asdf
 if include "node"; then
     ensure_nvm_is_installed
     if [ ! "${configOnly}" == "true" ]; then
@@ -110,6 +110,7 @@ if include "node"; then
     fi
 fi
 
+# Todo: Remove this in favour of asdf
 if include "java"; then
     ensure_jenv_is_installed
     installApplicationHomebrewStyle "java11"
@@ -133,10 +134,12 @@ if include "kubernetes"; then
     installApplicationHomebrewStyle "minikube"
 fi
 
+# Todo: Remove this in favour of asdf
 if include "rubyThings"; then
     ensure_rvm_is_installed
 fi
 
+# Todo: Remove this in favour of asdf
 if include "aws"; then
     if [ "${configOnly}" != "true" ]; then
         rm -f /usr/local/bin/aws
@@ -154,6 +157,7 @@ if include "serverless"; then
     installApplicationHomebrewStyle "serverless"
 fi
 
+# Todo: Remove this in favour of asdf
 if include "terraform"; then
     installApplicationHomebrewStyle "tfenv"
     tfenv install latest
