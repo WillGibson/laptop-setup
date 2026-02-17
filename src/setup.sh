@@ -19,6 +19,7 @@ basePath="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 [[ -e ~/.zshrc ]] && cp ~/.zshrc "${HOME}/.zshrc.backup.$(date)"
 
 # shellcheck disable=SC1090
+source "${basePath}/components/commands/asdf.sh"
 source "${basePath}/components/commands/additionalCommands.sh"
 source "${basePath}/components/commands/curl.sh"
 source "${basePath}/components/commands/docker.sh"
@@ -26,11 +27,8 @@ source "${basePath}/components/commands/filter.sh"
 source "${basePath}/components/commands/git.sh"
 source "${basePath}/components/commands/homebrew.sh"
 source "${basePath}/components/commands/identity.sh"
-source "${basePath}/components/commands/jenv.sh"
 source "${basePath}/components/commands/miscellaneous.sh"
-source "${basePath}/components/commands/nodejs.sh"
 source "${basePath}/components/commands/pull_latest.sh"
-source "${basePath}/components/commands/rvm.sh"
 source "${basePath}/components/commands/ssh.sh"
 source "${basePath}/components/commands/zshrc.sh"
 
@@ -86,39 +84,25 @@ if include "gpg"; then
 fi
 
 if include "asdf"; then
+    rm -f $HOME/.tool-versions
     installApplicationHomebrewStyle "asdf"
-    append_to_zshrc_parts '$(brew --prefix asdf)/libexec/asdf.sh'
+    append_to_zshrc_parts 'source $(brew --prefix asdf)/libexec/asdf.sh'
     chmod +x "$(brew --prefix asdf)/libexec/asdf.sh"
-    # Todo: Drop some defaults into $HOME/.tool-versions
-    # python 3.13.0
 fi
 
 if include "direnv"; then
-    installApplicationHomebrewStyle "direnv"
+    installApplicationWithAsdf "direnv"
     append_to_zshrc_parts 'eval "$(direnv hook zsh)"'
     # Todo: asdf plugin add direnv
     # Todo: asdf direnv setup --version latest, but do it in zshrc parts which makes: source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
 fi
 
-# Todo: Remove this in favour of asdf
 if include "node"; then
-    ensure_nvm_is_installed
-    if [ ! "${configOnly}" == "true" ]; then
-        echo_heading "Install current long term support version of Node.js"
-        echo_empty_line
-        nvm install --lts
-    fi
+    installApplicationWithAsdf "nodejs"
 fi
 
-# Todo: Remove this in favour of asdf
 if include "java"; then
-    ensure_jenv_is_installed
-    installApplicationHomebrewStyle "java11"
-    installApplicationHomebrewStyle "openjdk@17"
-    installApplicationHomebrewStyle "maven"
-    installApplicationHomebrewStyle "gradle"
-    brew tap spring-io/tap
-    installApplicationHomebrewStyle "spring-boot"
+    installApplicationWithAsdf "java" "openjdk"
 fi
 
 if include "docker"; then
@@ -134,38 +118,25 @@ if include "kubernetes"; then
     installApplicationHomebrewStyle "minikube"
 fi
 
-# Todo: Remove this in favour of asdf
-if include "rubyThings"; then
-    ensure_rvm_is_installed
+if include "ruby"; then
+    installApplicationWithAsdf "ruby"
 fi
 
-# Todo: Remove this in favour of asdf
 if include "aws"; then
-    if [ "${configOnly}" != "true" ]; then
-        rm -f /usr/local/bin/aws
-        rm -f /usr/local/bin/aws_completer
-    fi
-    installApplicationHomebrewStyle "awscli"
-    if [ "${configOnly}" != "true" ]; then
-        brew unlink awscli && brew link awscli
-    fi
-    installApplicationHomebrewStyle "awsebcli"
-    installApplicationHomebrewStyle "copilot"
+    installApplicationWithAsdf "awscli"
 fi
 
-if include "serverless"; then
-    installApplicationHomebrewStyle "serverless"
-fi
-
-# Todo: Remove this in favour of asdf
 if include "terraform"; then
-    installApplicationHomebrewStyle "tfenv"
-    tfenv install latest
-    installApplicationHomebrewStyle "tflint"
+    installApplicationWithAsdf "terraform"
 fi
 
 if include "checkov"; then
-    installApplicationHomebrewStyle "checkov"
+    installApplicationWithAsdf "checkov"
+fi
+
+if include "asdf"; then
+    echo_heading "Running asdf install"
+    asdf install
 fi
 
 if include "seleniumThings"; then
@@ -188,10 +159,6 @@ fi
 
 if include "postman"; then
     installApplicationHomebrewStyle "postman" 0 "--cask"
-fi
-
-if include "arduino"; then
-    installApplicationHomebrewStyle "arduino" 0 "--cask"
 fi
 
 if include "tree"; then

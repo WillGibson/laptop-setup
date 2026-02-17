@@ -1,11 +1,11 @@
 {
     "includeAllByDefault": false,
     "includeGroup": {
-        "arduino": true,
         "asdf": true,
         "aws": "XXXX",
         "braveBrowser": true,
         "checkov": true,
+        "dotnet": true,
         "direnv": true,
         "docker": true,
         "git": true,
@@ -18,8 +18,8 @@
         "node": "XXXX",
         "postman": true,
         "rectangle": true,
+        "ruby": true,
         "seleniumThings": true,
-        "serverless": "XXXX",
         "slack": true,
         "spotify": true,
         "terminal": true,
