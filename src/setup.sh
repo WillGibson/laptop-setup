@@ -37,7 +37,7 @@ ensure_docker_not_running
 ensure_identity_related_environment_variables_are_set
 ensure_git_name_and_email_are_set_for_this_run
 ensure_ssh_rsa_works
-#pull_latest_laptop_setup_code
+pull_latest_laptop_setup_code
 
 # Clean start for .zshrc_parts_from_laptop_setup.sh
 rm -f ~/.zshrc_parts_from_laptop_setup.sh
