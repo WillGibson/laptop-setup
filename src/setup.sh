@@ -19,6 +19,7 @@ basePath="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 [[ -e ~/.zshrc ]] && cp ~/.zshrc "${HOME}/.zshrc.backup.$(date)"
 
 # shellcheck disable=SC1090
+source "${basePath}/components/commands/asdf.sh"
 source "${basePath}/components/commands/additionalCommands.sh"
 source "${basePath}/components/commands/curl.sh"
 source "${basePath}/components/commands/docker.sh"
@@ -26,12 +27,8 @@ source "${basePath}/components/commands/filter.sh"
 source "${basePath}/components/commands/git.sh"
 source "${basePath}/components/commands/homebrew.sh"
 source "${basePath}/components/commands/identity.sh"
-source "${basePath}/components/commands/jenv.sh"
 source "${basePath}/components/commands/miscellaneous.sh"
-source "${basePath}/components/commands/nodejs.sh"
-source "${basePath}/components/commands/php.sh"
 source "${basePath}/components/commands/pull_latest.sh"
-source "${basePath}/components/commands/rvm.sh"
 source "${basePath}/components/commands/ssh.sh"
 source "${basePath}/components/commands/zshrc.sh"
 
@@ -86,38 +83,25 @@ if include "gpg"; then
     append_to_zshrc_parts "export GPG_TTY=$\(tty\)"
 fi
 
-if include "python"; then
-    export PYENV_ROOT="${HOME}/.pyenv"
-    installApplicationHomebrewStyle "pyenv"
-    if [ ! "${configOnly}" == "true" ]; then
-        pyenv install --skip-existing 3
-    fi
-    source "${basePath}/components/scripts/python/pyenv_init.sh"
-    append_to_zshrc_parts "source ${basePath}/components/scripts/python/pyenv_init.sh"
+if include "asdf"; then
+    rm -f $HOME/.tool-versions
+    installApplicationHomebrewStyle "asdf"
+    source $(brew --prefix asdf)/libexec/asdf.sh
+    append_to_zshrc_parts 'source $(brew --prefix asdf)/libexec/asdf.sh'
+    chmod +x "$(brew --prefix asdf)/libexec/asdf.sh"
 fi
 
-if include "php"; then
-    ensure_php_is_installed
-    installApplicationHomebrewStyle "composer"
+if include "direnv"; then
+    installApplicationWithAsdf "direnv"
+    append_to_zshrc_parts 'eval "$(direnv hook zsh)"'
 fi
 
 if include "node"; then
-    ensure_nvm_is_installed
-    if [ ! "${configOnly}" == "true" ]; then
-        echo_heading "Install current long term support version of Node.js"
-        echo_empty_line
-        nvm install --lts
-    fi
+    installApplicationWithAsdf "nodejs"
 fi
 
 if include "java"; then
-    ensure_jenv_is_installed
-    installApplicationHomebrewStyle "java11"
-    installApplicationHomebrewStyle "openjdk@17"
-    installApplicationHomebrewStyle "maven"
-    installApplicationHomebrewStyle "gradle"
-    brew tap spring-io/tap
-    installApplicationHomebrewStyle "spring-boot"
+    installApplicationWithAsdf "java" "openjdk"
 fi
 
 if include "docker"; then
@@ -133,35 +117,25 @@ if include "kubernetes"; then
     installApplicationHomebrewStyle "minikube"
 fi
 
-if include "rubyThings"; then
-    ensure_rvm_is_installed
+if include "ruby"; then
+    installApplicationWithAsdf "ruby"
 fi
 
 if include "aws"; then
-    if [ "${configOnly}" != "true" ]; then
-        rm -f /usr/local/bin/aws
-        rm -f /usr/local/bin/aws_completer
-    fi
-    installApplicationHomebrewStyle "awscli"
-    if [ "${configOnly}" != "true" ]; then
-        brew unlink awscli && brew link awscli
-    fi
-    installApplicationHomebrewStyle "awsebcli"
-    installApplicationHomebrewStyle "copilot"
-fi
-
-if include "serverless"; then
-    installApplicationHomebrewStyle "serverless"
+    installApplicationWithAsdf "awscli"
 fi
 
 if include "terraform"; then
-    installApplicationHomebrewStyle "tfenv"
-    tfenv install latest
-    installApplicationHomebrewStyle "tflint"
+    installApplicationWithAsdf "terraform"
 fi
 
 if include "checkov"; then
-    installApplicationHomebrewStyle "checkov"
+    installApplicationWithAsdf "checkov"
+fi
+
+if include "asdf"; then
+    echo_heading "Running asdf install"
+    asdf install
 fi
 
 if include "seleniumThings"; then
@@ -184,10 +158,6 @@ fi
 
 if include "postman"; then
     installApplicationHomebrewStyle "postman" 0 "--cask"
-fi
-
-if include "arduino"; then
-    installApplicationHomebrewStyle "arduino" 0 "--cask"
 fi
 
 if include "tree"; then
@@ -215,7 +185,7 @@ if include "microsoftTeams"; then
 fi
 
 if include "spotify"; then
-    run_command_but_dont_exit_on_error 'installApplicationHomebrewStyle "spotify" 0 "--cask"'
+    installApplicationHomebrewStyle "spotify"
 fi
 
 echo_heading "Include aliases in .zshrc"

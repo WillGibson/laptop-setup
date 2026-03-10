@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Todo: Remove this in favour of asdf
 export NVM_DIR="$HOME/.nvm"
 
 pathToThisScript="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"

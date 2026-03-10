@@ -4,9 +4,11 @@ include() {
     includeGroupToCheck="$1"
 
     configFile="$basePath/../.config.json"
+
+    # Todo: move this check to the beginning
     if [ ! -f "$configFile" ]; then
-        true
-        return
+        echo_line "\nERROR: Please create a .config.json file in the root of this project to use the include command.\n"
+        exit 1
     fi
 
     if [ $(jq ".includeGroup.$includeGroupToCheck" "$configFile") == false ]; then
