@@ -2,7 +2,7 @@
     "includeAllByDefault": false,
     "includeGroup": {
         "asdf": true,
-        "aws": "XXXX",
+        "aws": true,
         "braveBrowser": true,
         "checkov": true,
         "dotnet": true,
@@ -12,7 +12,7 @@
         "googleChrome": true,
         "gpg": true,
         "intellijIdea": true,
-        "java": "XXXX",
+        "java": true,
         "kubernetes": true,
         "microsoftTeams": true,
         "node": "XXXX",
@@ -23,7 +23,7 @@
         "slack": true,
         "spotify": true,
         "terminal": true,
-        "terraform": "XXXX",
+        "terraform": true,
         "tree": true,
         "visualStudioCode": true
     },
