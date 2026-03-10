@@ -34,7 +34,6 @@ ensure_homebrew_is_installed_and_up_to_date() {
 
     append_to_zshrc_parts "export HOMEBREW_NO_AUTO_UPDATE=1"
 
-    # append_to_zshrc_parts "export PATH=\"/usr/local/sbin:\$PATH\""
 
     brewPath="$(which brew)"
     append_to_zshrc_parts "eval \"\$(${brewPath} shellenv)\""
