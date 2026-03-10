@@ -94,8 +94,6 @@ fi
 if include "direnv"; then
     installApplicationWithAsdf "direnv"
     append_to_zshrc_parts 'eval "$(direnv hook zsh)"'
-    # Todo: asdf plugin add direnv
-    # Todo: asdf direnv setup --version latest, but do it in zshrc parts which makes: source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
 fi
 
 if include "node"; then
