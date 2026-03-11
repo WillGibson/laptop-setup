@@ -4,7 +4,7 @@
         "aws": false,
         "braveBrowser": true,
         "checkov": false,
-        "claudeCode": true,
+        "claudeCode": false,
         "dotnet": false,
         "direnv": true,
         "docker": false,
