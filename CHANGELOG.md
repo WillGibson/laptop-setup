@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [unreleased]
 ### Added
+- Source `$HOME/.envrc` from `.zshrc_parts_from_laptop_setup.sh` if the file exists
 - Optional installation of [Claude Code](https://claude.ai/code) (off by default)
 - Optional installation of [PowerShell](https://github.com/PowerShell/PowerShell) via asdf (off by default)
 - Optional installation of [Python](https://www.python.org/) via asdf (off by default)

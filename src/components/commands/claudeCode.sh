@@ -5,6 +5,7 @@ ensure_claude_code_is_installed() {
     if [ "${configOnly}" != "true" ]; then
         curl -fsSL https://claude.ai/install.sh | bash
     fi
+    append_to_zshrc_parts 'export PATH="$HOME/.local/bin:$PATH"'
     mkdir -p "$HOME/.claude"
     cat > "$HOME/.claude/settings.json" << 'EOF'
 {

@@ -188,6 +188,8 @@ append_to_zshrc_parts "source ${basePath}/components/zshrc/aliases/docker.sh" 1
 
 append_to_zshrc_parts "${basePath}/components/scripts/ssh/ssh_add.sh"
 
+append_to_zshrc_parts 'if [ -f "$HOME/.envrc" ]; then source "$HOME/.envrc"; fi'
+
 append_to_zshrc "# Added by laptop-setup..."
 append_to_zshrc "source ~/.zshrc_parts_from_laptop_setup.sh" 1
 
