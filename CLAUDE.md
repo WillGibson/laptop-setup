@@ -42,9 +42,6 @@ Update `CHANGELOG.md` whenever you change the behaviour of this tool. Group chan
 - `zshrc.sh` — `append_to_zshrc_parts()` / `append_to_zshrc()` write to `~/.zshrc_parts_from_laptop_setup.sh` which is sourced from `~/.zshrc`
 - `miscellaneous.sh` — `echo_heading`, `echo_line`, `run_command_but_dont_exit_on_error`, etc.
 
-**Tool version pinning:**
-`src/components/static_files/.tool-versions` is the source of truth for asdf-managed tool versions. It gets copied to `~/.tool-versions` during the asdf install step.
-
 **Shell aliases** are defined in `src/components/zshrc/aliases/` and sourced into the shell at the end of each run.
 
 **Custom scripts** live in `src/components/scripts/` (git helpers, docker cleanup, kubernetes namespace switcher, etc.) and are referenced from zshrc parts.
