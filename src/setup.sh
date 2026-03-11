@@ -136,17 +136,12 @@ if include "powershell"; then
     installApplicationWithAsdf "powershell"
 fi
 
+if include "python"; then
+    installApplicationWithAsdf "python"
+fi
+
 echo_heading "Running asdf install"
 asdf install
-
-if include "seleniumThings"; then
-    installApplicationHomebrewStyle "chromedriver"
-    if [ "${configOnly}" != "true" ]; then
-        # This does not get quarantined in the GitHub Actions pipeline so...
-        pathToChromeDriver=$(which chromedriver)
-        run_command_but_dont_exit_on_error "xattr -d com.apple.quarantine $pathToChromeDriver"
-    fi
-fi
 
 if include "intellijIdea"; then
     installApplicationHomebrewStyle "intellij-idea" 0 "--cask"

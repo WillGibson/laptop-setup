@@ -9,8 +9,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Optional installation of [Claude Code](https://claude.ai/code) (off by default)
 - Optional installation of [PowerShell](https://github.com/PowerShell/PowerShell) via asdf (off by default)
+- Optional installation of [Python](https://www.python.org/) via asdf (off by default)
 ### Changed
 - Always install [asdf](https://asdf-vm.com/)
+- # Removed
+- Stop installing chromedriver (the cask is deprecated)
 
 ## [1.18.0] - 2026-03-10
 ### Changed
