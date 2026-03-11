@@ -1,5 +1,7 @@
 #!/bin/bash
 
+: "${basePath:=}"
+
 ensure_terminal_stuff_is_installed() {
     echo_heading "Install iTerm2, ohmyzsh etc."
     installApplicationHomebrewStyle "iterm2" 1

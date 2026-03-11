@@ -2,6 +2,8 @@
 
 set -e
 
+export configOnly=""
+
 while getopts "c" opt; do
     case $opt in
         c) configOnly="true"

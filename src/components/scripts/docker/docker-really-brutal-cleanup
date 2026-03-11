@@ -10,4 +10,4 @@ else
     echo 'No images to remove'
 fi
 
-$(dirname "$0")/docker-brutal-cleanup
+"$(dirname "$0")"/docker-brutal-cleanup

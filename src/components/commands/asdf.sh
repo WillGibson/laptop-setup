@@ -3,7 +3,7 @@
 ensure_asdf_is_installed() {
     rm -f $HOME/.tool-versions
     installApplicationHomebrewStyle "asdf"
-    source $(brew --prefix asdf)/libexec/asdf.sh
+    source "$(brew --prefix asdf)/libexec/asdf.sh"
     append_to_zshrc_parts 'source $(brew --prefix asdf)/libexec/asdf.sh'
     chmod +x "$(brew --prefix asdf)/libexec/asdf.sh"
 }

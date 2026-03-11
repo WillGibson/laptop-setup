@@ -1,5 +1,7 @@
 #!/bin/bash
 
+: "${basePath:=}"
+
 additionalCommands() {
     stage="$1"
 

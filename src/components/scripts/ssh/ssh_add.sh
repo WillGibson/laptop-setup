@@ -8,9 +8,9 @@ if [ "$sshKeyComment" == "" ]; then
     chmod 700 "$HOME/.ssh"
     echo "Creating default SSH key... Rerun \"source ~/.zshrc\" when it's done."
     echo "N.B. If the email for the comment is wrong, exit and run it manually"
-    command="ssh-keygen -t rsa -b 4096 -C \"$SSH_USER_EMAIL\""
-    echo "$command"
-    $command
+    command=(ssh-keygen -t rsa -b 4096 -C "$SSH_USER_EMAIL")
+    echo "${command[*]}"
+    "${command[@]}"
     sleep 1
     command="cat $HOME/.ssh/id_rsa.pub"
     echo "$command"
