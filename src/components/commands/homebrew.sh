@@ -36,7 +36,9 @@ ensure_homebrew_is_installed_and_up_to_date() {
 
 
     brewPath="$(which brew)"
-    append_to_zshrc_parts "eval \"\$(${brewPath} shellenv)\""
+    brewShellEnvCommand="eval \"\$(${brewPath} shellenv)\""
+    eval "$brewShellEnvCommand"
+    append_to_zshrc_parts "$brewShellEnvCommand"
 }
 
 installApplicationHomebrewStyle() {

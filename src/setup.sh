@@ -20,6 +20,7 @@ basePath="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 # shellcheck disable=SC1090
 source "${basePath}/components/commands/asdf.sh"
+source "${basePath}/components/commands/claudeCode.sh"
 source "${basePath}/components/commands/additionalCommands.sh"
 source "${basePath}/components/commands/curl.sh"
 source "${basePath}/components/commands/docker.sh"
@@ -99,10 +100,7 @@ if include "node"; then
 fi
 
 if include "claudeCode"; then
-    echo_heading "Install Claude Code"
-    if [ "${configOnly}" != "true" ]; then
-        curl -fsSL https://claude.ai/install.sh | bash
-    fi
+    ensure_claude_code_is_installed
 fi
 
 if include "java"; then
