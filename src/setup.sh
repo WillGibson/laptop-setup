@@ -140,6 +140,10 @@ if include "python"; then
     installApplicationWithAsdf "python"
 fi
 
+if include "dotnet"; then
+    installApplicationWithAsdf "dotnet"
+fi
+
 echo_heading "Running asdf install"
 asdf install
 
