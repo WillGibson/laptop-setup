@@ -25,6 +25,10 @@ jobs:
             "additionalCommands": { "pre": [], "post": [] }
           }' > .config.json
 
+      # Because we don't expect to run config only before it's actually installed the things
+      - name: Install asdf
+        run: HOMEBREW_NO_AUTO_UPDATE=1 brew install asdf
+
       - name: Run setup in config-only mode
         env:
           GIT_USER_NAME: CI
