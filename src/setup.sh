@@ -133,7 +133,7 @@ if include "terraform"; then
 fi
 
 if include "checkov"; then
-    installApplicationWithAsdf "checkov"
+    installApplicationHomebrewStyle "checkov"
 fi
 
 if include "asdf"; then
