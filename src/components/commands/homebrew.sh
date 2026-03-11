@@ -1,5 +1,7 @@
 #!/bin/bash
 
+: "${configOnly:=}"
+
 # Taken from the thoughtbot laptop script and messed about
 # so we can use some components of that as we see fit here.
 # See https://github.com/thoughtbot/laptop/issues/583

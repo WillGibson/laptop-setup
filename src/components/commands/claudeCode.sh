@@ -1,5 +1,7 @@
 #!/bin/bash
 
+: "${configOnly:=}"
+
 ensure_claude_code_is_installed() {
     echo_heading "Install Claude Code"
     if [ "${configOnly}" != "true" ]; then
