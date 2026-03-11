@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# Todo: functionise this and clean up the commands
-
 echo "Executing Docker Really Brutal Cleanup"
 
 echo "Delete all images"
