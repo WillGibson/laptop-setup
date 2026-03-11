@@ -1,5 +1,7 @@
 #!/bin/bash
 
+: "${configOnly:=}"
+
 ensure_asdf_is_installed() {
     if [ "${configOnly}" != "true" ]; then
         rm -f "$HOME/.tool-versions"
