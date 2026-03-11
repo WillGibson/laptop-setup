@@ -98,6 +98,13 @@ if include "node"; then
     installApplicationWithAsdf "nodejs"
 fi
 
+if include "claudeCode"; then
+    echo_heading "Install Claude Code"
+    if [ "${configOnly}" != "true" ]; then
+        curl -fsSL https://claude.ai/install.sh | bash
+    fi
+fi
+
 if include "java"; then
     installApplicationWithAsdf "java" "openjdk"
 fi
