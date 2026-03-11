@@ -12,9 +12,9 @@ if [ "$sshKeyComment" == "" ]; then
     echo "${command[*]}"
     "${command[@]}"
     sleep 1
-    command="cat $HOME/.ssh/id_rsa.pub"
-    echo "$command"
-    $command
+    command=(cat "$HOME/.ssh/id_rsa.pub")
+    echo "${command[*]}"
+    "${command[@]}"
 fi
 
 # Suggest rotating key if older than 3 months
