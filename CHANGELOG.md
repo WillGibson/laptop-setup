@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [unreleased]
 ### Added
-- Optional installation of [Claude Code](https://claude.ai/code)
+- Optional installation of [Claude Code](https://claude.ai/code) (off by default)
+- Optional installation of [PowerShell](https://github.com/PowerShell/PowerShell) via asdf (off by default)
 ### Changed
 - Always install [asdf](https://asdf-vm.com/)
 

@@ -17,6 +17,7 @@
         "microsoftTeams": false,
         "node": false,
         "postman": false,
+        "powershell": false,
         "rectangle": true,
         "ruby": false,
         "seleniumThings": false,

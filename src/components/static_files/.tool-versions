@@ -4,6 +4,7 @@ checkov 3.2.441
 direnv 2.37.1
 dotnet 8.0.204
 nodejs 22.15.0
+powershell latest
 python 3.13.3
 ruby 3.3.6
 terraform 1.11.3
