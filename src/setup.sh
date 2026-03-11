@@ -24,16 +24,18 @@ source "${basePath}/components/commands/claudeCode.sh"
 source "${basePath}/components/commands/additionalCommands.sh"
 source "${basePath}/components/commands/curl.sh"
 source "${basePath}/components/commands/docker.sh"
-source "${basePath}/components/commands/filter.sh"
+source "${basePath}/components/commands/config.sh"
 source "${basePath}/components/commands/git.sh"
 source "${basePath}/components/commands/homebrew.sh"
 source "${basePath}/components/commands/identity.sh"
 source "${basePath}/components/commands/miscellaneous.sh"
 source "${basePath}/components/commands/pull_latest.sh"
 source "${basePath}/components/commands/ssh.sh"
+source "${basePath}/components/commands/terminal.sh"
 source "${basePath}/components/commands/zshrc.sh"
 
 echo_heading "Preflight checks"
+ensure_config_file_exists
 ensure_docker_not_running
 ensure_identity_related_environment_variables_are_set
 ensure_git_name_and_email_are_set_for_this_run
@@ -62,16 +64,7 @@ installApplicationHomebrewStyle "watch"
 additionalCommands "pre"
 
 if include "terminal"; then
-    echo_heading "Install iTerm2, ohmyzsh etc."
-    installApplicationHomebrewStyle "iterm2" 1
-    ensure_zsh_is_installed
-    ensure_ohmyzsh_is_installed
-    installApplicationHomebrewStyle "zsh-completions" 1
-    ensure_zsh_autosuggestions_are_installed
-    ensure_zsh_completion_waiting_dots_are_used
-    ensure_correct_ohmyzsh_theme_is_used "${basePath}/components/ohmyzsh/willgibson.zsh-theme" "willgibson"
-    update_file_line_in_situ ~/.zshrc 'plugins=(git)' 'plugins=(docker git kubectl zsh-autosuggestions)'
-    append_to_zshrc_parts "ZSH_AUTOSUGGEST_MANUAL_REBIND=false" # This might need to go before it loads ohmyzsh
+    ensure_terminal_stuff_is_installed
 fi
 
 if include "git"; then
