@@ -1,8 +1,7 @@
 {
     "includeAllByDefault": false,
     "includeGroup": {
-        "asdf": true,
-        "aws": true,
+        "aws": false,
         "braveBrowser": true,
         "checkov": true,
         "dotnet": true,

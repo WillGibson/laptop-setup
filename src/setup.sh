@@ -83,13 +83,11 @@ if include "gpg"; then
     append_to_zshrc_parts "export GPG_TTY=$\(tty\)"
 fi
 
-if include "asdf"; then
-    rm -f $HOME/.tool-versions
-    installApplicationHomebrewStyle "asdf"
-    source $(brew --prefix asdf)/libexec/asdf.sh
-    append_to_zshrc_parts 'source $(brew --prefix asdf)/libexec/asdf.sh'
-    chmod +x "$(brew --prefix asdf)/libexec/asdf.sh"
-fi
+rm -f $HOME/.tool-versions
+installApplicationHomebrewStyle "asdf"
+source $(brew --prefix asdf)/libexec/asdf.sh
+append_to_zshrc_parts 'source $(brew --prefix asdf)/libexec/asdf.sh'
+chmod +x "$(brew --prefix asdf)/libexec/asdf.sh"
 
 if include "direnv"; then
     installApplicationWithAsdf "direnv"
