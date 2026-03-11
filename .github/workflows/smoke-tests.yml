@@ -1,10 +1,11 @@
-name: Smoke test
+name: Smoke tests
 
 on:
   push:
 
 jobs:
-  smoke-test:
+  smoke-tests:
+    # Todo: Add a run that actually installs a few of the things
     name: Config-only run
     runs-on: macos-latest
     steps:
