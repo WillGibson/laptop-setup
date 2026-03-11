@@ -27,6 +27,10 @@ export GIT_USER_NAME="<your name>" \
 - `includeAllByDefault: false` means only groups explicitly set to `true` are installed
 - `additionalCommands.pre` / `additionalCommands.post` run custom commands before/after the main process
 
+## Changelog
+
+Update `CHANGELOG.md` whenever you change the behaviour of this tool. Group changes under an `## [Unreleased]` section at the top — the user will set the version number and date when releasing.
+
 ## Architecture
 
 `src/setup.sh` is the main entry point. It sources all component files from `src/components/commands/` then runs a linear sequence of install steps guarded by `include "<groupName>"` checks.
