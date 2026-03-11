@@ -136,10 +136,12 @@ if include "checkov"; then
     installApplicationHomebrewStyle "checkov"
 fi
 
-if include "asdf"; then
-    echo_heading "Running asdf install"
-    asdf install
+if include "powershell"; then
+    installApplicationWithAsdf "powershell"
 fi
+
+echo_heading "Running asdf install"
+asdf install
 
 if include "seleniumThings"; then
     installApplicationHomebrewStyle "chromedriver"
