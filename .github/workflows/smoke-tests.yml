@@ -9,15 +9,13 @@ jobs:
     name: Config-only run
     runs-on: macos-latest
     steps:
-      # PR checkouts are detached HEAD by default; the setup script does a `git pull`
-      # so we need a proper named branch.
+      # The setup script does a `git pull`, so make sure we have a proper named branch.
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref || github.ref_name }}
           fetch-depth: 0
 
-      # All groups off so that installApplicationWithAsdf (which ignores configOnly) is
-      # never reached, keeping the run fast and side-effect-free.
+      # All groups off so, keeping the run fast and side-effect-free.
       - name: Create config file
         run: |
           echo '{
@@ -26,7 +24,7 @@ jobs:
             "additionalCommands": { "pre": [], "post": [] }
           }' > .config.json
 
-      # Because we don't expect to run config only before it's actually installed the things
+      # Because we don't expect to run config only before it's actually installed the things normally, we need to install asdf here
       - name: Install asdf
         run: HOMEBREW_NO_AUTO_UPDATE=1 brew install asdf
 
