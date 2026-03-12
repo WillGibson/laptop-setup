@@ -1,40 +1,57 @@
 # Laptop Setup
 
-Just intended to automate as many of the commands I run to set up a new MacBook for developing as possible, trying to get away from copying them one by one from a note I have with them all in.
+Just something I run to set up a new MacBook for developing as possible.
 
 The intention is not to provide the fastest way to do this, but to provide a reliable idempotent way to setup a new MacBook and, as far as possible, update all the things as time goes by.
 
 Over time it is hoped that it will become more flexible and maybe work for more people than just me :-)
 
-Massive thanks to [Homebrew](https://brew.sh/), which is heavily leveraged here.
+Massive thanks to [Homebrew](https://brew.sh/) and [asdf](https://asdf-vm.com/), which are heavily leveraged here.
 
 ## Installation
 
 On a fresh laptop you can just download the zip from GitHub and run it from there as you probably don't have Git yet.
 
-After that it's probably best to delete those files and clone this repository to the same path as they were.
+After that it's best to delete those files and clone this repository to the same path as they were.
 
 ## Running the setup
 
 Before you start the first time, export these variables in your terminal...
 
-    export GIT_USER_NAME="<your name>" \
-        GIT_USER_EMAIL="<your (maybe private GitHub) email address>" \
-        SSH_USER_EMAIL="<your email address>"
+```shell
+export GIT_USER_NAME="<your name>" \
+    GIT_USER_EMAIL="<your (maybe private GitHub) email address>" \
+    SSH_USER_EMAIL="<your email address>"
+```
 
 If you have Docker running, please quit it.
 
 Then you can run the script, but be aware you may be prompted for your password here and there when elevated privileges are required.
 
-    ./src/setup.sh
+```shell
+./src/setup.sh
+```
 
 ## Configuration
 
-By default everything is installed. If that's not what you need, create a `.config.json` file based on `config.json.example` which contains all the available options.
+You need to create a `.config.json` file based on `config.json.example` which contains all the available options.
 
 ## Adding your own commands
 
 If you need a bit more you can add additional commands to`.config.json` to be run at the beginning and end of the process. See the `additionalCommands` section in `config.json.example`.
+
+## Secrets and personal environment variables
+
+The setup configures your shell to automatically source `~/.envrc` if it exists. This file is not managed by this tool, so it's a good place to put secrets, API keys, and personal environment variables that you don't want to commit to any repository.
+
+For example:
+
+```bash
+export MY_API_KEY="..."
+export SOME_SECRET_TOKEN="..."
+```
+
+Just create `~/.envrc` with whatever exports you need, and they will be available in every new terminal session.
 
 ## What it won't do for you (yet)
 

@@ -30,7 +30,7 @@ ensure_correct_ohmyzsh_theme_is_used() {
 
 ensure_zsh_autosuggestions_are_installed() {
     echo_line "\nEnsure ZSH autosuggestions are installed\n"
-    rm -rf ~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    rm -rf ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
     git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 }
 

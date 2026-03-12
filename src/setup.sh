@@ -2,6 +2,8 @@
 
 set -e
 
+export configOnly=""
+
 while getopts "c" opt; do
     case $opt in
         c) configOnly="true"
@@ -20,19 +22,22 @@ basePath="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 # shellcheck disable=SC1090
 source "${basePath}/components/commands/asdf.sh"
+source "${basePath}/components/commands/claudeCode.sh"
 source "${basePath}/components/commands/additionalCommands.sh"
 source "${basePath}/components/commands/curl.sh"
 source "${basePath}/components/commands/docker.sh"
-source "${basePath}/components/commands/filter.sh"
+source "${basePath}/components/commands/config.sh"
 source "${basePath}/components/commands/git.sh"
 source "${basePath}/components/commands/homebrew.sh"
 source "${basePath}/components/commands/identity.sh"
 source "${basePath}/components/commands/miscellaneous.sh"
 source "${basePath}/components/commands/pull_latest.sh"
 source "${basePath}/components/commands/ssh.sh"
+source "${basePath}/components/commands/terminal.sh"
 source "${basePath}/components/commands/zshrc.sh"
 
 echo_heading "Preflight checks"
+ensure_config_file_exists
 ensure_docker_not_running
 ensure_identity_related_environment_variables_are_set
 ensure_git_name_and_email_are_set_for_this_run
@@ -61,16 +66,7 @@ installApplicationHomebrewStyle "watch"
 additionalCommands "pre"
 
 if include "terminal"; then
-    echo_heading "Install iTerm2, ohmyzsh etc."
-    installApplicationHomebrewStyle "iterm2" 1
-    ensure_zsh_is_installed
-    ensure_ohmyzsh_is_installed
-    installApplicationHomebrewStyle "zsh-completions" 1
-    ensure_zsh_autosuggestions_are_installed
-    ensure_zsh_completion_waiting_dots_are_used
-    ensure_correct_ohmyzsh_theme_is_used "${basePath}/components/ohmyzsh/willgibson.zsh-theme" "willgibson"
-    update_file_line_in_situ ~/.zshrc 'plugins=(git)' 'plugins=(docker git kubectl zsh-autosuggestions)'
-    append_to_zshrc_parts "ZSH_AUTOSUGGEST_MANUAL_REBIND=false" # This might need to go before it loads ohmyzsh
+    ensure_terminal_stuff_is_installed
 fi
 
 if include "git"; then
@@ -83,13 +79,7 @@ if include "gpg"; then
     append_to_zshrc_parts "export GPG_TTY=$\(tty\)"
 fi
 
-if include "asdf"; then
-    rm -f $HOME/.tool-versions
-    installApplicationHomebrewStyle "asdf"
-    source $(brew --prefix asdf)/libexec/asdf.sh
-    append_to_zshrc_parts 'source $(brew --prefix asdf)/libexec/asdf.sh'
-    chmod +x "$(brew --prefix asdf)/libexec/asdf.sh"
-fi
+ensure_asdf_is_installed
 
 if include "direnv"; then
     installApplicationWithAsdf "direnv"
@@ -98,6 +88,10 @@ fi
 
 if include "node"; then
     installApplicationWithAsdf "nodejs"
+fi
+
+if include "claudeCode"; then
+    ensure_claude_code_is_installed
 fi
 
 if include "java"; then
@@ -130,22 +124,23 @@ if include "terraform"; then
 fi
 
 if include "checkov"; then
-    installApplicationWithAsdf "checkov"
+    installApplicationHomebrewStyle "checkov"
 fi
 
-if include "asdf"; then
-    echo_heading "Running asdf install"
-    asdf install
+if include "powershell"; then
+    installApplicationWithAsdf "powershell"
 fi
 
-if include "seleniumThings"; then
-    installApplicationHomebrewStyle "chromedriver"
-    if [ "${configOnly}" != "true" ]; then
-        # This does not get quarantined in the GitHub Actions pipeline so...
-        pathToChromeDriver=$(which chromedriver)
-        run_command_but_dont_exit_on_error "xattr -d com.apple.quarantine $pathToChromeDriver"
-    fi
+if include "python"; then
+    installApplicationWithAsdf "python"
 fi
+
+if include "dotnet"; then
+    installApplicationWithAsdf "dotnet"
+fi
+
+echo_heading "Running asdf install"
+asdf install
 
 if include "intellijIdea"; then
     installApplicationHomebrewStyle "intellij-idea" 0 "--cask"
@@ -194,6 +189,8 @@ append_to_zshrc_parts "source ${basePath}/components/zshrc/aliases/git.sh" 1
 append_to_zshrc_parts "source ${basePath}/components/zshrc/aliases/docker.sh" 1
 
 append_to_zshrc_parts "${basePath}/components/scripts/ssh/ssh_add.sh"
+
+append_to_zshrc_parts 'if [ -f "$HOME/.envrc" ]; then source "$HOME/.envrc"; fi'
 
 append_to_zshrc "# Added by laptop-setup..."
 append_to_zshrc "source ~/.zshrc_parts_from_laptop_setup.sh" 1

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+: "${configOnly:=}"
+
 # Taken from the thoughtbot laptop script and messed about
 # so we can use some components of that as we see fit here.
 # See https://github.com/thoughtbot/laptop/issues/583
@@ -36,7 +38,9 @@ ensure_homebrew_is_installed_and_up_to_date() {
 
 
     brewPath="$(which brew)"
-    append_to_zshrc_parts "eval \"\$(${brewPath} shellenv)\""
+    brewShellEnvCommand="eval \"\$(${brewPath} shellenv)\""
+    eval "$brewShellEnvCommand"
+    append_to_zshrc_parts "$brewShellEnvCommand"
 }
 
 installApplicationHomebrewStyle() {

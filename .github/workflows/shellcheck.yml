@@ -1,0 +1,21 @@
+name: ShellCheck
+
+on:
+  push:
+
+jobs:
+  shellcheck:
+    name: ShellCheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run ShellCheck
+        # Checks all .sh files plus the shell scripts under docker/ that lack the extension.
+        # Note: some existing warning-level issues may surface here (unquoted command
+        # substitutions etc). Suppress intentional ones inline with
+        # `# shellcheck disable=SCxxxx` or downgrade to --severity=error until they are fixed.
+        run: |
+          find src -type f \( -name '*.sh' -o -path '*/scripts/docker/*' \) \
+            | sort \
+            | xargs shellcheck --severity=warning
