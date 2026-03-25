@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "laptop-setup"
+version = "0.1.0"
+description = "MacOS laptop setup automation"
+authors = []
+package-mode = false
+
+[tool.poetry.dependencies]
+python = ">=3.11"
+pre-commit = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

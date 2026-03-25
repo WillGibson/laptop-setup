@@ -1,0 +1,8 @@
+repos:
+  - repo: local
+    hooks:
+      - id: shellcheck
+        name: shellcheck
+        language: script
+        entry: .pre-commit/shellcheck.sh
+        types: [shell]
