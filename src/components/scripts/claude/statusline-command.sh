@@ -1,19 +1,15 @@
 #!/bin/sh
 cyan_bold=$(printf '\033[1;36m')
-blue_bold=$(printf '\033[1;34m')
 green=$(printf '\033[0;32m')
 red=$(printf '\033[0;31m')
-yellow=$(printf '\033[33m')
 reset=$(printf '\033[0m')
 
 input=$(cat)
 cwd=$(echo "$input" | jq -r '.workspace.current_dir // .cwd')
 home="$HOME"
-display_dir="${cwd/#$home/~}"
+display_dir=$(echo "$cwd" | sed "s|^$home|~|")
 model=$(echo "$input" | jq -r '.model.display_name // empty')
 used=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
-ctx_size=$(echo "$input" | jq -r '.context_window.context_window_size // empty')
-input_tokens=$(echo "$input" | jq -r '.context_window.current_usage.input_tokens // empty')
 
 # Context usage progress bar (always shown, defaults to 0% before first API call)
 used_val="${used:-0}"
@@ -52,4 +48,4 @@ fi
 
 dir_info="${cyan_bold}${display_dir}${reset}"
 
-printf "%s%s%s%s" "$dir_info" "$model_info" "$ctx"
+printf "%s%s%s" "$dir_info" "$model_info" "$ctx"
