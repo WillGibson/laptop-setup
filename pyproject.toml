@@ -1,8 +1,5 @@
 [tool.poetry]
 name = "laptop-setup"
-version = "0.1.0"
-description = "MacOS laptop setup automation"
-authors = []
 package-mode = false
 
 [tool.poetry.dependencies]
