@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(shellcheck --version)",
-      "Bash(shellcheck:*)"
-    ]
-  }
-}
