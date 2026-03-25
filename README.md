@@ -69,8 +69,6 @@ E.g. If it fails trying to delete an existing app from `/Applications` due to pe
 
 ## Local development
 
-### Manage dependencies
-
 Ensure you have [asdf](https://asdf-vm.com/) installed.
 
 Run...
