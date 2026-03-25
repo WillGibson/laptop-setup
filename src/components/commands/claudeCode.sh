@@ -8,6 +8,7 @@ ensure_claude_code_is_installed() {
     if [ "${configOnly}" != "true" ]; then
         curl -fsSL https://claude.ai/install.sh | bash
     fi
+    # $HOME must expand at shell runtime, not when this script runs
     # shellcheck disable=SC2016
     append_to_zshrc_parts 'export PATH="$HOME/.local/bin:$PATH"'
     mkdir -p "$HOME/.claude"
