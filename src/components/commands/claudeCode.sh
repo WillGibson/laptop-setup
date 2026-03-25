@@ -1,7 +1,7 @@
 #!/bin/bash
 
 : "${configOnly:=}"
-e: "${basePath:=}"
+: "${basePath:=}"
 
 ensure_claude_code_is_installed() {
     echo_heading "Install Claude Code"
