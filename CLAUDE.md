@@ -29,7 +29,7 @@ export GIT_USER_NAME="<your name>" \
 
 ## Changelog
 
-Update `CHANGELOG.md` whenever you change the behaviour of this tool. Group changes under an `## [Unreleased]` section at the top — the user will set the version number and date when releasing.
+Update `CHANGELOG.md` whenever you change the behaviour of this tool. Group changes under an `## [Unreleased]` section at the top — the user will set the version number and date when releasing. Keep entries concise — one short line per logical change, no file paths or implementation detail.
 
 ## Architecture
 

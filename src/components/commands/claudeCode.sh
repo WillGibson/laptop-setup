@@ -14,7 +14,12 @@ ensure_claude_code_is_installed() {
     "spinnerVerbs": {
         "mode": "replace",
         "verbs": ["Thinking"]
+    },
+    "statusLine": {
+        "type": "command",
+        "command": "sh $HOME/.claude/statusline-command.sh"
     }
 }
 EOF
+    ensure_symlink_exists "${basePath}/components/scripts/claude/statusline-command.sh" "$HOME/.claude/statusline-command.sh"
 }
