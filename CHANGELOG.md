@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Initial custom Claude Code status line showing context used
+- Add Anthropic skills marketplace to Claude Code settings
 
 ## [2.0.0] - 2026-03-11
 ### Added

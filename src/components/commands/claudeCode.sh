@@ -21,6 +21,14 @@ ensure_claude_code_is_installed() {
     "statusLine": {
         "type": "command",
         "command": "sh $HOME/.claude/statusline-command.sh"
+    },
+    "extraKnownMarketplaces": {
+        "anthropic-tools": {
+            "source": {
+                "source": "github",
+                "repo": "anthropics/claude-code-skills"
+            }
+        }
     }
 }
 EOF
