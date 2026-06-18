@@ -14,10 +14,8 @@ ensure_claude_code_is_installed() {
     mkdir -p "$HOME/.claude"
     cat > "$HOME/.claude/settings.json" << 'EOF'
 {
-    "spinnerVerbs": {
-        "mode": "replace",
-        "verbs": ["Thinking"]
-    },
+    "model": "opus[1m]",
+    "disableRemoteControl": true,
     "statusLine": {
         "type": "command",
         "command": "sh $HOME/.claude/statusline-command.sh"
@@ -29,7 +27,14 @@ ensure_claude_code_is_installed() {
                 "repo": "anthropics/claude-code-skills"
             }
         }
-    }
+    },
+    "spinnerVerbs": {
+        "mode": "replace",
+        "verbs": [
+            "Thinking"
+        ]
+    },
+    "effortLevel": "high"
 }
 EOF
     ensure_symlink_exists "${basePath}/components/scripts/claude/statusline-command.sh" "$HOME/.claude/statusline-command.sh"
