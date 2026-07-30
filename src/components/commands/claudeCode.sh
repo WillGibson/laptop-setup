@@ -29,6 +29,12 @@ ensure_claude_code_is_installed() {
                 "source": "github",
                 "repo": "anthropics/claude-code-skills"
             }
+        },
+        "anthropic-agent-skills": {
+            "source": {
+                "source": "github",
+                "repo": "anthropics/skills"
+            }
         }
     },
     "spinnerVerbs": {

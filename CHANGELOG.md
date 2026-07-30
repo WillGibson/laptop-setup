@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [unreleased] - ????-??-?? CHECK DETAILS
+### Added
+- Add anthropic-agent-skills to Claude settings
 ### Changed
 - Update post install config steps in ensure_asdf_is_installed()
 - Disable mouse clicks in Claude Code
