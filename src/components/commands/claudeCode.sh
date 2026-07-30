@@ -16,6 +16,9 @@ ensure_claude_code_is_installed() {
 {
     "model": "opus[1m]",
     "disableRemoteControl": true,
+    "env": {
+        "CLAUDE_CODE_DISABLE_MOUSE_CLICKS": "1"
+    },
     "statusLine": {
         "type": "command",
         "command": "sh $HOME/.claude/statusline-command.sh"

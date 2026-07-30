@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [unreleased] - ????-??-?? CHECK DETAILS
 ### Changed
 - Update post install config steps in ensure_asdf_is_installed()
+- Disable mouse clicks in Claude Code
 
 ## [2.2.0] - 2026-04-21
 ### Added
