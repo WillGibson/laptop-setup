@@ -18,12 +18,15 @@ ensure_correct_ohmyzsh_theme_is_used() {
     local themeFilePath="$1"
     local themeName="$2"
     local zshrc="$HOME/.zshrc"
+    local ohmyzshThemeDirectory="${HOME}/.oh-my-zsh/custom/themes"
     local defaultOhMyZSHThemeString='ZSH_THEME="robbyrussell"'
     local desiredOhMyZSHThemeString="ZSH_THEME=\"${themeName}\""
 
     echo_line "\nEnsure $themeName OhMyZSH theme is used\n"
 
-    ensure_symlink_exists "${themeFilePath}" "${HOME}/.oh-my-zsh/custom/themes/${themeName}.zsh-theme"
+    mkdir -p "${ohmyzshThemeDirectory}"
+
+    ensure_symlink_exists "${themeFilePath}" "${ohmyzshThemeDirectory}/${themeName}.zsh-theme"
 
     update_file_line_in_situ "${zshrc}" "${defaultOhMyZSHThemeString}" "${desiredOhMyZSHThemeString}"
 }
