@@ -19,6 +19,38 @@ ensure_claude_code_is_installed() {
     "env": {
         "CLAUDE_CODE_DISABLE_MOUSE_CLICKS": "1"
     },
+    "permissions": {
+        "disableBypassPermissionsMode": "disable",
+        "deny": [
+          "Read(./.env*)",
+          "Edit(./.env*)",
+          "Bash(*git*commit*)",
+          "Bash(*git*push*)",
+          "Bash(*git*merge*)",
+          "Bash(*git*rebase*)",
+          "Bash(*git*reset*--hard*)",
+          "Bash(*git*clean*-f*)",
+          "Bash(*git*branch*-D*)",
+          "Bash(*git*tag*-d*)",
+          "Bash(*--no-verify*)",
+          "Bash(*core.hooksPath*)",
+          "Bash(*gh*api*)"
+        ]
+      },
+    "hooks": {
+        "PreToolUse": [
+            {
+                "matcher": "Bash",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "bash $HOME/.claude/deny-dangerous-repo-commands.sh",
+                        "timeout": 10
+                    }
+                ]
+            }
+        ]
+    },
     "statusLine": {
         "type": "command",
         "command": "sh $HOME/.claude/statusline-command.sh"
@@ -47,4 +79,5 @@ ensure_claude_code_is_installed() {
 }
 EOF
     ensure_symlink_exists "${basePath}/components/scripts/claude/statusline-command.sh" "$HOME/.claude/statusline-command.sh"
+    ensure_symlink_exists "${basePath}/components/scripts/claude/deny-dangerous-repo-commands.sh" "$HOME/.claude/deny-dangerous-repo-commands.sh"
 }

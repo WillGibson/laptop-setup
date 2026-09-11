@@ -1,0 +1,4 @@
+#!/bin/sh
+# shellcheck source=src/components/scripts/git/hooks/guard.sh
+. "$(dirname "$0")/guard.sh"
+block_agents_then_chain_to_repo_hook "$@"
