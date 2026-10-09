@@ -78,9 +78,6 @@ fi
 
 if include "gpg"; then
     installApplicationHomebrewStyle "gpg-suite"
-#    installApplicationHomebrewStyle "gpg2"
-#    installApplicationHomebrewStyle "pinentry-mac"
-#    append_to_zshrc_parts "export GPG_TTY=$\(tty\)"
 fi
 
 ensure_asdf_is_installed
