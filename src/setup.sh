@@ -31,6 +31,7 @@ source "${basePath}/components/commands/git.sh"
 source "${basePath}/components/commands/homebrew.sh"
 source "${basePath}/components/commands/identity.sh"
 source "${basePath}/components/commands/miscellaneous.sh"
+source "${basePath}/components/commands/mise.sh"
 source "${basePath}/components/commands/pull_latest.sh"
 source "${basePath}/components/commands/ssh.sh"
 source "${basePath}/components/commands/terminal.sh"
@@ -52,6 +53,8 @@ append_to_zshrc_parts "#!/bin/bash" 1
 ensure_identity_related_environment_variables_are_set_in_zshrc
 
 export HOMEBREW_NO_AUTO_UPDATE=1
+# Homebrew asks for confirmation before installs/upgrades, and the prompt gets hidden behind its progress output
+export HOMEBREW_NO_ASK=1
 
 run_command_but_dont_exit_on_error "ensure_homebrew_is_installed_and_up_to_date"
 
@@ -74,20 +77,20 @@ if include "git"; then
 fi
 
 if include "gpg"; then
-    installApplicationHomebrewStyle "gpg2"
-    installApplicationHomebrewStyle "pinentry-mac"
-    append_to_zshrc_parts "export GPG_TTY=$\(tty\)"
+    installApplicationHomebrewStyle "gpg-suite"
 fi
 
 ensure_asdf_is_installed
 
+ensure_mise_is_installed
+
 if include "direnv"; then
-    installApplicationWithAsdf "direnv"
+    installApplicationWithMise "direnv"
     append_to_zshrc_parts 'eval "$(direnv hook zsh)"'
 fi
 
 if include "node"; then
-    installApplicationWithAsdf "nodejs"
+    installApplicationWithMise "node"
 fi
 
 if include "claudeCode"; then
@@ -95,7 +98,7 @@ if include "claudeCode"; then
 fi
 
 if include "java"; then
-    installApplicationWithAsdf "java" "openjdk"
+    installApplicationWithMise "java"
 fi
 
 if include "docker"; then
@@ -112,15 +115,15 @@ if include "kubernetes"; then
 fi
 
 if include "ruby"; then
-    installApplicationWithAsdf "ruby"
+    installApplicationWithMise "ruby"
 fi
 
 if include "aws"; then
-    installApplicationWithAsdf "awscli"
+    installApplicationWithMise "aws-cli"
 fi
 
 if include "terraform"; then
-    installApplicationWithAsdf "terraform"
+    installApplicationWithMise "terraform"
 fi
 
 if include "checkov"; then
@@ -128,19 +131,16 @@ if include "checkov"; then
 fi
 
 if include "powershell"; then
-    installApplicationWithAsdf "powershell"
+    installApplicationWithMise "powershell"
 fi
 
 if include "python"; then
-    installApplicationWithAsdf "python"
+    installApplicationWithMise "python"
 fi
 
 if include "dotnet"; then
-    installApplicationWithAsdf "dotnet"
+    installApplicationWithMise "dotnet"
 fi
-
-echo_heading "Running asdf install"
-asdf install
 
 if include "intellijIdea"; then
     installApplicationHomebrewStyle "intellij-idea" 0 "--cask"

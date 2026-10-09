@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A MacOS laptop setup automation tool. It installs and configures development tools idempotently using Homebrew and asdf. Designed to be re-run periodically to keep everything up to date.
+A MacOS laptop setup automation tool. It installs and configures development tools idempotently using Homebrew and mise. Designed to be re-run periodically to keep everything up to date.
 
 ## Running the setup
 
@@ -38,7 +38,8 @@ Update `CHANGELOG.md` whenever you change the behaviour of this tool. Group chan
 **Key abstractions in `src/components/commands/`:**
 - `filter.sh` — `include()` reads `.config.json` via `jq` to decide whether to install a group
 - `homebrew.sh` — `installApplicationHomebrewStyle()` installs or upgrades a Homebrew formula/cask
-- `asdf.sh` — `installApplicationWithAsdf()` adds an asdf plugin and sets the latest version globally
+- `mise.sh` — `installApplicationWithMise()` installs the latest version of a tool globally with mise
+- `asdf.sh` — `ensure_asdf_is_installed()` installs asdf itself (kept for Makefiles that call it directly; no tools are installed with it)
 - `zshrc.sh` — `append_to_zshrc_parts()` / `append_to_zshrc()` write to `~/.zshrc_parts_from_laptop_setup.sh` which is sourced from `~/.zshrc`
 - `miscellaneous.sh` — `echo_heading`, `echo_line`, `run_command_but_dont_exit_on_error`, etc.
 

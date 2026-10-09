@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.3.0] - 2026-10-09
+### Added
+- Add anthropic-agent-skills to Claude settings
+- Add a Claude Code PreToolUse hook that blocks commands I don't want it running
+- Install global git hooks that stop AI agents committing, pushing and rebasing
+- Install mise-en-place alongside asdf
+### Changed
+- Broaden the Claude Code git deny rules and block `gh api`, `--no-verify` and `core.hooksPath` overrides
+- Update post install config steps in ensure_asdf_is_installed()
+- Disable mouse clicks in Claude Code
+- Install language and CLI tools with mise instead of asdf (asdf itself is still installed)
+### Fixed
+- Fix long commands wrapping incorrectly in the terminal prompt
+- Fix setup hanging on hidden Homebrew confirmation prompts
+
 ## [2.2.0] - 2026-04-21
 ### Added
 - Add `.claude/settings.local.json` to global gitignore file
