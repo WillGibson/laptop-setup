@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [unreleased] - ????-??-?? CHECK DETAILS
 ### Added
 - Add anthropic-agent-skills to Claude settings
-- Add a Claude Code PreToolUse hook that blocks dangerous git commands however they are spelled
+- Add a Claude Code PreToolUse hook that blocks commands I don't want it running
 - Install global git hooks that stop AI agents committing, pushing and rebasing
 ### Changed
 - Broaden the Claude Code git deny rules and block `gh api`, `--no-verify` and `core.hooksPath` overrides

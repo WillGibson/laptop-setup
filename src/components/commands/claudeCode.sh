@@ -22,19 +22,20 @@ ensure_claude_code_is_installed() {
     "permissions": {
         "disableBypassPermissionsMode": "disable",
         "deny": [
-          "Read(./.env*)",
-          "Edit(./.env*)",
+          "Bash(*--no-verify*)",
+          "Bash(*aws *)",
+          "Bash(*core.hooksPath*)",
+          "Bash(*gh*api*)",
+          "Bash(*git*branch*-D*)",
+          "Bash(*git*clean*-f*)",
           "Bash(*git*commit*)",
-          "Bash(*git*push*)",
           "Bash(*git*merge*)",
+          "Bash(*git*push*)",
           "Bash(*git*rebase*)",
           "Bash(*git*reset*--hard*)",
-          "Bash(*git*clean*-f*)",
-          "Bash(*git*branch*-D*)",
           "Bash(*git*tag*-d*)",
-          "Bash(*--no-verify*)",
-          "Bash(*core.hooksPath*)",
-          "Bash(*gh*api*)"
+          "Edit(./.env*)",
+          "Read(./.env*)"
         ]
       },
     "hooks": {
