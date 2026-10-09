@@ -52,6 +52,8 @@ append_to_zshrc_parts "#!/bin/bash" 1
 ensure_identity_related_environment_variables_are_set_in_zshrc
 
 export HOMEBREW_NO_AUTO_UPDATE=1
+# Homebrew asks for confirmation before installs/upgrades, and the prompt gets hidden behind its progress output
+export HOMEBREW_NO_ASK=1
 
 run_command_but_dont_exit_on_error "ensure_homebrew_is_installed_and_up_to_date"
 
