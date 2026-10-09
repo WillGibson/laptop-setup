@@ -10,12 +10,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add anthropic-agent-skills to Claude settings
 - Add a Claude Code PreToolUse hook that blocks commands I don't want it running
 - Install global git hooks that stop AI agents committing, pushing and rebasing
+- Install mise-en-place alongside asdf
 ### Changed
 - Broaden the Claude Code git deny rules and block `gh api`, `--no-verify` and `core.hooksPath` overrides
 - Update post install config steps in ensure_asdf_is_installed()
 - Disable mouse clicks in Claude Code
+- Install language and CLI tools with mise instead of asdf (asdf itself is still installed)
 ### Fixed
 - Fix long commands wrapping incorrectly in the terminal prompt
+- Fix setup hanging on hidden Homebrew confirmation prompts
 
 ## [2.2.0] - 2026-04-21
 ### Added

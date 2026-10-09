@@ -6,7 +6,7 @@ The intention is not to provide the fastest way to do this, but to provide a rel
 
 Over time it is hoped that it will become more flexible and maybe work for more people than just me :-)
 
-Massive thanks to [Homebrew](https://brew.sh/) and [asdf](https://asdf-vm.com/), which are heavily leveraged here.
+Massive thanks to [Homebrew](https://brew.sh/), [asdf](https://asdf-vm.com/) and [mise](https://mise.jdx.dev/), which are heavily leveraged here.
 
 ## Installation
 

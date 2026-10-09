@@ -10,7 +10,7 @@ jobs:
     runs-on: macos-latest
     steps:
       # The setup script does a `git pull`, so make sure we have a proper named branch.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ github.head_ref || github.ref_name }}
           fetch-depth: 0
@@ -23,10 +23,6 @@ jobs:
             "includeGroup": {},
             "additionalCommands": { "pre": [], "post": [] }
           }' > .config.json
-
-      # Because we don't expect to run config only before it's actually installed the things normally, we need to install asdf here
-      - name: Install asdf
-        run: HOMEBREW_NO_AUTO_UPDATE=1 brew install asdf
 
       - name: Run setup in config-only mode
         env:
