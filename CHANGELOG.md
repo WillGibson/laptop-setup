@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Broaden the Claude Code git deny rules and block `gh api`, `--no-verify` and `core.hooksPath` overrides
 - Update post install config steps in ensure_asdf_is_installed()
 - Disable mouse clicks in Claude Code
+### Fixed
+- Fix long commands wrapping incorrectly in the terminal prompt
 
 ## [2.2.0] - 2026-04-21
 ### Added
